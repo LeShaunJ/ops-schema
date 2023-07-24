@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/dependencies/docker/rev.001.yaml
-title: dockerRepoList
+title: dockerRepository
 description: |
   - Specifies that this repo includes a directory with the given name (e.g. `deps/mysql`) that includes a `docker-compose.yml` file.
   - `ops` will change to the given directory and use `docker-compose` to start, stop, and check the status of this service as needed.

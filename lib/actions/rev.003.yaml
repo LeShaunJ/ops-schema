@@ -11,7 +11,8 @@ markdownDescription: |
 type: object
 minProperties: 1
 default:
-  myaction: echo "hello, world"
+  myaction:
+    command: echo "hello, world"
 patternProperties:
   ^[\w-]+$:
     $ref: ./action/rev.003.yaml
