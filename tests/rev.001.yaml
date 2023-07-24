@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../ops.schema.yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/LeShaunJ/ops-schema/main/ops.schema.yaml
 revision: 1
 dependencies:
   apk:
@@ -17,10 +17,9 @@ dependencies:
     - ejson
   terraform:
     - dev
-actions: 
+actions:
   myaction:
-    alias: b
-    command: true
+    command: echo "hello, world"
 options:
   gem:
     user_install: true
