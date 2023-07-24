@@ -4,7 +4,7 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/rev.004
 title: Action
 description: An advanced command configuration.
 type: object
-unevaluatedProperties: false
+additionalProperties: false
 required:
 - command
 properties:

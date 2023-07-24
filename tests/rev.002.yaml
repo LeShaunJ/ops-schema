@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/LeShaunJ/ops-schema/main/ops.schema.yaml
-revision: 1
+revision: 2
 dependencies:
   apk:
     - less
@@ -11,6 +11,8 @@ dependencies:
     - less
   custom:
     - echo "hello, world"
+  dir:
+    - config/{dev,staging,production}
   docker:
     - ubuntu/nginx
   gem:

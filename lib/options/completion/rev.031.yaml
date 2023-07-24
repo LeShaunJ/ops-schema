@@ -3,13 +3,12 @@ $schema: https://json-schema.org/draft-07/schema
 $id: 
   https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/completion/rev.031.yaml
 title: CompletionOptions
-description: '[DEPRECATED] This feature was removed as of version `1.16.0.pre.rc1`.'
-markdownDescription: |
-  ### `DEPRECATED`
-  _This feature was removed as of version `1.16.0.pre.rc1`._
+description: Affect the behaviour of the auto-complete feature.
+markdownDescription: |-
+  Affect the behaviour of the auto-complete feature.
 type: object
 minProperties: 1
-unevaluatedProperties: false
+additionalProperties: false
 default:
   include_aliases: true
 $ref: ../../common.yaml#/definitions/Deprecated

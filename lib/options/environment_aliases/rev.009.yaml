@@ -15,7 +15,7 @@ markdownDescription: |
   If any `environment_aliases` are specified in `ops.yml`, `ops` will not change the value of `$environment` unless it is listed as well.
 
   > NOTE: _`ops` will always use `$environment` to detect the software execution environment; `environment_aliases` just makes `ops` set other variables to match it._
-type: object
+type: array
 minItems: 1
 uniqueItems: true
 examples:

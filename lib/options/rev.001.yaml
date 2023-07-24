@@ -12,3 +12,4 @@ minProperties: 1
 properties:
   gem:
     $ref: ./gem/rev.001.yaml
+additionalProperties: false

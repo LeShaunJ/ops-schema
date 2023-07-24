@@ -38,3 +38,4 @@ properties:
     $ref: ./sshkey/rev.035.yaml
   up:
     $ref: ./up/rev.033.yaml
+additionalProperties: false

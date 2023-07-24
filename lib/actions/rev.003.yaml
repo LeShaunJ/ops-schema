@@ -16,3 +16,4 @@ default:
 patternProperties:
   ^[\w-]+$:
     $ref: ./action/rev.003.yaml
+additionalProperties: false

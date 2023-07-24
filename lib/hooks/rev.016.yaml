@@ -23,3 +23,4 @@ minProperties: 1
 properties:
   before:
     $ref: ./before/rev.016.yaml
+additionalProperties: false

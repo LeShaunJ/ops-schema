@@ -30,3 +30,4 @@ properties:
     $ref: ./secrets/rev.003.yaml
   sshkey:
     $ref: ./sshkey/rev.025.yaml
+additionalProperties: false

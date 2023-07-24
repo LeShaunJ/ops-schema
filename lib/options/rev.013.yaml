@@ -26,3 +26,4 @@ properties:
     $ref: ./secrets/rev.003.yaml
   sshkey:
     $ref: ./sshkey/rev.013.yaml
+additionalProperties: false

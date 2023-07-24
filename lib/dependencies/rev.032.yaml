@@ -14,7 +14,7 @@ markdownDescription: |
   _For more information, see the [Dependencies](https://github.com/nickthecook/ops/blob/main/docs/dependencies.md) documentation on [GitHub](https://github.com/nickthecook/ops)._
 type: object
 minProperties: 1
-unevaluatedProperties: false
+additionalProperties: false
 properties:
   apk:
     $ref: ./apk/rev.001.yaml
