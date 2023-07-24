@@ -6,8 +6,5 @@
             ],
             "url": "/ops.schema.json"
         }
-    ],
-    "yaml.schemas": {
-        "https://json.schemastore.org/pre-commit-config.json": "file:///Users/arian/src/misc/ops-schema/tests/rev.001.yaml"
-    }
+    ]
 }
