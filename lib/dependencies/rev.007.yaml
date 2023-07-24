@@ -17,20 +17,20 @@ minProperties: 1
 unevaluatedProperties: false
 properties:
   apk:
-    $ref: './apk/rev.001.yaml'
+    $ref: ./apk/rev.001.yaml
   apt:
-    $ref: './apt/rev.001.yaml'
+    $ref: ./apt/rev.001.yaml
   brew:
-    $ref: './brew/rev.001.yaml'
+    $ref: ./brew/rev.001.yaml
   cask:
-    $ref: './cask/rev.001.yaml'
+    $ref: ./cask/rev.001.yaml
   custom:
-    $ref: './custom/rev.001.yaml'
+    $ref: ./custom/rev.001.yaml
   dir:
-    $ref: './dir/rev.002.yaml'
+    $ref: ./dir/rev.002.yaml
   docker:
-    $ref: './docker/rev.001.yaml'
+    $ref: ./docker/rev.001.yaml
   gem:
-    $ref: './gem/rev.001.yaml'
+    $ref: ./gem/rev.001.yaml
   terraform:
-    $ref: './terraform/rev.007.yaml'
+    $ref: ./terraform/rev.007.yaml

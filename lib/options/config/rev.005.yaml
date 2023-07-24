@@ -7,4 +7,4 @@ type: object
 minProperties: 1
 properties:
   path:
-    $ref: './path/rev.005.yaml'
+    $ref: ./path/rev.005.yaml

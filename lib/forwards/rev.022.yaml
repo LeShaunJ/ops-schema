@@ -30,4 +30,4 @@ type: object
 minProperties: 1
 patternProperties:
   ^[\w-]+$:
-    $ref: './forward/rev.022.yaml'
+    $ref: ./forward/rev.022.yaml

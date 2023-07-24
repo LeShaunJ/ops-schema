@@ -11,18 +11,18 @@ type: object
 minProperties: 1
 properties:
   apt:
-    $ref: './apt/rev.008.yaml'
+    $ref: ./apt/rev.008.yaml
   config:
-    $ref: './config/rev.005.yaml'
+    $ref: ./config/rev.005.yaml
   environment:
-    $ref: './environment/rev.003.yaml'
+    $ref: ./environment/rev.003.yaml
   environment_aliases:
-    $ref: './environment_aliases/rev.009.yaml'
+    $ref: ./environment_aliases/rev.009.yaml
   exec:
-    $ref: './exec/rev.006.yaml'
+    $ref: ./exec/rev.006.yaml
   gem:
-    $ref: './gem/rev.001.yaml'
+    $ref: ./gem/rev.001.yaml
   secrets:
-    $ref: './secrets/rev.003.yaml'
+    $ref: ./secrets/rev.003.yaml
   sshkey:
-    $ref: './sshkey/rev.011.yaml'
+    $ref: ./sshkey/rev.011.yaml

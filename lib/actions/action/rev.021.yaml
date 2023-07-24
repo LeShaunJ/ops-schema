@@ -9,16 +9,16 @@ required:
 - command
 properties:
   alias:
-    $ref: './alias/rev.001.yaml'
+    $ref: ./alias/rev.001.yaml
   command:
-    $ref: './command/rev.001.yaml'
+    $ref: ./command/rev.001.yaml
   description:
-    $ref: './description/rev.004.yaml'
+    $ref: ./description/rev.004.yaml
   in_envs:
-    $ref: './in_envs/rev.021.yaml'
+    $ref: ./in_envs/rev.021.yaml
   load_secrets:
-    $ref: './load_secrets/rev.003.yaml'
+    $ref: ./load_secrets/rev.003.yaml
   not_in_envs:
-    $ref: './not_in_envs/rev.021.yaml'
+    $ref: ./not_in_envs/rev.021.yaml
   skip_before_hooks:
-    $ref: './skip_before_hooks/rev.018.yaml'
+    $ref: ./skip_before_hooks/rev.018.yaml

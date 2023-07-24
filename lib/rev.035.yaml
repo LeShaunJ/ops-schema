@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/rev.035.yaml
+description: Confirguration for `ops`.
 markdownDescription: |
   Confirguration for [`ops`](https://github.com/nickthecook/ops).
 
@@ -16,14 +17,14 @@ markdownDescription: |
 type: object
 properties:
   actions:
-    $ref: './actions/rev.026.yaml'
+    $ref: ./actions/rev.026.yaml
   dependencies:
-    $ref: './dependencies/rev.032.yaml'
+    $ref: ./dependencies/rev.032.yaml
   forwards:
-    $ref: './forwards/rev.022.yaml'
+    $ref: ./forwards/rev.022.yaml
   hooks:
-    $ref: './hooks/rev.016.yaml'
+    $ref: ./hooks/rev.016.yaml
   min_version:
-    $ref: './min_version/rev.017.yaml'
+    $ref: ./min_version/rev.017.yaml
   options:
-    $ref: './options/rev.035.yaml'
+    $ref: ./options/rev.035.yaml

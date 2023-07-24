@@ -12,4 +12,4 @@ default:
   fail_on_error: true
 properties:
   fail_on_error:
-    $ref: './fail_on_error/rev.028.yaml'
+    $ref: ./fail_on_error/rev.028.yaml

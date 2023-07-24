@@ -11,4 +11,4 @@ default:
   use_sudo: false
 properties:
   use_sudo:
-    $ref: '../../common.yaml#/definitions/UseSudo/properties/use_sudo'
+    $ref: ../../common.yaml#/definitions/UseSudo/properties/use_sudo

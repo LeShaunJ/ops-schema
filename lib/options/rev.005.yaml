@@ -11,10 +11,10 @@ type: object
 minProperties: 1
 properties:
   config:
-    $ref: './config/rev.005.yaml'
+    $ref: ./config/rev.005.yaml
   environment:
-    $ref: './environment/rev.003.yaml'
+    $ref: ./environment/rev.003.yaml
   gem:
-    $ref: './gem/rev.001.yaml'
+    $ref: ./gem/rev.001.yaml
   secrets:
-    $ref: './secrets/rev.003.yaml'
+    $ref: ./secrets/rev.003.yaml

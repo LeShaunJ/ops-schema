@@ -23,4 +23,4 @@ examples:
   - RACK_ENV
 items:
   description: The name of an environment variable.
-  $ref: '../../common.yaml#/definitions/NameString'
+  $ref: ../../common.yaml#/definitions/NameString

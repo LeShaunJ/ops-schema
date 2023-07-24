@@ -11,8 +11,8 @@ default:
   key_size: 4096
 properties:
   key_algo:
-    $ref: './key_algo/rev.010.yaml'
+    $ref: ./key_algo/rev.010.yaml
   key_size:
-    $ref: './key_size/rev.010.yaml'
+    $ref: ./key_size/rev.010.yaml
   passphrase:
-    $ref: './passphrase/rev.010.yaml'
+    $ref: ./passphrase/rev.010.yaml

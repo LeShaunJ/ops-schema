@@ -12,4 +12,4 @@ minProperties: 1
 unevaluatedProperties: false
 default:
   include_aliases: true
-$ref: '../../common.yaml#/definitions/Deprecated'
+$ref: ../../common.yaml#/definitions/Deprecated

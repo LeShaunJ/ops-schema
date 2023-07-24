@@ -19,6 +19,6 @@ patternProperties:
         use this method unless the command's intent is easy to decipher.
       markdownDescription: A simple command, or—*though, not recommended*—a script,
         to run. Only use this method unless the command's intent is easy to decipher.
-      $ref: '../common.yaml#/definitions/CommandString'
-    - $ref: '../common.yaml#/definitions/CommandNoop'
-    - $ref: './action/rev.036.yaml'
+      $ref: ../common.yaml#/definitions/CommandString
+    - $ref: ../common.yaml#/definitions/CommandNoop
+    - $ref: ./action/rev.036.yaml

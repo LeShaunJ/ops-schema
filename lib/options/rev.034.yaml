@@ -11,30 +11,30 @@ type: object
 minProperties: 1
 properties:
   apt:
-    $ref: './apt/rev.008.yaml'
+    $ref: ./apt/rev.008.yaml
   background:
-    $ref: './background/rev.015.yaml'
+    $ref: ./background/rev.015.yaml
   completion:
-    $ref: './completion/rev.031.yaml'
+    $ref: ./completion/rev.031.yaml
   config:
-    $ref: './config/rev.034.yaml'
+    $ref: ./config/rev.034.yaml
   envdiff:
-    $ref: './envdiff/rev.019.yaml'
+    $ref: ./envdiff/rev.019.yaml
   environment:
-    $ref: './environment/rev.003.yaml'
+    $ref: ./environment/rev.003.yaml
   environment_aliases:
-    $ref: './environment_aliases/rev.009.yaml'
+    $ref: ./environment_aliases/rev.009.yaml
   exec:
-    $ref: './exec/rev.006.yaml'
+    $ref: ./exec/rev.006.yaml
   gem:
-    $ref: './gem/rev.001.yaml'
+    $ref: ./gem/rev.001.yaml
   pip:
-    $ref: './pip/rev.029.yaml'
+    $ref: ./pip/rev.029.yaml
   secrets:
-    $ref: './secrets/rev.003.yaml'
+    $ref: ./secrets/rev.003.yaml
   snap:
-    $ref: './snap/rev.032.yaml'
+    $ref: ./snap/rev.032.yaml
   sshkey:
-    $ref: './sshkey/rev.025.yaml'
+    $ref: ./sshkey/rev.025.yaml
   up:
-    $ref: './up/rev.033.yaml'
+    $ref: ./up/rev.033.yaml

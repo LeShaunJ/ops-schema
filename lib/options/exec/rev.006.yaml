@@ -7,4 +7,4 @@ type: object
 minProperties: 1
 properties:
   load_secrets:
-    $ref: '../../common.yaml#/definitions/LoadSecrets'
+    $ref: ../../common.yaml#/definitions/LoadSecrets

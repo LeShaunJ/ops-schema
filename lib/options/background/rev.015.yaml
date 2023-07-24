@@ -12,8 +12,8 @@ default:
   shell: /bin/sh
 properties:
   log_filename:
-    $ref: './log_filename/rev.015.yaml'
+    $ref: ./log_filename/rev.015.yaml
   log_file_prefix:
-    $ref: './log_file_prefix/rev.015.yaml'
+    $ref: ./log_file_prefix/rev.015.yaml
   shell:
-    $ref: './shell/rev.015.yaml'
+    $ref: ./shell/rev.015.yaml

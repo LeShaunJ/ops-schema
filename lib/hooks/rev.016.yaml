@@ -22,4 +22,4 @@ type: object
 minProperties: 1
 properties:
   before:
-    $ref: './before/rev.016.yaml'
+    $ref: ./before/rev.016.yaml

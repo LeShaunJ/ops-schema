@@ -11,4 +11,4 @@ default:
   ignored_keys:
 patternProperties:
   ^\w+$:
-    $ref: './ignored_keys/rev.019.yaml'
+    $ref: ./ignored_keys/rev.019.yaml

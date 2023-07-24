@@ -12,6 +12,6 @@ default:
   fail_on_error: true
 properties:
   exit_on_error:
-    $ref: './exit_on_error/rev.033.yaml'
+    $ref: ./exit_on_error/rev.033.yaml
   fail_on_error:
-    $ref: './fail_on_error/rev.028.yaml'
+    $ref: ./fail_on_error/rev.028.yaml

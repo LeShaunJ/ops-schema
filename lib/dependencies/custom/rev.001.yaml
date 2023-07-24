@@ -21,6 +21,3 @@ items:
 minItems: 1
 examples:
   - - bundle install --quiet
-    - init file:
-        up: touch file
-        down: rm file

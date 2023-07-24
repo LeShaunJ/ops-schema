@@ -10,4 +10,4 @@ default:
   command: pip3
 properties:
   command:
-    $ref: './command/rev.029.yaml'
+    $ref: ./command/rev.029.yaml

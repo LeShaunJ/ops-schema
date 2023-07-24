@@ -9,8 +9,8 @@ required:
 - command
 properties:
   alias:
-    $ref: './alias/rev.001.yaml'
+    $ref: ./alias/rev.001.yaml
   command:
-    $ref: './command/rev.001.yaml'
+    $ref: ./command/rev.001.yaml
   load_secrets:
-    $ref: './load_secrets/rev.003.yaml'
+    $ref: ./load_secrets/rev.003.yaml

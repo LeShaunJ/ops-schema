@@ -11,14 +11,14 @@ default:
   key_size: 4096
 properties:
   add_keys:
-    $ref: './add_keys/rev.012.yaml'
+    $ref: ./add_keys/rev.012.yaml
   key_algo:
-    $ref: './key_algo/rev.011.yaml'
+    $ref: ./key_algo/rev.011.yaml
   key_lifetime:
-    $ref: './key_lifetime/rev.011.yaml'
+    $ref: ./key_lifetime/rev.011.yaml
   key_size:
-    $ref: './key_size/rev.010.yaml'
+    $ref: ./key_size/rev.010.yaml
   passphrase:
-    $ref: './passphrase/rev.010.yaml'
+    $ref: ./passphrase/rev.010.yaml
   passphrase_var:
-    $ref: './passphrase_var/rev.013.yaml'
+    $ref: ./passphrase_var/rev.013.yaml

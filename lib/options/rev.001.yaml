@@ -11,4 +11,4 @@ type: object
 minProperties: 1
 properties:
   gem:
-    $ref: './gem/rev.001.yaml'
+    $ref: ./gem/rev.001.yaml

@@ -14,4 +14,4 @@ default:
   myaction: echo "hello, world"
 patternProperties:
   ^[\w-]+$:
-    $ref: './action/rev.018.yaml'
+    $ref: ./action/rev.018.yaml

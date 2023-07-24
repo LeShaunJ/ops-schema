@@ -7,6 +7,6 @@ type: object
 minProperties: 1
 properties:
   path:
-    $ref: './path/rev.005.yaml'
+    $ref: ./path/rev.005.yaml
   preserve_existing_env_vars:
-    $ref: './preserve_existing_env_vars/rev.034.yaml'
+    $ref: ./preserve_existing_env_vars/rev.034.yaml

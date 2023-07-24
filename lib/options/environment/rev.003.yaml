@@ -15,4 +15,4 @@ type: object
 minProperties: 1
 patternProperties:
   ^\w+$:
-    $ref: './var/rev.003.yaml'
+    $ref: ./var/rev.003.yaml

@@ -12,4 +12,4 @@ default:
   include_aliases: true
 properties:
   include_aliases:
-    $ref: './include_aliases/rev.030.yaml'
+    $ref: ./include_aliases/rev.030.yaml
