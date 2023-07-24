@@ -191,4 +191,5 @@ oneOf:
           properties: { revision: {} }
           required: ['revision']
       - $ref: '#/oneOf/0/allOf/1'
+
 ...
