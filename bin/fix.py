@@ -32,8 +32,8 @@ def FindMeta(path: Path | str) -> Path | None:
 def GetMeta(path: Path | str) -> CommentedMap:
     try:
         meta = Yaml.load(path)
-        del meta["$schema"]
-        del meta["$id"]
+        # del meta["$schema"]
+        # del meta["$id"]
         return meta
     except (TypeError, YAMLStreamError):
         return CommentedMap()
@@ -51,16 +51,12 @@ for dir in reversed(sorted(sys.argv[1:])):
             meta = GetMeta(meta_path)
             schema = GetRevision(path)
 
-            try:
-                props = schema['allOf'][1]
-                schema.update(props)
-                del schema['allOf']
-            except (KeyError, IndexError):
-                pass
-            finally:
-                schema.update(meta)
-                with open(path, "w") as file:
-                    Yaml.dump(schema, file)
-                path = path.absolute().relative_to(CWD)
-                print(f'Fixed: {path} -> {meta_path}')
+            meta.update(schema)
+            schema = meta
+
+            with open(path, "w") as file:
+                Yaml.dump(schema, file)
+
+            path = path.absolute().relative_to(CWD)
+            print(f'Fixed: {path} -> {meta_path}')
 ...

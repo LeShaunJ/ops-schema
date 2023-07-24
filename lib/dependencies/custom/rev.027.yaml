@@ -81,5 +81,8 @@ examples:
 definitions: 
   CustomCommand:
     oneOf:
-      - $ref: "../../common.yaml#/definitions/NonEmptyString"
+      - allOf:
+          - description: An idempotent command or script to run as a dependency when `ops up` is executed.
+            markdownDescription: An idempotent command or script to run as a dependency when `ops up` is executed.
+          - $ref: "../../common.yaml#/definitions/CommandString"
       - $ref: "../../common.yaml#/definitions/CommandNoop"

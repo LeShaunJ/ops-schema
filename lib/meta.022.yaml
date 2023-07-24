@@ -15,3 +15,4 @@ markdownDescription: |
   options: ...
   ```
 type: object
+additionalProperties: false

@@ -19,12 +19,14 @@ properties:
 definitions:
   CommandString:
     allOf:
+      - title: Command String
       - $ref: "#/definitions/NonEmptyString"
       - default: echo "hello, world"
         examples:
           - terraform init
           - docker-compose up
   CommandNoop:
+    title: No-Op Command
     description: If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
     markdownDescription: If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
     type: boolean
@@ -95,6 +97,7 @@ definitions:
   UseSudo:
     properties:
       use_sudo:
+        title: UseSudo
         description: If `false`, causes `ops up` to install the dependency's packages without `sudo`.
         type: boolean
         default: true

@@ -14,7 +14,10 @@ markdownDescription: |
   options: ...
   ```
 type: object
+additionalProperties: false
 properties:
+  revision:
+    $ref: './common.yaml#/properties/revision'
   actions:
     $ref: ./actions/rev.018.yaml
   dependencies:
