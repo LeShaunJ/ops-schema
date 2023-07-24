@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/dependencies/sshkey/rev.010.yaml
+title: sshKeyList
+description: |
+  This dependency will create an SSH key pair with key size 4096 and key algorithm `rsa` at `keys/$environment/user@host` and `keys/$environment/user@host.pub`. It will also add it to your SSH agent, if `SSH_AUTH_SOCK` is set, with a lifetime of 3600 seconds (one hour).
+
+  The key comment, which is visible in the output of `ssh-add -l`, will be set to the name of the directory that contains `ops.yml`. For example, if the directory is named `heliograf`, you would see the following output:
+markdownDescription: |
+  This dependency will create an SSH key pair with key size 4096 and key algorithm `rsa` at `keys/$environment/user@host` and `keys/$environment/user@host.pub`. It will also add it to your SSH agent, if `SSH_AUTH_SOCK` is set, with a lifetime of 3600 seconds (one hour).
+
+  The key comment, which is visible in the output of `ssh-add -l`, will be set to the name of the directory that contains `ops.yml`. For example, if the directory is named `heliograf`, you would see the following output:
+
+  ```shell
+  $ ssh-add -l
+  2048 SHA256:7n9WwisFkDtemOx8O/+D33myKpjOvrjx3PZcNb9y6/Y heliograf (RSA)
+  2048 SHA256:Z6oEPBIoBrHv/acYiBGBRYLe2sEONV17tDor3h5eNtc certitude (RSA)
+  ```
+
+  This output shows that one key from a project called `heliograf` and one key from a project called `certitude` have been loaded.
+$ref: "../../common.yaml#/definitions/PathList"
+examples:
+  - - keys/$environment/user@host

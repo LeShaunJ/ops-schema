@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/forwards/rev.022.yaml
+title: ForwardMap
+description: |
+  Sometimes a project is complex enough to split up into multiple directories. In this case, you may have `ops.yml` files in several places, but still want to provide easy access to these actions from the top-level directory.
+
+  With this config, `ops app test` will have the same effect as running `ops test` from the `app` directory. `ops inf deploy` will be the same as `cd infrastructure && ops deploy`.
+
+  When a command is forwarded to another directory, no config, secrets, or environment variables are set based on the current directory's `ops.yml`, and no hooks are run from the current directory's `ops.yml`.
+
+  If you want access to the top-level directory's config or secrets from the subdirectory, link it in the subdirectory's `ops.yml`.
+markdownDescription: |
+  Sometimes a project is complex enough to split up into multiple directories. In this case, you may have `ops.yml` files in several places, but still want to provide easy access to these actions from the top-level directory.
+
+  With this config, `ops app test` will have the same effect as running `ops test` from the `app` directory. `ops inf deploy` will be the same as `cd infrastructure && ops deploy`.
+
+  When a command is forwarded to another directory, no config, secrets, or environment variables are set based on the current directory's `ops.yml`, and no hooks are run from the current directory's `ops.yml`.
+
+  If you want access to the top-level directory's config or secrets from the subdirectory, link it in the subdirectory's `ops.yml`:
+
+  ```yaml
+  dependencies:
+    custom:
+      - ln -sf ../config config
+  ```
+
+  _For more information, see the [Forwards](https://github.com/nickthecook/ops/blob/main/docs/why.md#vforwards) documentation on [GitHub](https://github.com/nickthecook/ops)._
+type: object
+minProperties: 1

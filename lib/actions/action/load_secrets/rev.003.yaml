@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/load_secrets/rev.003.yaml
+title: LoadSecrets
+$ref: "../../../common.yaml#/definitions/LoadSecrets"

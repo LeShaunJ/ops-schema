@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/exec/rev.006.yaml
+title: ExecOptions
+description: Affect the behaviour of `ops exec`.
+type: object
+minProperties: 1
+properties:
+  load_secrets:
+    $ref: '../../common.yaml#/definitions/LoadSecrets'

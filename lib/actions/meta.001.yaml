@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/meta.001.yaml
+title: ActionMap
+description: A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.
+markdownDescription: |
+  A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.
+
+  _For more information, see the [Actions](https://github.com/nickthecook/ops/blob/main/docs/actions.md) documentation on [GitHub](https://github.com/nickthecook/ops)._
+type: object
+minProperties: 1
+default:
+  myaction:
+    command: echo "hello, world"

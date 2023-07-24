@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/sshkey/passphrase/rev.010.yaml
+title: KeyPassphrase
+description: A passphrase to generate the SSH key with.
+type: string

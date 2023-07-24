@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/pip/rev.029.yaml
+title: PipOptions
+description: Affect the behaviour of `pip` dependencies.
+markdownDescription: Affect the behaviour of `pip` dependencies.
+type: object
+unevaluatedProperties: false
+default:
+  command: pip3
+properties:
+  command:
+    $ref: './command/rev.029.yaml'

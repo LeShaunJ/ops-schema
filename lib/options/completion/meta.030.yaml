@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/completion/meta.030.yaml
+title: CompletionOptions
+description: Affect the behaviour of the auto-complete feature.
+markdownDescription: Affect the behaviour of the auto-complete feature.
+type: object
+minProperties: 1
+unevaluatedProperties: false
+default:
+  include_aliases: true

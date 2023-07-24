@@ -1,0 +1,100 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/common.yaml
+title: ops.yml Common
+properties: 
+  revision:
+    title: Revision
+    description: |
+      A semantic version pertaining to an `ops` release that determinines how the `ops.yml` file will be validated against.
+
+      If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
+    markdownDescription: |
+      A semantic version pertaining to an `ops` release that determinines how the `ops.yml` file will be validated against.
+
+      If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
+    type: integer
+    minimum: 1
+    default: 36
+definitions:
+  CommandString:
+    allOf:
+      - $ref: "#/definitions/NonEmptyString"
+      - default: echo "hello, world"
+        examples:
+          - terraform init
+          - docker-compose up
+  CommandNoop:
+    description: If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
+    markdownDescription: If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
+    type: boolean
+    default: true
+  Deprecated:
+    title: Deprecated
+    not:
+      anyOf:
+        - type: array
+        - type: boolean
+        - type: integer
+        - type: 'null'
+        - type: number
+        - type: object
+        - type: string
+  EnvList:
+    title: Environment List
+    type: array
+    items:
+      title: Environment
+      description: A list of environment names.
+      $ref: "#/definitions/NameString"
+    minItems: 1
+    uniqueItems: true
+  FileName:
+    title: File Name
+    type: string
+    pattern: ^(?!.{256,})(?!(aux|clock\$|con|nul|prn|com[1-9]|lpt[1-9])(?:$|\.))[^ ][ \.\w-$()+=[\];#@~,&']+[^\. ]$
+    minLength: 1
+  LoadSecrets:
+    description: If `true`, items in `secrets.ejson` will be loaded before execution, allowing said items to be referenced in the configuration.
+    type: boolean
+    default: false
+  NameString:
+    title: Name String
+    type: string
+    pattern: ^[\w-]+$
+  NonEmptyString:
+    title: Non-Empty String
+    type: string
+    minLength: 1
+  PackageList:
+    title: Package List
+    type: array
+    items:
+      title: Package
+      description: A list of package names.
+      $ref: "#/definitions/NameString"
+    minItems: 1
+    uniqueItems: true
+  Path:
+    title: Path
+    type: string
+    format: uri-reference
+  PathList:
+    title: Path List
+    type: array
+    items:
+      allOf:
+        - description: A valid filepath.
+        - $ref: '#/definitions/Path'
+    minItems: 1
+    uniqueItems: true
+  SemVer:
+    title: Semantic Version
+    type: string
+    pattern: ^(0|[1-9]\d*)(\.(0|[1-9]\d*)(\.(0|[1-9]\d*)(-([\dA-z-]+(?:\.[\dA-z-]+)*)|)(\+[\dA-z-]+|)|)|)$
+  UseSudo:
+    properties:
+      use_sudo:
+        description: If `false`, causes `ops up` to install the dependency's packages without `sudo`.
+        type: boolean
+        default: true

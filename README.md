@@ -1,2 +1,3 @@
-# ops-schema
-A collection of JSON schemas for ops.yml
+# Ops Schema
+
+A collection of schema revisions for [`ops.yml`](https://github.com/nickthecook/ops).

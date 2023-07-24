@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/up/fail_on_error/rev.028.yaml
+title: Fail-on-Error
+description: By default, `ops up` will exit 0 even if any dependencies failed due to errors. Set this to `true` if you want `ops up` to exit non-0 when any of the dependencies fail.
+markdownDescription: By default, `ops up` will exit `0` even if any dependencies failed due to errors. Set this to `true` if you want `ops up` to exit _non-`0`_ when any of the dependencies fail.
+type: boolean
+default: true

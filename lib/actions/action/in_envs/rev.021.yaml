@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/in_envs/rev.021.yaml
+description: Limit possibly destructive actions to only being used in certain environments. If the action is excuted in an environment missing from this list, it will exit with an error.
+$ref: "../../../common.yaml#/definitions/EnvList"

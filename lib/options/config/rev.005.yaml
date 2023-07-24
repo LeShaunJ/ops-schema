@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/config/rev.005.yaml
+title: SecretOptions
+description: Affect how configs are interpreted.
+type: object
+minProperties: 1
+properties:
+  path:
+    $ref: './path/rev.005.yaml'

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/skip_before_hooks/rev.018.yaml
+description: |
+  You may have some actions that don't need to run before hooks. For example, an action that removes container images to allow a developer to force a clean build from the latest source, or free up disk space.
+
+  In this case, you can configure that action to skip the hooks.
+type: boolean
+default: false

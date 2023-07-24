@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/sshkey/key_algo/rev.011.yaml
+title: KeyAlgorithm
+description: '[DEPRECATED] This feature was removed from versions `0.8.2` and onward until `1.14.0`.'
+markdownDescription: |
+  ### `DEPRECATED`
+  _This feature was removed from versions `0.8.2` and onward until `1.14.0`._
+$ref: "../../../common.yaml#/definitions/Deprecated"

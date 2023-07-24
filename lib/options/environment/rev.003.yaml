@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: 
+  https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/environment/rev.003.yaml
+title: EnvironmentMap
+description: |
+  Statically or dynamically set global environment variables, with each key serving as a variable's name.
+
+  The values of these variables are not interpreted by the shell before being set, so variable references like `$environment` will appear literally in the value of the variable.
+markdownDescription: |
+  Statically or dynamically set global environment variables, with each key serving as a variable's name.
+
+  > **NOTE:** _The values of these variables are not interpreted by the shell before being set, so variable references like `$environment` will appear literally in the value of the variable._
+type: object
+minProperties: 1
+patternProperties:
+  ^\w+$:
+    $ref: './var/rev.003.yaml'

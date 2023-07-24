@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/shell_expansion/rev.023.yaml
+description: By default, `ops` executes actions with shell expansion, which means variable references are expanded, file globbing is done, and quotes behave as one would expect. However, this can get in the way sometimes. For actions like this, one can disable shell expansion, losing variable and glob interpolation and other shell features but gaining some predictability.
+markdownDescription: By default, `ops` executes actions with shell expansion, which means variable references are expanded, file globbing is done, and quotes behave as one would expect. However, this can get in the way sometimes. For actions like this, one can disable shell expansion, losing variable and glob interpolation and other shell features but gaining some predictability.
+type: boolean
+default: false

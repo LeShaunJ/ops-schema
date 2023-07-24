@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=../ops.schema.yaml
+revision: 1
+dependencies:
+  apk:
+    - less
+  apt:
+    - less
+  brew:
+    - less
+  cask:
+    - less
+  custom:
+    - echo "hello, world"
+  docker:
+    - ubuntu/nginx
+  gem:
+    - ejson
+  terraform:
+    - dev
+actions: 
+  myaction:
+    alias: b
+    command: true
+options:
+  gem:
+    user_install: true
+    use_sudo: false
+    

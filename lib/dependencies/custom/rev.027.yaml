@@ -1,0 +1,85 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/dependencies/custom/rev.027.yaml
+title: CustomCommandList
+description: |
+  - Runs the given command.
+  - Can't tell if the command needs to be run or not, so always runs it on `ops up`.
+  - Therefore, the command should be idempotent.
+  - It's also a good idea to prevent it from printing output unless it encounters an error, to keep the ops output clean.
+  - If a `custom` dependency is given as a hash, you can define separate `up` and `down` actions that are run when `ops up` or `ops down` are called, respectively.
+markdownDescription: |
+  * Runs the given command.
+  * Can't tell if the command needs to be run or not, so always runs it on `ops up`.
+  * Therefore, the command should be [**idempotent**](https://en.wikipedia.org/wiki/Idempotence).
+  * It's also a good idea to prevent it from printing output unless it encounters an error, to keep the ops output clean.
+  
+  #### `custom` dependencies with `up` and `down`
+
+  If a `custom` dependency is given as a hash, you can define separate `up` and `down` actions that are run when `ops up` or `ops down` are called, respectively.
+
+  ```yaml
+  dependencies:
+  	custom:
+  		- init file:
+  				up: touch file
+  				down: rm file
+  ```
+
+  You can also define only the `down` command, which will execute on `ops down`; nothing will be executed by the dependency on `ops up`.
+
+  > **NOTE:** The lines with `up` and `down` are indented past the beginning of the text `init file`. YAML considers `- ` in a list to be part of the indentation, and `up` and `down` must be _children_ of the name of the custom depdenceny, not siblings. Therefore, the following is **incorrect**:
+  >
+  > ```yaml
+  > dependencies:
+  > 	custom:
+  > 		- init file:
+  > 			up: touch file
+  > 			down: rm file
+  > ```
+  >
+  > as it results in a Hash like:
+  > 
+  > ```ruby
+  > {
+  > 	"init file" => nil,
+  > 	"up" => "touch file",
+  > 	"down" => "touch file"
+  > }
+  > ```
+type: array
+items:
+  description: ""
+  oneOf:
+    - $ref: "#/definitions/CustomCommand"
+    - title: 'UpDownHash'
+      description: ""
+      type: object
+      patternProperties:
+        ^\b.+\b$:
+          title: UpDownConfig
+          description: ""
+          type: object
+          properties:
+            up:
+              title: upCommand
+              description: ""
+              $ref: "#/definitions/CustomCommand"
+            down:
+              title: downCommand
+              description: ""
+              $ref: "#/definitions/CustomCommand"
+          minProperties: 1
+      minProperties: 1
+      maxProperties: 1
+minItems: 1
+examples:
+  - - bundle install --quiet
+    - init file:
+        up: touch file
+        down: rm file
+definitions: 
+  CustomCommand:
+    oneOf:
+      - $ref: "../../common.yaml#/definitions/NonEmptyString"
+      - $ref: "../../common.yaml#/definitions/CommandNoop"

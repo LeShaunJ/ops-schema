@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/dependencies/terraform/rev.001.yaml
+title: terraformHandler
+description:  |
+  - Performs `terraform init` and `terraform apply` on `ops up`
+  - Performs `terraform destroy` on `ops down`
+markdownDescription: |
+  * Performs `terraform init` and `terraform apply` on `ops up`
+  * Performs `terraform destroy` on `ops down`
+$ref: "../../common.yaml#/definitions/PathList"
+examples:
+  - - env/production
+    - env/staging
+    - env/dev

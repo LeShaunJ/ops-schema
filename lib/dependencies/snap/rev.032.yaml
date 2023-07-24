@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/dependencies/snap/rev.032.yaml
+title: snapPackageList
+description: |-
+  - Specifies that a particular package from `snap` is needed.
+  - Unlike `apt`, `brew`, or `apk`, `snap` may be present on any Linux system, and its presence alone probably shouldn't be taken as a sign that ops should install every `snap` listed in dependencies.
+  - Therefore, ops will never install `snaps` unless `options.snap.install` is true.
+markdownDescription: |-
+  - Specifies that a particular package from `snap` is needed.
+  - Unlike `apt`, `brew`, or `apk`, `snap` may be present on any Linux system, and its presence alone probably shouldn't be taken as a sign that ops should install every `snap` listed in dependencies.
+  - Therefore, ops will never install `snaps` unless `options.snap.install` is true.
+$ref: "../../common.yaml#/definitions/PackageList"

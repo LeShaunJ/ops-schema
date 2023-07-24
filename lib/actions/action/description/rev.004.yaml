@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/description/rev.004.yaml
+title: Description
+description: A summary of the command's intent and its usage. When a user runs, `ops help`, the text here will display beside the command's name; otherwise, it will simply display the command script. It is best practice to describe your command.
+markdownDescription: A summary of the command's intent and its usage. When a user runs, `ops help`, the text here will display beside the command's name; otherwise, it will simply display the command script. It is best practice to describe your command.
+type: string
+minLength: 1
+default: DESCRIBE ME!

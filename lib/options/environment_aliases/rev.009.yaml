@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: 
+  https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/environment_aliases/rev.009.yaml
+title: EnvironmentAliasList
+description: |
+  Different software systems use different environment variables to determine the software execution environment. E.g. Ruby on Rails uses `RAILS_ENV`. Thus, `ops` allows the user to specify which variables should also be set to the name of the software environment.
+
+  If any `environment_aliases` are specified in `ops.yml`, `ops` will not change the value of `$environment` unless it is listed as well.
+
+  (`ops` will always use `$environment` to detect the software execution environment; `environment_aliases` just makes `ops` set other variables to match it.)
+markdownDescription: |
+  Different software systems use different environment variables to determine the software execution environment. E.g. Ruby on Rails uses `RAILS_ENV`. Thus, `ops` allows the user to specify which variables should also be set to the name of the software environment.
+
+  If any `environment_aliases` are specified in `ops.yml`, `ops` will not change the value of `$environment` unless it is listed as well.
+
+  > NOTE: _`ops` will always use `$environment` to detect the software execution environment; `environment_aliases` just makes `ops` set other variables to match it._
+type: object
+minItems: 1
+uniqueItems: true
+examples:
+- - RAILS_ENV
+  - RACK_ENV
+items:
+  description: The name of an environment variable.
+  $ref: '../../common.yaml#/definitions/NameString'

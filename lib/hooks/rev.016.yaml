@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/hooks/rev.016.yaml
+title: Hooks
+description: |
+  Sometimes you want to run a command before other commands. Some examples:
+
+  - You have a number of ops commands that let a developer run different test suites inside a container, and you want to make sure the container image is built beforehand.
+  - You have some configuration that needs to happen when the software execution environment changes (e.g. going from dev to staging).
+
+  In this case, you can use the "hooks feature.
+markdownDescription: |
+  Sometimes you want to run a command before other commands. Some examples:
+
+  * You have a number of ops commands that let a developer run different test suites inside a container, and you want to make sure the container image is built beforehand.
+  * You have some configuration that needs to happen when the software execution environment changes (_e.g. going from `dev` to `staging`_).
+
+  In this case, you can use the `hooks` feature.
+
+  _For more information, see the [Hooks](https://github.com/nickthecook/ops/blob/main/docs/hooks.md) documentation on [GitHub](https://github.com/nickthecook/ops)._
+type: object
+minProperties: 1
+properties:
+  before:
+    $ref: './before/rev.016.yaml'
