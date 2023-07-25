@@ -26,6 +26,6 @@ properties:
   hooks:
     $ref: ./hooks/rev.016.yaml
   min_version:
-    $ref: ./min_version/rev.017.yaml
+    $ref: ./min_version/rev.020.yaml
   options:
     $ref: ./options/rev.019.yaml

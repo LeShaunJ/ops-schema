@@ -16,9 +16,3 @@ markdownDescription: |
   The versions you can set for `min_version` will depend on the `revision` of `ops.yaml` you've specified—if specified at all.
 
   _For more information, see the [Version Checking](https://github.com/nickthecook/ops/blob/main/docs/why.md#version-checking) documentation on [GitHub](https://github.com/nickthecook/ops)._
-type: string
-allOf:
-- $ref: ../common.yaml#/definitions/SemVer
-- enum:
-  - 0.12.0
-default: 0.12.0

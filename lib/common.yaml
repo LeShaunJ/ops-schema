@@ -7,15 +7,15 @@ properties:
     title: Revision
     description: |
       A number representing a schema version that the `ops.yml` will be validated against.
-      — It is not the same as `min_version`; though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.
+      — It is not the same as `min_version` (`0.12.0` and onward); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.
       — If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
     markdownDescription: |
       A number representing a schema version that the `ops.yml` will be validated against:
-      * It _is not_ the same as `min_version`; though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.
+      * It _is not_ the same as `min_version` (_`0.12.0` and onward_); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.
       * If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
     type: integer
-    # minimum: 1
-    # default: 36
+    minimum: 1
+    default: 36
 definitions:
   CommandString:
     allOf:
@@ -74,7 +74,8 @@ definitions:
     items:
       title: Package
       description: A list of package names.
-      $ref: "#/definitions/NameString"
+      type: string
+      pattern: ^[\w@:.+-]+$
     minItems: 1
     uniqueItems: true
   Path:
@@ -93,7 +94,7 @@ definitions:
   SemVer:
     title: Semantic Version
     type: string
-    pattern: ^(0|[1-9]\d*)(\.(0|[1-9]\d*)(\.(0|[1-9]\d*)(-([\dA-z-]+(?:\.[\dA-z-]+)*)|)(\+[\dA-z-]+|)|)|)$
+    pattern: ^(0|[1-9]\d*)(?:\.(0|[1-9]\d*)(?:\.(0|[1-9]\d*)(?:[.-]([\dA-z-]+(?:\.[\dA-z-]+)*)|)(\+[\dA-z-]+|)|)|)$
   UseSudo:
     properties:
       use_sudo:

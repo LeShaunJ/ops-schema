@@ -5,7 +5,7 @@ title: changes.yaml
 type: object
 description: Changelog for Ops Schema
 patternProperties: 
-  ^(0|[1-9]\d*)(?:\.(0|[1-9]\d*)(?:\.(0|[1-9]\d*)(?:[.-]([\dA-z-]+(?:\.[\dA-z-]+)*)|)(\+[\dA-z-]+|)|)|)$:
+  ^\d{3}$:
     title: ChangeObject
     type: object
     description: Describe your change in the form of a faux-`ops.yaml` configuration.

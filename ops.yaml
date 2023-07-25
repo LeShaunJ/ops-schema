@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/LeShaunJ/ops-schema/main/ops.schema.yaml
+dependencies:
+  apk:
+    - python3
+  apt:
+    - python3.11
+  brew:
+    - python@3.11
+  pip:
+    - ruamel.yaml
+    - semver
+actions: 
+  myaction: echo "hello, world"

@@ -1,3 +1,4 @@
-reference.schema.yaml
+.scache
 .vscode/settings.json
+reference.schema.yaml
 tmp/*
