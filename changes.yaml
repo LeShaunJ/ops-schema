@@ -1,173 +1,172 @@
-diffs:
-  0.1.1: &001
-    dependencies: &Dependencies
-      apk: []
-      apt: []
-      brew: []
-      cask: []
-      custom: []
-      docker: []
-      gem: []
-      terraform: []
-    actions: &ActionMap
-      action: &Action
-        command: ""
-        alias: ""
-    options: &Options
-      gem: &GemOptions
-        use_sudo: true
-        user_install: true
-  0.1.6: &002
-    dependencies: &Dependencies
-      dir: []
-  0.2.0: &003
-    actions: &ActionMap
-      action: &Action
-        load_secrets: true
-    options: &Options
-      environment: &EnvMap {}
-      secrets: &SecretOptions
-        path: ""
-  0.2.2: &004
-    actions: &ActionMap
-      action: &Action
-        description: ""
-  0.2.4: &005
-    options: &Options
-      config: &ConfigOptions
-        path: ""
-  0.2.5: &006
-    options: &Options
-      exec: &ExecOptions
-        load_secrets: true
-  0.2.6: &007
-    dependencies: &Dependencies
-      terraform: null
-  0.3.0: &008
-    options: &Options
-      apt: &AptOptions
-        use_sudo: true
-  0.5.0: &009
-    options: &Options
-      environment_aliases: []
-  0.8.0: &010
-    dependencies: &Dependencies
-      sshkey: []
-    options: &Options
-      sshkey: &SshKeyOptions
-        key_size: 0
-        key_algo: enum
-        passphrase: ""
-  0.8.2: &011
-    options: &Options
-      sshkey: &SshKeyOptions
-        key_algo: null
-        key_lifetime: 0
-  0.8.7: &012
-    options: &Options
-      sshkey: &SshKeyOptions
-        add_keys: false
-  0.8.9: &013
-    options: &Options
-      sshkey: &SshKeyOptions
-        passphrase_var: ""
-  0.9.0: &014
-    options: &Options
-      background:
-        log_file_prefix: ""
-        shell: ""
-  0.9.4: &015
-    options: &Options
-      background:
-        log_file_prefix: null
-        shell: null
-        log_filename: ""
-  0.11.0.pre: &016
-    hooks: &HookMap
-      before: []
-  0.12.0: &017
-    min_version: 0.0.0
-  0.12.2: &018
-    actions: &ActionMap
-      action: &Action
-        skip_before_hooks: true
-  0.15.1: &019
-    options: &Options
-      envdiff: &EnvDiffOptions
-        ignored_keys: []
-  1.17.0.rc1: &020
-    actions: &ActionMap
-      action: ""
-  0.18.0: &021
-    actions: &ActionMap
-      action: &Action
-        in_envs: []
-        not_in_envs: []
-  0.19.0: &022
-    forwards: &ForwardMap
-      forward: &Forward ""
-  1.2.1: &023
-    actions: &ActionMap
-      action: &Action
-        shell_expansion: false
-  1.4.0.rc1: &024
-    options: &Options
-      sshkey: &SshKeyOptions
-        key_file_comment: ""
-  1.7.0: &025
-    options: &Options
-      sshkey: &SshKeyOptions
-        key_algo: enum
-  1.8.0: &026
-    actions: &ActionMap
-      action: &Action
-        skip_in_envs: []
-  1.9.0: &027
-    dependencies: &Dependencies
-      custom: &Custom
-        - ""
-        - custom:
-            up: ""
-            down: ""
-  1.11.0: &028
-    options: &Options
-      up: &UpOptions
-        fail_on_error: true
-  1.13.0: &029
-    dependencies: &Dependencies
-      pip: []
-    options: &Options
-      pip: &PipOptions
-        command: ""
-  1.15.0.pre.rc2: &030
-    options: &Options
-      completion: &CompletionOptions
-        include_aliases: true
-  1.16.0.pre.rc1: &031
-    options: &Options
-      completion: null
-  1.18.0: &032
-    dependencies: &Dependencies
-      snap: []
-    options: &Options
-      snap: &SnapOptions
-        use_sudo: true
-        install: true
-  1.19.2.rc1: &033
-    options: &Options
-      up: &UpOptions
-        exit_on_error: true
-  1.20.0.rc1: &034
-    options: &Options
-      config: &ConfigOptions
-        preserve_existing_env_vars: true
-  2.0.0.rc3: &035
-    options: &Options
-      sshkey: &SshKeyOptions
-        passphrase: null
-  2.2.0: &036
-    actions: &ActionMap
-      action: &Action
-        param_expansion: true
-
-
+# yaml-language-server: $schema=./etc/changes.schema.yaml
+0.1.1: &001
+  dependencies: &Dependencies
+    apk: []
+    apt: []
+    brew: []
+    cask: []
+    custom: []
+    docker: []
+    gem: []
+    terraform: []
+  actions: &ActionMap
+    action: &Action
+      command: ""
+      alias: ""
+  options: &Options
+    gem: &GemOptions
+      use_sudo: true
+      user_install: true
+0.1.6: &002
+  dependencies: &Dependencies
+    dir: []
+0.2.0: &003
+  actions: &ActionMap
+    action: &Action
+      load_secrets: true
+  options: &Options
+    environment: &EnvMap {}
+    secrets: &SecretOptions
+      path: path/to/file
+0.2.2: &004
+  actions: &ActionMap
+    action: &Action
+      description: ""
+0.2.4: &005
+  options: &Options
+    config: &ConfigOptions
+      path: ""
+0.2.5: &006
+  options: &Options
+    exec: &ExecOptions
+      load_secrets: true
+0.2.6: &007
+  dependencies: &Dependencies
+    terraform: null
+0.3.0: &008
+  options: &Options
+    apt: &AptOptions
+      use_sudo: true
+0.5.0: &009
+  options: &Options
+    environment_aliases: []
+0.8.0: &010
+  dependencies: &Dependencies
+    sshkey: []
+  options: &Options
+    sshkey: &SshKeyOptions
+      key_size: 0
+      key_algo: enum
+      passphrase: ""
+0.8.2: &011
+  options: &Options
+    sshkey: &SshKeyOptions
+      key_algo: null
+      key_lifetime: 0
+0.8.7: &012
+  options: &Options
+    sshkey: &SshKeyOptions
+      add_keys: false
+0.8.9: &013
+  options: &Options
+    sshkey: &SshKeyOptions
+      passphrase_var: ""
+0.9.0: &014
+  options: &Options
+    background:
+      log_file_prefix: ""
+      shell: ""
+0.9.4: &015
+  options: &Options
+    background:
+      log_file_prefix: null
+      shell: null
+      log_filename: ""
+0.11.0.pre: &016
+  hooks: &HookMap
+    before: []
+0.12.0: &017
+  min_version: 0.0.0
+0.12.2: &018
+  actions: &ActionMap
+    action: &Action
+      skip_before_hooks: true
+0.15.1: &019
+  options: &Options
+    envdiff: &EnvDiffOptions
+      ignored_keys: []
+1.17.0.rc1: &020
+  actions: &ActionMap
+    action: ""
+0.18.0: &021
+  actions: &ActionMap
+    action: &Action
+      in_envs: []
+      not_in_envs: []
+0.19.0: &022
+  forwards: &ForwardMap
+    forward: &Forward ""
+1.2.1: &023
+  actions: &ActionMap
+    action: &Action
+      shell_expansion: false
+1.4.0.rc1: &024
+  options: &Options
+    sshkey: &SshKeyOptions
+      key_file_comment: ""
+1.7.0: &025
+  options: &Options
+    sshkey: &SshKeyOptions
+      key_algo: enum
+1.8.0: &026
+  actions: &ActionMap
+    action: &Action
+      skip_in_envs: []
+1.9.0: &027
+  dependencies: &Dependencies
+    custom: &Custom
+      - ""
+      - custom:
+          up: ""
+          down: ""
+1.11.0: &028
+  options: &Options
+    up: &UpOptions
+      fail_on_error: true
+1.13.0: &029
+  dependencies: &Dependencies
+    pip: []
+  options: &Options
+    pip: &PipOptions
+      command: ""
+1.15.0.pre.rc2: &030
+  options: &Options
+    completion: &CompletionOptions
+      include_aliases: true
+1.16.0.pre.rc1: &031
+  options: &Options
+    completion: null
+1.18.0: &032
+  dependencies: &Dependencies
+    snap: []
+  options: &Options
+    snap: &SnapOptions
+      use_sudo: true
+      install: true
+1.19.2.rc1: &033
+  options: &Options
+    up: &UpOptions
+      exit_on_error: true
+1.20.0.rc1: &034
+  options: &Options
+    config: &ConfigOptions
+      preserve_existing_env_vars: true
+2.0.0.rc3: &035
+  options: &Options
+    sshkey: &SshKeyOptions
+      passphrase: null
+2.2.0: &036
+  actions: &ActionMap
+    action: &Action
+      param_expansion: true
+...

@@ -54,9 +54,14 @@ for dir in reversed(sorted(sys.argv[1:])):
             meta.update(schema)
             schema = meta
 
+            rel = path.absolute().relative_to(CWD)
+            schema["$id"] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{rel}'
+
+            rev = Getrevision(path)
+            schema["title"] = f'ops.yaml'
+
             with open(path, "w") as file:
                 Yaml.dump(schema, file)
 
-            path = path.absolute().relative_to(CWD)
-            print(f'Fixed: {path} -> {meta_path}')
+            print(f'Fixed: {rel} -> {meta_path}')
 ...

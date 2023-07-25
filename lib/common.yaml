@@ -1,21 +1,21 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/common.yaml
-title: ops.yml Common
+title: ops.yaml Common
 properties: 
   revision:
     title: Revision
     description: |
-      A semantic version pertaining to an `ops` release that determinines how the `ops.yml` file will be validated against.
-
-      If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
+      A number representing a schema version that the `ops.yml` will be validated against.
+      — It is not the same as `min_version`; though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.
+      — If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
     markdownDescription: |
-      A semantic version pertaining to an `ops` release that determinines how the `ops.yml` file will be validated against.
-
-      If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
+      A number representing a schema version that the `ops.yml` will be validated against:
+      * It _is not_ the same as `min_version`; though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.
+      * If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
     type: integer
-    minimum: 1
-    default: 36
+    # minimum: 1
+    # default: 36
 definitions:
   CommandString:
     allOf:

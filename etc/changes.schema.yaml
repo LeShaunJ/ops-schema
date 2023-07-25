@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/etc/changes.schema.yaml
+title: changes.yaml
+type: object
+description: Changelog for Ops Schema
+patternProperties: 
+  ^(0|[1-9]\d*)(?:\.(0|[1-9]\d*)(?:\.(0|[1-9]\d*)(?:[.-]([\dA-z-]+(?:\.[\dA-z-]+)*)|)(\+[\dA-z-]+|)|)|)$:
+    title: ChangeObject
+    type: object
+    description: Describe your change in the form of a faux-`ops.yaml` configuration.
+    markdownDescription: Describe your change in the form of a faux-`ops.yaml` configuration.
+    minProperties: 1
+minProperties: 1
+additionalProperties: false

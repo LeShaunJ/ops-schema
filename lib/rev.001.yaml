@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/rev.001.yaml
+title: ops.yaml
+type: object
 description: Confirguration for `ops`.
 markdownDescription: |
   Confirguration for [`ops`](https://github.com/nickthecook/ops).
@@ -11,12 +13,10 @@ markdownDescription: |
   actions: ...
   options: ...
   ```
-type: object
 additionalProperties: false
-title: ops.yml (rev. 001)
 properties:
   revision:
-    $ref: './common.yaml#/properties/revision'
+    $ref: ./common.yaml#/properties/revision
   actions:
     $ref: ./actions/rev.001.yaml
   dependencies:
