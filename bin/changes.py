@@ -141,7 +141,7 @@ with chdir(CWD):
 
 			schema['$id'] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{path}'
 			schema['type'] = 'string'
-			schema['default'] = allowed_vers[-1]
+			schema['default'] = allowed_vers[0]
 			schema['allOf'] = [
 				{ '$ref': VER_REF },
 				{ 'enum': allowed_vers },

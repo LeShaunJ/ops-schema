@@ -22,4 +22,4 @@ allOf:
 - enum:
   - 0.18.1
   - 0.18.0
-default: 0.18.0
+default: 0.18.1

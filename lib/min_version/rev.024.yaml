@@ -33,4 +33,4 @@ allOf:
   - 1.4.1rc1
   - 1.4.0
   - 1.4.0.rc1
-default: 1.4.0.rc1
+default: 1.6.2

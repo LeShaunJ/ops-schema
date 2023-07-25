@@ -29,4 +29,4 @@ allOf:
   - 1.16.0.pre.rc3
   - 1.16.0.pre.rc2
   - 1.16.0.pre.rc1
-default: 1.16.0.pre.rc1
+default: 1.17.0
