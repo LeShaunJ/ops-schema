@@ -11,7 +11,7 @@ default:
   install: true
   use_sudo: false
 properties:
-  user_install:
+  install:
     $ref: ./install/rev.032.yaml
   use_sudo:
     $ref: ../../common.yaml#/definitions/UseSudo/properties/use_sudo

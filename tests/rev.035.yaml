@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/LeShaunJ/ops-schema/main/ops.schema.yaml
+revision: 35
+min_version: 2.0.0.rc3
+dependencies:
+  apk:
+    - less
+  apt:
+    - less
+  brew:
+    - less
+  cask:
+    - less
+  custom:
+    - echo "hello, world"
+    - up_and_down:
+        up: cat up.txt
+        down: tac down.txt
+  dir:
+    - config/{dev,staging,production}
+  docker:
+    - ubuntu/nginx
+  gem:
+    - ejson
+  pip:
+    - ruamel.yaml
+  snap:
+    - less
+  sshkey:
+    - admin@localhost
+forwards:
+  prov: provisioning
+  images: images
+hooks:
+  before:
+    - echo "hello, before hook"
+actions:
+  mynoop: true
+  myinline: echo "hello, world"
+  myaction:
+    alias: mya
+    command: echo "hello, world"
+    description: DESCRIBE ME!
+    in_envs:
+      - production
+    not_in_envs:
+      - staging
+    skip_in_envs:
+      - ci
+      - dev
+    load_secrets: true
+    skip_before_hooks: true
+  myshellexp:
+    command: mysql -u root -p
+    shell_expansion: true
+options:
+  apt:
+    use_sudo: true
+  background:
+    log_filename: my.log
+  config:
+    path: config/${environment}/config.json
+    preserve_existing_env_vars: true
+  envdiff: 
+    ignored_keys:
+      - TF_VAR_hello
+  environment:
+    ARM_CLIENT_ID: 00000000-0000-0000-0000-000000000000
+  environment_aliases:
+    - RAILS_ENV
+  exec:
+    load_secrets: true
+  gem:
+    user_install: true
+    use_sudo: false
+  pip:
+    command: pip3
+  secrets:
+    path: config/${environment}/secrets.ejson
+  snap:
+    install: false
+    use_sudo: false
+  sshkey:
+    add_keys: false
+    key_algo: rsa
+    key_file_comment: hello, sshkey
+    key_lifetime: 3600
+    key_size: 4096
+    passphrase_var: SSH_KEY_PASSPHRASE
