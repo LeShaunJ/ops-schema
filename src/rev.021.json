@@ -1,0 +1,377 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/src/rev.021.json",
+  "title": "ops.yaml",
+  "type": "object",
+  "description": "Confirguration for `ops`.",
+  "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\nmin_version: ...\ndependencies: ...\nhooks: ...\nactions: ...\noptions: ...\n```\n",
+  "additionalProperties": false,
+  "properties": {
+    "revision": {},
+    "actions": {
+      "default": {
+        "myaction": "echo \"hello, world\""
+      },
+      "patternProperties": {
+        "^[\\w-]+$": {
+          "oneOf": [
+            {
+              "description": "A simple command, or\u2014though not recommended\u2014a script, to run. Only use this method unless the command's intent is easy to decipher.",
+              "markdownDescription": "A simple command, or\u2014*though, not recommended*\u2014a script, to run. Only use this method unless the command's intent is easy to decipher.",
+              "$ref": "#/definitions/CommandString"
+            },
+            {
+              "$ref": "#/definitions/CommandNoop"
+            },
+            {
+              "title": "Action",
+              "description": "An advanced command configuration.",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "command"
+              ],
+              "properties": {
+                "alias": {},
+                "command": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/CommandString"
+                    },
+                    {
+                      "$ref": "#/definitions/CommandNoop"
+                    }
+                  ]
+                },
+                "description": {},
+                "in_envs": {},
+                "load_secrets": {},
+                "not_in_envs": {},
+                "skip_before_hooks": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    "dependencies": {
+      "properties": {
+        "apk": {},
+        "apt": {},
+        "brew": {
+          "items": {
+            "$ref": "#/definitions/PackageBrew"
+          }
+        },
+        "cask": {},
+        "custom": {
+          "items": {
+            "description": "",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/CommandString",
+                "description": "An idempotent command or script to run as a dependency when `ops up` is executed.",
+                "markdownDescription": "An idempotent command or script to run as a dependency when `ops up` is executed."
+              },
+              {
+                "$ref": "#/definitions/CommandNoop"
+              }
+            ]
+          },
+          "examples": [
+            [
+              "bundle install --quiet"
+            ]
+          ]
+        },
+        "dir": {},
+        "docker": {},
+        "gem": {
+          "examples": [
+            [
+              "ejson"
+            ]
+          ]
+        },
+        "sshkey": {
+          "examples": [
+            [
+              "keys/$environment/user@host"
+            ]
+          ]
+        },
+        "terraform": {}
+      }
+    },
+    "hooks": {
+      "properties": {
+        "before": {
+          "items": {
+            "description": "A valid command to run.",
+            "$ref": "#/definitions/NonEmptyString"
+          }
+        }
+      }
+    },
+    "min_version": {
+      "enum": [
+        "0.18.1",
+        "0.18.0"
+      ]
+    },
+    "options": {
+      "properties": {
+        "apt": {
+          "default": {
+            "use_sudo": false
+          },
+          "properties": {
+            "use_sudo": {
+              "$ref": "#/definitions/UseSudo/properties/use_sudo"
+            }
+          }
+        },
+        "background": {
+          "default": {
+            "log_file_prefix": "bg_",
+            "shell": "/bin/sh"
+          },
+          "properties": {
+            "log_filename": {},
+            "log_file_prefix": {},
+            "shell": {}
+          }
+        },
+        "config": {
+          "properties": {
+            "path": {}
+          }
+        },
+        "envdiff": {
+          "default": {
+            "ignored_keys": null
+          },
+          "patternProperties": {
+            "^\\w+$": {
+              "items": {
+                "description": "Any key within your `config.json/#/environment` and/or `secrets.ejson/#/environment`.",
+                "$ref": "#/definitions/NameString",
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        "environment": {
+          "patternProperties": {
+            "^\\w+$": {}
+          }
+        },
+        "environment_aliases": {
+          "examples": [
+            [
+              "RAILS_ENV",
+              "RACK_ENV"
+            ]
+          ],
+          "items": {
+            "description": "The name of an environment variable.",
+            "$ref": "#/definitions/NameString"
+          }
+        },
+        "exec": {
+          "properties": {
+            "load_secrets": {
+              "$ref": "#/definitions/LoadSecrets"
+            }
+          }
+        },
+        "gem": {
+          "default": {
+            "user_install": true,
+            "use_sudo": false
+          },
+          "properties": {
+            "user_install": {},
+            "use_sudo": {
+              "$ref": "#/definitions/UseSudo/properties/use_sudo"
+            }
+          }
+        },
+        "secrets": {
+          "properties": {
+            "path": {}
+          }
+        },
+        "sshkey": {
+          "default": {
+            "passphrase": "p@ssw0rd",
+            "key_size": 4096
+          },
+          "properties": {
+            "add_keys": {},
+            "key_algo": {},
+            "key_lifetime": {},
+            "key_size": {
+              "enum": [
+                512,
+                1024,
+                2048,
+                4096
+              ]
+            },
+            "passphrase": {},
+            "passphrase_var": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CommandString": {
+      "default": "echo \"hello, world\"",
+      "examples": [
+        "terraform init",
+        "docker-compose up"
+      ],
+      "$ref": "#/definitions/NonEmptyString",
+      "title": "Command String"
+    },
+    "CommandNoop": {
+      "title": "No-Op Command",
+      "description": "If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.",
+      "markdownDescription": "If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.",
+      "type": "boolean",
+      "default": true
+    },
+    "Deprecated": {
+      "title": "Deprecated",
+      "not": {
+        "anyOf": [
+          {
+            "type": "array"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "EnvList": {
+      "title": "Environment List",
+      "type": "array",
+      "items": {
+        "title": "Environment",
+        "description": "A list of environment names.",
+        "$ref": "#/definitions/NameString"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "FileName": {
+      "title": "File Name",
+      "type": "string",
+      "pattern": "^(?!.{256,})(?!(aux|clock\\$|con|nul|prn|com[1-9]|lpt[1-9])(?:$|\\.))[^ ][ \\.\\w-$()+=[\\];#@~,&']+[^\\. ]$",
+      "minLength": 1
+    },
+    "LoadSecrets": {
+      "description": "If `true`, items in `secrets.ejson` will be loaded before execution, allowing said items to be referenced in the configuration.",
+      "type": "boolean",
+      "default": false
+    },
+    "NameString": {
+      "title": "Name String",
+      "type": "string",
+      "pattern": "^[\\w-]+$"
+    },
+    "NonEmptyString": {
+      "title": "Non-Empty String",
+      "type": "string",
+      "minLength": 1
+    },
+    "PackageList": {
+      "title": "Package List",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/PackageVersioned"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "PackageBrew": {
+      "title": "Brew Package",
+      "description": "The name of a `brew` package. If you need to specify a version, include it after the name, delimited by an `@` symbol.",
+      "markdownDescription": "The name of a `brew` package. If you need to specify a version, include it after the name, delimited by an `@` symbol.",
+      "type": "string",
+      "pattern": "^\\b[\\w:.+-]+\\b(@\\b[\\d.]+\\b[\\w.+-]*\\b)?$",
+      "examples": [
+        "ruby",
+        "openssl@"
+      ]
+    },
+    "PackagePip": {
+      "title": "Pip Package",
+      "description": "The name of a `pip` package. If you need to specify a version, include it after the name, delimited by `==`.",
+      "markdownDescription": "The name of a `pip` package. If you need to specify a version, include it after the name, delimited by `==`.",
+      "type": "string",
+      "pattern": "^\\b[\\w:.+-]+\\b(==\\b[\\d.]+\\b[\\w.+-]*\\b)?$",
+      "examples": [
+        "semver",
+        "ruamel.yaml==0.17.26"
+      ]
+    },
+    "PackageVersioned": {
+      "title": "Package",
+      "description": "The name of a package. If you need to specify a version, include it after the name, delimited by a space.",
+      "markdownDescription": "The name of a package. If you need to specify a version, include it after the name, delimited by a space.",
+      "type": "string",
+      "pattern": "^\\b[\\w@:.+-]+\\b( \\b[\\d.]+\\b[\\w.+-]*\\b)?$",
+      "examples": [
+        "ruby",
+        "openssl 0.8.0"
+      ]
+    },
+    "Path": {
+      "title": "Path",
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "PathList": {
+      "title": "Path List",
+      "type": "array",
+      "items": {},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "SemVer": {
+      "title": "Semantic Version",
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)(?:\\.(0|[1-9]\\d*)(?:\\.(0|[1-9]\\d*)(?:[.-]([\\dA-z-]+(?:\\.[\\dA-z-]+)*)|)(\\+[\\dA-z-]+|)|)|)$"
+    },
+    "UseSudo": {
+      "properties": {
+        "use_sudo": {
+          "title": "UseSudo",
+          "description": "If `false`, causes `ops up` to install the dependency's packages without `sudo`.",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}

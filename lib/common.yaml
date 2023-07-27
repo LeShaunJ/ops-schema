@@ -72,12 +72,36 @@ definitions:
     title: Package List
     type: array
     items:
-      title: Package
-      description: A list of package names.
-      type: string
-      pattern: ^[\w@:.+-]+$
+      $ref: '#/definitions/PackageVersioned'
     minItems: 1
     uniqueItems: true
+  PackageBrew:
+    title: Brew Package
+    description: The name of a `brew` package. If you need to specify a version, include it after the name, delimited by an `@` symbol.
+    markdownDescription: The name of a `brew` package. If you need to specify a version, include it after the name, delimited by an `@` symbol.
+    type: string
+    pattern: ^\b[\w:.+-]+\b(@\b[\d.]+\b[\w.+-]*\b)?$
+    examples:
+      - ruby
+      - openssl@
+  PackagePip:
+    title: Pip Package
+    description: The name of a `pip` package. If you need to specify a version, include it after the name, delimited by `==`.
+    markdownDescription: The name of a `pip` package. If you need to specify a version, include it after the name, delimited by `==`.
+    type: string
+    pattern: ^\b[\w:.+-]+\b(==\b[\d.]+\b[\w.+-]*\b)?$
+    examples:
+      - semver
+      - ruamel.yaml==0.17.26
+  PackageVersioned:
+    title: Package
+    description: The name of a package. If you need to specify a version, include it after the name, delimited by a space.
+    markdownDescription: The name of a package. If you need to specify a version, include it after the name, delimited by a space.
+    type: string
+    pattern: ^\b[\w@:.+-]+\b( \b[\d.]+\b[\w.+-]*\b)?$
+    examples:
+      - ruby
+      - openssl 0.8.0
   Path:
     title: Path
     type: string

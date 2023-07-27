@@ -9,14 +9,14 @@ from ruamel.yaml.error import YAMLStreamError
 GLOB_META = 'meta.*.yaml'
 GLOB_REV = 'rev.*.yaml'
 
-def Getrevision(path: Path | str) -> int:
+def GetRevision(path: Path | str) -> int:
 	parts = str(path).split('.')
 	revision = parts[1]
 	return int(revision)
 
 def CompareRevisions(a: Path | str, b: Path | str) -> bool:
 	# print(f'  {b.absolute()} >= {a.absolute()}', file=sys.stderr)
-	return Getrevision(b) >= Getrevision(a)
+	return GetRevision(b) >= GetRevision(a)
 
 def FindMeta(path: Path | str) -> Path | None:
 	meta = None
@@ -38,7 +38,7 @@ def GetMeta(path: Path | str) -> CommentedMap:
 	except (TypeError, YAMLStreamError):
 		return CommentedMap()
 	
-def GetRevision(path: Path | str) -> CommentedMap:
+def GetSchema(path: Path | str) -> CommentedMap:
 	return Yaml.load(path)
 
 Yaml = YAML()
@@ -49,7 +49,7 @@ for dir in reversed(sorted(sys.argv[1:])):
 		for path in sorted(Path('.').glob(GLOB_REV)):
 			meta_path = FindMeta(path)
 			meta = GetMeta(meta_path)
-			schema = GetRevision(path)
+			schema = GetSchema(path)
 
 			meta.update(schema)
 			schema = meta
@@ -57,7 +57,7 @@ for dir in reversed(sorted(sys.argv[1:])):
 			rel = path.absolute().relative_to(CWD)
 			schema["$id"] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{rel}'
 
-			rev = Getrevision(path)
+			rev = GetRevision(path)
 			schema["title"] = f'ops.yaml'
 
 			with open(path, "w") as file:

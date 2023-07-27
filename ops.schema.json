@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/ops.schema.json",
+  "title": "ops.yaml",
+  "type": "object",
+  "description": "Confirguration for `ops`",
+  "minProperties": 1,
+  "if": {
+    "required": [
+      "revision"
+    ]
+  },
+  "then": {
+    "oneOf": [
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 36
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.036.json"
+          }
+        ]
+      }
+    ]
+  },
+  "else": {
+    "allOf": [
+      {
+        "not": {
+          "properties": {
+            "revision": {}
+          },
+          "required": [
+            "revision"
+          ]
+        }
+      },
+      {
+        "$ref": "#/then/oneOf/0/allOf/1"
+      }
+    ]
+  }
+}
