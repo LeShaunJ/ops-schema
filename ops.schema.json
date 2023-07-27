@@ -28,6 +28,601 @@
             "$ref": "./src/rev.036.json"
           }
         ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 35
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.035.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 34
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.034.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 33
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.033.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 32
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.032.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 31
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.031.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 30
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.030.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 29
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.029.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 28
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.028.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 27
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.027.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 26
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.026.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 25
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.025.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 24
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.024.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 23
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.023.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 22
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.022.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 21
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.021.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 20
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.020.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 19
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.019.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 18
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.018.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 17
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.017.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 16
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.016.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 15
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.015.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 14
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.014.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 13
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.013.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 12
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.012.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 11
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.011.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 10
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.010.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 9
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.009.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 8
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.008.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 7
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.007.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 6
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.006.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 5
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.005.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 4
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.004.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 3
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.003.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 2
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.002.json"
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "properties": {
+              "revision": {
+                "const": 1
+              }
+            },
+            "required": [
+              "revision"
+            ]
+          },
+          {
+            "$ref": "./src/rev.001.json"
+          }
+        ]
       }
     ]
   },

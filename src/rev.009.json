@@ -7,8 +7,20 @@
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\ndependencies: ...\nactions: ...\noptions: ...\n```\n",
   "additionalProperties": false,
   "properties": {
-    "revision": {},
+    "revision": {
+      "title": "Revision",
+      "description": "A number representing a schema version that the `ops.yml` will be validated against.\n\u2014 It is not the same as `min_version` (`0.12.0` and onward); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.\n\u2014 If unset, the `ops.yml` file will be validated against the most recent version of `ops`.\n",
+      "markdownDescription": "A number representing a schema version that the `ops.yml` will be validated against:\n* It _is not_ the same as `min_version` (_`0.12.0` and onward_); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.\n* If unset, the `ops.yml` file will be validated against the most recent version of `ops`.\n",
+      "type": "integer",
+      "minimum": 1,
+      "default": 36
+    },
     "actions": {
+      "title": "ActionMap",
+      "description": "A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.",
+      "markdownDescription": "A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.\n\n_For more information, see the [Actions](https://github.com/nickthecook/ops/blob/main/docs/actions.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
+      "type": "object",
+      "minProperties": 1,
       "default": {
         "myaction": {
           "command": "echo \"hello, world\""
@@ -16,12 +28,24 @@
       },
       "patternProperties": {
         "^[\\w-]+$": {
+          "title": "Action",
+          "description": "An advanced command configuration.",
+          "type": "object",
+          "additionalProperties": false,
           "required": [
             "command"
           ],
           "properties": {
-            "alias": {},
+            "alias": {
+              "title": "Alias",
+              "description": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
+              "markdownDescription": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
+              "type": "string",
+              "pattern": "^[\\w-]+$"
+            },
             "command": {
+              "title": "Command",
+              "description": "A command or script to run when the action is executed.",
               "oneOf": [
                 {
                   "$ref": "#/definitions/CommandString"
@@ -31,23 +55,65 @@
                 }
               ]
             },
-            "description": {},
-            "load_secrets": {}
+            "description": {
+              "title": "Description",
+              "description": "A summary of the command's intent and its usage. When a user runs, `ops help`, the text here will display beside the command's name; otherwise, it will simply display the command script. It is best practice to describe your command.",
+              "markdownDescription": "A summary of the command's intent and its usage. When a user runs, `ops help`, the text here will display beside the command's name; otherwise, it will simply display the command script. It is best practice to describe your command.",
+              "type": "string",
+              "minLength": 1,
+              "default": "DESCRIBE ME!"
+            },
+            "load_secrets": {
+              "title": "LoadSecrets",
+              "$ref": "#/definitions/LoadSecrets"
+            }
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "dependencies": {
+      "title": "Dependencies",
+      "description": "Dependencies listed in the `dependencies` section of `ops.yml` are satisfied when the `ops up` command is run. Some dependencies will be un-satisfied when you run `ops down`; e.g. services will be stopped, but packages won't be uninstalled.\n\nThis feature allows developers that are new to a project to get up and running without knowing anything about the app itself. Your `ops.yml` should allow a developer to `ops up && ops start` to run an application.\n",
+      "markdownDescription": "Dependencies listed in the `dependencies` section of `ops.yml` are satisfied when the `ops up` command is run. Some dependencies will be un-satisfied when you run `ops down`; e.g. services will be stopped, but packages won't be uninstalled.\n\nThis feature allows developers that are new to a project to get up and running without knowing anything about the app itself. Your `ops.yml` should allow a developer to `ops up && ops start` to run an application.\n\n_For more information, see the [Dependencies](https://github.com/nickthecook/ops/blob/main/docs/dependencies.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
       "properties": {
-        "apk": {},
-        "apt": {},
+        "apk": {
+          "title": "apkPackageList",
+          "description": "- Specifies that a particular package from `apk` is needed.\n- Will only run if the `apk` command is in the `$PATH` (usually only on Alpine linux).",
+          "markdownDescription": "* Specifies that a particular package from `apk` is needed.\n* Will only run if the `apk` command is in the `$PATH` (usually only on Alpine linux).",
+          "$ref": "#/definitions/PackageList"
+        },
+        "apt": {
+          "title": "aptPackageList",
+          "description": "- Specifies that a particular package from `apt` is needed.\n- Will only run if the `apt` executable is in the `$PATH`.\n- Can specify a version with, e.g.: `curl/7.52.1-5+deb9u7`.\n- Run `apt-cache policy curl` to get available versions.",
+          "markdownDescription": "* Specifies that a particular package from `apt` is needed.\n* Will only run if the `apt` executable is in the `$PATH`.\n* Can specify a version with, e.g.: `curl/7.52.1-5+deb9u7`.\n* Run `apt-cache policy curl` to get available versions.",
+          "$ref": "#/definitions/PackageList"
+        },
         "brew": {
+          "title": "brewPackageList",
+          "description": "- Specifies that a particular `brew` package is needed.\n- Will only run if you're on a Mac.",
+          "markdownDescription": "* Specifies that a particular `brew` package is needed.\n* Will only run if you're on a Mac.",
+          "type": "array",
           "items": {
             "$ref": "#/definitions/PackageBrew"
-          }
+          },
+          "minItems": 1,
+          "uniqueItems": true
         },
-        "cask": {},
+        "cask": {
+          "title": "caskPackageList",
+          "description": "- Specifies that a particular `brew cask` package is needed.\n- Will only run if you're on a Mac.",
+          "markdownDescription": "* Specifies that a particular `brew cask` package is needed.\n* Will only run if you're on a Mac.",
+          "$ref": "#/definitions/PackageList"
+        },
         "custom": {
+          "title": "CustomCommandList",
+          "description": "- Runs the given command.\n- Can't tell if the command needs to be run or not, so always runs it on `ops up`.\n- Therefore, the command should be idempotent.\n- It's also a good idea to prevent it from printing output unless it encounters an error, to keep the ops output clean.\n",
+          "markdownDescription": "* Runs the given command.\n* Can't tell if the command needs to be run or not, so always runs it on `ops up`.\n* Therefore, the command should be [**idempotent**](https://en.wikipedia.org/wiki/Idempotence).\n* It's also a good idea to prevent it from printing output unless it encounters an error, to keep the ops output clean.\n",
+          "type": "array",
           "items": {
             "description": "",
             "oneOf": [
@@ -61,27 +127,58 @@
               }
             ]
           },
+          "minItems": 1,
           "examples": [
             [
               "bundle install --quiet"
             ]
           ]
         },
-        "dir": {},
-        "docker": {},
+        "dir": {
+          "title": "DirectoryList",
+          "description": "This dependency will ensure the given directory is created when you run `ops up`. This is handy for directories your app needs, but which contain no checked-in files, since `git` won't save empty directories.",
+          "$ref": "#/definitions/PathList"
+        },
+        "docker": {
+          "title": "dockerRepository",
+          "description": "- Specifies that this repo includes a directory with the given name (e.g. `deps/mysql`) that includes a `docker-compose.yml` file.\n- `ops` will change to the given directory and use `docker-compose` to start, stop, and check the status of this service as needed.\n",
+          "markdownDescription": "* Specifies that this repo includes a directory with the given name (e.g. `deps/mysql`) that includes a `docker-compose.yml` file.\n* `ops` will change to the given directory and use `docker-compose` to start, stop, and check the status of this service as needed.\n",
+          "$ref": "#/definitions/PathList"
+        },
         "gem": {
+          "title": "gemPackageList",
+          "description": "- Installs the gem with the given name.\n- By default, runs `gem install ...`, but can be configured to use `sudo gem install` or `gem install --user-install` (see below).\n",
+          "markdownDescription": "* Installs the gem with the given name.\n* By default, runs `gem install ...`, but can be configured to use `sudo gem install` or `gem install --user-install` (_see below_).\n",
+          "$ref": "#/definitions/PackageList",
           "examples": [
             [
               "ejson"
             ]
           ]
         },
-        "terraform": {}
+        "terraform": {
+          "title": "terraformHandler",
+          "type": "array",
+          "description": "[DEPRECATED] This feature has been removed as of version `0.2.6`.",
+          "markdownDescription": "### `DEPRECATED`\n_This feature has been removed as of version `0.2.6`._\n",
+          "$ref": "#/definitions/Deprecated"
+        }
       }
     },
     "options": {
+      "title": "Options",
+      "description": "Options allow the user to change some aspects of `ops` behaviour.",
+      "markdownDescription": "Options allow the user to change some aspects of `ops` behaviour.\n\n_For more information, see the [Options](https://github.com/nickthecook/ops/blob/main/docs/options.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
+      "type": "object",
+      "minProperties": 1,
       "properties": {
         "apt": {
+          "title": "AptOptions",
+          "description": "Affect the behaviour of `apt` dependencies.",
+          "markdownDescription": "Affect the behaviour of `apt` dependencies.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
           "default": {
             "use_sudo": false
           },
@@ -92,16 +189,41 @@
           }
         },
         "config": {
+          "title": "SecretOptions",
+          "description": "Affect how configs are interpreted.",
+          "type": "object",
+          "minProperties": 1,
           "properties": {
-            "path": {}
+            "path": {
+              "title": "SecretsPath",
+              "description": "Override the config file location (defaults to `./config/<environment>/config.json`).",
+              "markdownDescription": "Override the config file location (_defaults to `./config/<environment>/config.json`_).",
+              "$ref": "#/definitions/Path"
+            }
           }
         },
         "environment": {
+          "title": "EnvironmentMap",
+          "description": "Statically or dynamically set global environment variables, with each key serving as a variable's name.\n\nThe values of these variables are not interpreted by the shell before being set, so variable references like `$environment` will appear literally in the value of the variable.\n",
+          "markdownDescription": "Statically or dynamically set global environment variables, with each key serving as a variable's name.\n\n> **NOTE:** _The values of these variables are not interpreted by the shell before being set, so variable references like `$environment` will appear literally in the value of the variable._\n",
+          "type": "object",
+          "minProperties": 1,
           "patternProperties": {
-            "^\\w+$": {}
+            "^\\w+$": {
+              "title": "EnvVarValue",
+              "description": "Either a static value, or a command enclosed between `\"\\\\`...\\\\`\"`.",
+              "markdownDescription": "Either a static value, or a command enclosed between `` \"`...`\" ``.",
+              "type": "string"
+            }
           }
         },
         "environment_aliases": {
+          "title": "EnvironmentAliasList",
+          "description": "Different software systems use different environment variables to determine the software execution environment. E.g. Ruby on Rails uses `RAILS_ENV`. Thus, `ops` allows the user to specify which variables should also be set to the name of the software environment.\n\nIf any `environment_aliases` are specified in `ops.yml`, `ops` will not change the value of `$environment` unless it is listed as well.\n\n(`ops` will always use `$environment` to detect the software execution environment; `environment_aliases` just makes `ops` set other variables to match it.)\n",
+          "markdownDescription": "Different software systems use different environment variables to determine the software execution environment. E.g. Ruby on Rails uses `RAILS_ENV`. Thus, `ops` allows the user to specify which variables should also be set to the name of the software environment.\n\nIf any `environment_aliases` are specified in `ops.yml`, `ops` will not change the value of `$environment` unless it is listed as well.\n\n> NOTE: _`ops` will always use `$environment` to detect the software execution environment; `environment_aliases` just makes `ops` set other variables to match it._\n",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "examples": [
             [
               "RAILS_ENV",
@@ -114,6 +236,10 @@
           }
         },
         "exec": {
+          "title": "ExecOptions",
+          "description": "Affect the behaviour of `ops exec`.",
+          "type": "object",
+          "minProperties": 1,
           "properties": {
             "load_secrets": {
               "$ref": "#/definitions/LoadSecrets"
@@ -121,23 +247,44 @@
           }
         },
         "gem": {
+          "title": "GemOptions",
+          "description": "Affect the behaviour of `gem` dependencies.",
+          "markdownDescription": "Affect the behaviour of `gem` dependencies.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
           "default": {
             "user_install": true,
             "use_sudo": false
           },
           "properties": {
-            "user_install": {},
+            "user_install": {
+              "title": "UserInstall",
+              "description": "If `true`, causes `ops up` to run `gem install --user-install ejson`.",
+              "type": "boolean",
+              "default": false
+            },
             "use_sudo": {
               "$ref": "#/definitions/UseSudo/properties/use_sudo"
             }
           }
         },
         "secrets": {
+          "title": "SecretOptions",
+          "description": "Affect how secrets are interpreted.",
+          "type": "object",
+          "minProperties": 1,
           "properties": {
-            "path": {}
+            "path": {
+              "title": "SecretsPath",
+              "description": "Override the secrets file location (defaults to `./config/<environment>/secrets.json`).",
+              "markdownDescription": "Override the secrets file location (_defaults to `./config/<environment>/secrets.json`_).",
+              "$ref": "#/definitions/Path"
+            }
           }
         }
-      }
+      },
+      "additionalProperties": false
     }
   },
   "definitions": {
@@ -267,7 +414,16 @@
     "PathList": {
       "title": "Path List",
       "type": "array",
-      "items": {},
+      "items": {
+        "allOf": [
+          {
+            "description": "A valid filepath."
+          },
+          {
+            "$ref": "#/definitions/Path"
+          }
+        ]
+      },
       "minItems": 1,
       "uniqueItems": true
     },

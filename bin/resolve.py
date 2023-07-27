@@ -256,7 +256,7 @@ registry = []
 
 with chdir(CWD):
 	common = GetCommon()
-	paths = sorted(Path('./lib').glob('rev.036.yaml'))
+	paths = sorted(Path('./lib').glob('rev.*.yaml'))
 	...
 
 	for path in paths:
