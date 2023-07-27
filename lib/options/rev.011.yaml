@@ -1,29 +1,32 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/rev.011.yaml
-title: Options
-description: Options allow the user to change some aspects of `ops` behaviour.
-markdownDescription: |
-  Options allow the user to change some aspects of `ops` behaviour.
-
-  _For more information, see the [Options](https://github.com/nickthecook/ops/blob/main/docs/options.md) documentation on [GitHub](https://github.com/nickthecook/ops)._
-type: object
-minProperties: 1
-properties:
-  apt:
-    $ref: ./apt/rev.008.yaml
-  config:
-    $ref: ./config/rev.005.yaml
-  environment:
-    $ref: ./environment/rev.003.yaml
-  environment_aliases:
-    $ref: ./environment_aliases/rev.009.yaml
-  exec:
-    $ref: ./exec/rev.006.yaml
-  gem:
-    $ref: ./gem/rev.001.yaml
-  secrets:
-    $ref: ./secrets/rev.003.yaml
-  sshkey:
-    $ref: ./sshkey/rev.011.yaml
-additionalProperties: false
+allOf:
+- propertyNames:
+    enum:
+    - apt
+    - config
+    - environment
+    - environment_aliases
+    - exec
+    - gem
+    - secrets
+    - sshkey
+  properties:
+    apt:
+      $ref: ./apt/rev.008.yaml
+    config:
+      $ref: ./config/rev.005.yaml
+    environment:
+      $ref: ./environment/rev.003.yaml
+    environment_aliases:
+      $ref: ./environment_aliases/rev.009.yaml
+    exec:
+      $ref: ./exec/rev.006.yaml
+    gem:
+      $ref: ./gem/rev.001.yaml
+    secrets:
+      $ref: ./secrets/rev.003.yaml
+    sshkey:
+      $ref: ./sshkey/rev.011.yaml
+- $ref: ./meta.001.yaml

@@ -1,11 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/src/rev.017.json",
-  "title": "ops.yaml",
+  "title": "ops.yaml (rev. 017)",
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\nmin_version: ...\ndependencies: ...\nhooks: ...\nactions: ...\noptions: ...\n```\n",
   "additionalProperties": false,
+  "propertyNames": {
+    "enum": [
+      "actions",
+      "dependencies",
+      "hooks",
+      "min_version",
+      "options",
+      "revision"
+    ]
+  },
   "properties": {
     "revision": {
       "title": "Revision",
@@ -21,56 +31,12 @@
       "markdownDescription": "A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.\n\n_For more information, see the [Actions](https://github.com/nickthecook/ops/blob/main/docs/actions.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
+      "additionalProperties": false,
       "default": {
         "myaction": {
           "command": "echo \"hello, world\""
         }
-      },
-      "patternProperties": {
-        "^[\\w-]+$": {
-          "title": "Action",
-          "description": "An advanced command configuration.",
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "command"
-          ],
-          "properties": {
-            "alias": {
-              "title": "Alias",
-              "description": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
-              "markdownDescription": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
-              "type": "string",
-              "pattern": "^[\\w-]+$"
-            },
-            "command": {
-              "title": "Command",
-              "description": "A command or script to run when the action is executed.",
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/CommandString"
-                },
-                {
-                  "$ref": "#/definitions/CommandNoop"
-                }
-              ]
-            },
-            "description": {
-              "title": "Description",
-              "description": "A summary of the command's intent and its usage. When a user runs, `ops help`, the text here will display beside the command's name; otherwise, it will simply display the command script. It is best practice to describe your command.",
-              "markdownDescription": "A summary of the command's intent and its usage. When a user runs, `ops help`, the text here will display beside the command's name; otherwise, it will simply display the command script. It is best practice to describe your command.",
-              "type": "string",
-              "minLength": 1,
-              "default": "DESCRIBE ME!"
-            },
-            "load_secrets": {
-              "title": "LoadSecrets",
-              "$ref": "#/definitions/LoadSecrets"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
+      }
     },
     "dependencies": {
       "title": "Dependencies",
@@ -79,6 +45,20 @@
       "type": "object",
       "minProperties": 1,
       "additionalProperties": false,
+      "propertyNames": {
+        "enum": [
+          "apk",
+          "apt",
+          "brew",
+          "cask",
+          "custom",
+          "dir",
+          "docker",
+          "gem",
+          "sshkey",
+          "terraform"
+        ]
+      },
       "properties": {
         "apk": {
           "title": "apkPackageList",
@@ -182,6 +162,12 @@
       "markdownDescription": "Sometimes you want to run a command before other commands. Some examples:\n\n* You have a number of ops commands that let a developer run different test suites inside a container, and you want to make sure the container image is built beforehand.\n* You have some configuration that needs to happen when the software execution environment changes (_e.g. going from `dev` to `staging`_).\n\nIn this case, you can use the `hooks` feature.\n\n_For more information, see the [Hooks](https://github.com/nickthecook/ops/blob/main/docs/hooks.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
+      "additionalProperties": false,
+      "propertyNames": {
+        "enum": [
+          "before"
+        ]
+      },
       "properties": {
         "before": {
           "title": "BeforeHooks",
@@ -194,8 +180,7 @@
           },
           "minItems": 1
         }
-      },
-      "additionalProperties": false
+      }
     },
     "min_version": {
       "title": "Minimum Version",
@@ -214,6 +199,20 @@
       "markdownDescription": "Options allow the user to change some aspects of `ops` behaviour.\n\n_For more information, see the [Options](https://github.com/nickthecook/ops/blob/main/docs/options.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
+      "additionalProperties": false,
+      "propertyNames": {
+        "enum": [
+          "apt",
+          "background",
+          "config",
+          "environment",
+          "environment_aliases",
+          "exec",
+          "gem",
+          "secrets",
+          "sshkey"
+        ]
+      },
       "properties": {
         "apt": {
           "title": "AptOptions",
@@ -224,6 +223,11 @@
           "additionalProperties": false,
           "default": {
             "use_sudo": false
+          },
+          "propertyNames": {
+            "enum": [
+              "use_sudo"
+            ]
           },
           "properties": {
             "use_sudo": {
@@ -240,6 +244,13 @@
           "default": {
             "log_file_prefix": "bg_",
             "shell": "/bin/sh"
+          },
+          "propertyNames": {
+            "enum": [
+              "log_file_prefix",
+              "log_filename",
+              "shell"
+            ]
           },
           "properties": {
             "log_filename": {
@@ -265,30 +276,14 @@
           "title": "SecretOptions",
           "description": "Affect how configs are interpreted.",
           "type": "object",
-          "minProperties": 1,
-          "properties": {
-            "path": {
-              "title": "SecretsPath",
-              "description": "Override the config file location (defaults to `./config/<environment>/config.json`).",
-              "markdownDescription": "Override the config file location (_defaults to `./config/<environment>/config.json`_).",
-              "$ref": "#/definitions/Path"
-            }
-          }
+          "minProperties": 1
         },
         "environment": {
           "title": "EnvironmentMap",
           "description": "Statically or dynamically set global environment variables, with each key serving as a variable's name.\n\nThe values of these variables are not interpreted by the shell before being set, so variable references like `$environment` will appear literally in the value of the variable.\n",
           "markdownDescription": "Statically or dynamically set global environment variables, with each key serving as a variable's name.\n\n> **NOTE:** _The values of these variables are not interpreted by the shell before being set, so variable references like `$environment` will appear literally in the value of the variable._\n",
           "type": "object",
-          "minProperties": 1,
-          "patternProperties": {
-            "^\\w+$": {
-              "title": "EnvVarValue",
-              "description": "Either a static value, or a command enclosed between `\"\\\\`...\\\\`\"`.",
-              "markdownDescription": "Either a static value, or a command enclosed between `` \"`...`\" ``.",
-              "type": "string"
-            }
-          }
+          "minProperties": 1
         },
         "environment_aliases": {
           "title": "EnvironmentAliasList",
@@ -302,22 +297,13 @@
               "RAILS_ENV",
               "RACK_ENV"
             ]
-          ],
-          "items": {
-            "description": "The name of an environment variable.",
-            "$ref": "#/definitions/NameString"
-          }
+          ]
         },
         "exec": {
           "title": "ExecOptions",
           "description": "Affect the behaviour of `ops exec`.",
           "type": "object",
-          "minProperties": 1,
-          "properties": {
-            "load_secrets": {
-              "$ref": "#/definitions/LoadSecrets"
-            }
-          }
+          "minProperties": 1
         },
         "gem": {
           "title": "GemOptions",
@@ -329,6 +315,12 @@
           "default": {
             "user_install": true,
             "use_sudo": false
+          },
+          "propertyNames": {
+            "enum": [
+              "use_sudo",
+              "user_install"
+            ]
           },
           "properties": {
             "user_install": {
@@ -346,15 +338,7 @@
           "title": "SecretOptions",
           "description": "Affect how secrets are interpreted.",
           "type": "object",
-          "minProperties": 1,
-          "properties": {
-            "path": {
-              "title": "SecretsPath",
-              "description": "Override the secrets file location (defaults to `./config/<environment>/secrets.json`).",
-              "markdownDescription": "Override the secrets file location (_defaults to `./config/<environment>/secrets.json`_).",
-              "$ref": "#/definitions/Path"
-            }
-          }
+          "minProperties": 1
         },
         "sshkey": {
           "title": "SshKeyOptions",
@@ -365,6 +349,16 @@
           "default": {
             "passphrase": "p@ssw0rd",
             "key_size": 4096
+          },
+          "propertyNames": {
+            "enum": [
+              "add_keys",
+              "key_algo",
+              "key_lifetime",
+              "key_size",
+              "passphrase",
+              "passphrase_var"
+            ]
           },
           "properties": {
             "add_keys": {
@@ -415,8 +409,7 @@
             }
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
   },
   "definitions": {
@@ -438,6 +431,8 @@
     },
     "Deprecated": {
       "title": "Deprecated",
+      "default": null,
+      "examples": [],
       "not": {
         "anyOf": [
           {

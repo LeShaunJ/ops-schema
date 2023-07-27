@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/LeShaunJ/ops-schema/main/ops.schema.yaml
 dependencies:
   apk:
     - python3
@@ -11,4 +10,16 @@ dependencies:
     - semver
     - jsonschema==4.18.4
 actions: 
-  myaction: echo "hello, world"
+  resolve:
+    command: bin/resolve.py
+    description: Finalize chnages into rendered JSON schema revisions.
+  shift:
+    command: bin/shift.sh
+    description: |-
+      Shift revisions up from a specified minimum.
+      usage: ops shift <MIN_REVISION>
+  restrict:
+    command: bin/min_versions.py
+    description: |-
+      Restrict `min_version` values to appropriate revsions.
+      usage: ops restrict [--dry-run] [-U]

@@ -2,13 +2,6 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: 
   https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/envdiff/rev.019.yaml
-title: EnvDiffOptions
-description: Affect the behaviour of `ops envdiff`.
-type: object
-minProperties: 1
-additionalProperties: false
-default:
-  ignored_keys:
-patternProperties:
-  ^\w+$:
-    $ref: ./ignored_keys/rev.019.yaml
+allOf:
+- {}
+- $ref: ./meta.019.yaml

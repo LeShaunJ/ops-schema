@@ -1,18 +1,17 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/sshkey/rev.010.yaml
-title: SshKeyOptions
-description: Affect how SSH keys are generated.
-type: object
-minProperties: 1
-additionalProperties: false
-default:
-  passphrase: p@ssw0rd
-  key_size: 4096
-properties:
-  key_algo:
-    $ref: ./key_algo/rev.010.yaml
-  key_size:
-    $ref: ./key_size/rev.010.yaml
-  passphrase:
-    $ref: ./passphrase/rev.010.yaml
+allOf:
+- propertyNames:
+    enum:
+    - key_algo
+    - key_size
+    - passphrase
+  properties:
+    key_algo:
+      $ref: ./key_algo/rev.010.yaml
+    key_size:
+      $ref: ./key_size/rev.010.yaml
+    passphrase:
+      $ref: ./passphrase/rev.010.yaml
+- $ref: ./meta.010.yaml

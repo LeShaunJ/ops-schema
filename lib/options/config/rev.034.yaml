@@ -1,12 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/config/rev.034.yaml
-title: SecretOptions
-description: Affect how configs are interpreted.
-type: object
-minProperties: 1
-properties:
-  path:
-    $ref: ./path/rev.005.yaml
-  preserve_existing_env_vars:
-    $ref: ./preserve_existing_env_vars/rev.034.yaml
+allOf:
+- {}
+- $ref: ./meta.005.yaml

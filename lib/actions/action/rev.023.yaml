@@ -1,26 +1,32 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/rev.023.yaml
-title: Action
-description: An advanced command configuration.
-type: object
-additionalProperties: false
-required:
-- command
-properties:
-  alias:
-    $ref: ./alias/rev.001.yaml
-  command:
-    $ref: ./command/rev.001.yaml
-  description:
-    $ref: ./description/rev.004.yaml
-  in_envs:
-    $ref: ./in_envs/rev.021.yaml
-  load_secrets:
-    $ref: ./load_secrets/rev.003.yaml
-  not_in_envs:
-    $ref: ./not_in_envs/rev.021.yaml
-  shell_expansion:
-    $ref: ./shell_expansion/rev.023.yaml
-  skip_before_hooks:
-    $ref: ./skip_before_hooks/rev.018.yaml
+allOf:
+- propertyNames:
+    enum:
+    - alias
+    - command
+    - description
+    - in_envs
+    - load_secrets
+    - not_in_envs
+    - shell_expansion
+    - skip_before_hooks
+  properties:
+    alias:
+      $ref: ./alias/rev.001.yaml
+    command:
+      $ref: ./command/rev.001.yaml
+    description:
+      $ref: ./description/rev.004.yaml
+    in_envs:
+      $ref: ./in_envs/rev.021.yaml
+    load_secrets:
+      $ref: ./load_secrets/rev.003.yaml
+    not_in_envs:
+      $ref: ./not_in_envs/rev.021.yaml
+    shell_expansion:
+      $ref: ./shell_expansion/rev.023.yaml
+    skip_before_hooks:
+      $ref: ./skip_before_hooks/rev.018.yaml
+- $ref: ./meta.001.yaml

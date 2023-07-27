@@ -1,34 +1,29 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/rev.022.yaml
-title: ops.yaml
-type: object
-description: Confirguration for `ops`.
-markdownDescription: |
-  Confirguration for [`ops`](https://github.com/nickthecook/ops).
-
-  ```yaml
-  revision: ...
-  min_version: ...
-  forwards: ...
-  dependencies: ...
-  hooks: ...
-  actions: ...
-  options: ...
-  ```
-additionalProperties: false
-properties:
-  revision:
-    $ref: ./common.yaml#/properties/revision
-  actions:
-    $ref: ./actions/rev.021.yaml
-  dependencies:
-    $ref: ./dependencies/rev.010.yaml
-  forwards:
-    $ref: ./forwards/rev.022.yaml
-  hooks:
-    $ref: ./hooks/rev.016.yaml
-  min_version:
-    $ref: ./min_version/rev.022.yaml
-  options:
-    $ref: ./options/rev.019.yaml
+allOf:
+- propertyNames:
+    enum:
+    - actions
+    - dependencies
+    - forwards
+    - hooks
+    - min_version
+    - options
+    - revision
+  properties:
+    revision:
+      $ref: ./common.yaml#/properties/revision
+    actions:
+      $ref: ./actions/rev.021.yaml
+    dependencies:
+      $ref: ./dependencies/rev.010.yaml
+    forwards:
+      $ref: ./forwards/rev.022.yaml
+    hooks:
+      $ref: ./hooks/rev.016.yaml
+    min_version:
+      $ref: ./min_version/rev.022.yaml
+    options:
+      $ref: ./options/rev.019.yaml
+- $ref: ./meta.022.yaml

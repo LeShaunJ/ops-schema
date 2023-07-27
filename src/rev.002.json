@@ -1,11 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/src/rev.002.json",
-  "title": "ops.yaml",
+  "title": "ops.yaml (rev. 001)",
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\ndependencies: ...\nactions: ...\noptions: ...\n```\n",
   "additionalProperties": false,
+  "propertyNames": {
+    "enum": [
+      "actions",
+      "dependencies",
+      "options",
+      "revision"
+    ]
+  },
   "properties": {
     "revision": {
       "title": "Revision",
@@ -21,44 +29,12 @@
       "markdownDescription": "A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.\n\n_For more information, see the [Actions](https://github.com/nickthecook/ops/blob/main/docs/actions.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
+      "additionalProperties": false,
       "default": {
         "myaction": {
           "command": "echo \"hello, world\""
         }
-      },
-      "patternProperties": {
-        "^[\\w-]+$": {
-          "title": "Action",
-          "description": "An advanced command configuration.",
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "command"
-          ],
-          "properties": {
-            "alias": {
-              "title": "Alias",
-              "description": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
-              "markdownDescription": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
-              "type": "string",
-              "pattern": "^[\\w-]+$"
-            },
-            "command": {
-              "title": "Command",
-              "description": "A command or script to run when the action is executed.",
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/CommandString"
-                },
-                {
-                  "$ref": "#/definitions/CommandNoop"
-                }
-              ]
-            }
-          }
-        }
-      },
-      "additionalProperties": false
+      }
     },
     "dependencies": {
       "title": "Dependencies",
@@ -67,6 +43,19 @@
       "type": "object",
       "minProperties": 1,
       "additionalProperties": false,
+      "propertyNames": {
+        "enum": [
+          "apk",
+          "apt",
+          "brew",
+          "cask",
+          "custom",
+          "dir",
+          "docker",
+          "gem",
+          "terraform"
+        ]
+      },
       "properties": {
         "apk": {
           "title": "apkPackageList",
@@ -165,6 +154,12 @@
       "markdownDescription": "Options allow the user to change some aspects of `ops` behaviour.\n\n_For more information, see the [Options](https://github.com/nickthecook/ops/blob/main/docs/options.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
+      "additionalProperties": false,
+      "propertyNames": {
+        "enum": [
+          "gem"
+        ]
+      },
       "properties": {
         "gem": {
           "title": "GemOptions",
@@ -176,6 +171,12 @@
           "default": {
             "user_install": true,
             "use_sudo": false
+          },
+          "propertyNames": {
+            "enum": [
+              "use_sudo",
+              "user_install"
+            ]
           },
           "properties": {
             "user_install": {
@@ -189,8 +190,7 @@
             }
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
   },
   "definitions": {
@@ -212,6 +212,8 @@
     },
     "Deprecated": {
       "title": "Deprecated",
+      "default": null,
+      "examples": [],
       "not": {
         "anyOf": [
           {

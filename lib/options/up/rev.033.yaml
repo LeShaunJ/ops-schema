@@ -1,17 +1,14 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/up/rev.028.yaml
-title: UpOptions
-description: Affect the behaviour of the `up` builtin.
-markdownDescription: Affect the behaviour of the `up` builtin.
-type: object
-minProperties: 1
-additionalProperties: false
-default:
-  exit_on_error: true
-  fail_on_error: true
-properties:
-  exit_on_error:
-    $ref: ./exit_on_error/rev.033.yaml
-  fail_on_error:
-    $ref: ./fail_on_error/rev.028.yaml
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/up/rev.033.yaml
+allOf:
+- propertyNames:
+    enum:
+    - exit_on_error
+    - fail_on_error
+  properties:
+    exit_on_error:
+      $ref: ./exit_on_error/rev.033.yaml
+    fail_on_error:
+      $ref: ./fail_on_error/rev.028.yaml
+- $ref: ./meta.028.yaml

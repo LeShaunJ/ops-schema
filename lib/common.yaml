@@ -33,6 +33,8 @@ definitions:
     default: true
   Deprecated:
     title: Deprecated
+    default:
+    examples: []
     not:
       anyOf:
         - type: array
