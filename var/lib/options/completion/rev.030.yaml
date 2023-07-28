@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/completion/rev.030.yaml
+allOf:
+- propertyNames:
+    enum:
+    - include_aliases
+  properties:
+    include_aliases:
+      $ref: ./include_aliases/rev.030.yaml
+- $ref: ./meta.030.yaml

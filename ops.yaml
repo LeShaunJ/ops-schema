@@ -15,11 +15,7 @@ actions:
     description: Finalize chnages into rendered JSON schema revisions.
   shift:
     command: bin/shift.sh
-    description: |-
-      Shift revisions up from a specified minimum.
-      usage: ops shift <MIN_REVISION>
+    description: 'usage: ops shift <MIN_REVISION> | Shift revisions up from a specified minimum.'
   restrict:
     command: bin/min_versions.py
-    description: |-
-      Restrict `min_version` values to appropriate revsions.
-      usage: ops restrict [--dry-run] [-U]
+    description: 'usage: ops restrict [--dry-run] [-U] | Restrict `min_version` values to appropriate revsions.'

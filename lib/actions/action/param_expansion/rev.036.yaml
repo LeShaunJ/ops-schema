@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
-$schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/param_expansion/rev.036.yaml
-description: Sometimes, a command implementation may call for variable interpetation. This is semi-achieved with `shell_expansion` by default; however, unless the command is a pass-through to a script, there's no way to interpret parameters as postional variables. Enter `param_expansion`. Setting this to `true` instructs `ops` to bind any aguements passed during execution to positional variables within the `command` script.
-markdownDescription: Sometimes, a command implementation may call for variable interpetation. This is semi-achieved with `shell_expansion` by default; however, unless the command is a pass-through to a script, there's no way to interpret parameters as postional variables. Enter `param_expansion`. Setting this to `true` instructs `ops` to bind any aguements passed during execution to positional variables within the `command` script.
-type: boolean
-default: true

@@ -63,6 +63,7 @@ P_PROP_NAMES = 'propertyNames'
 P_PROPS_ADD = 'additionalProperties'
 ...
 
+YML.width = 255
 for dir in reversed(sorted(sys.argv[1:])):
 	with chdir(dir):
 		for path in sorted(Path('.').glob(GLOB_REV)):
@@ -90,16 +91,16 @@ for dir in reversed(sorted(sys.argv[1:])):
 							if '/Deprecated' not in value['$ref']
 				])
 
-				for prop, value in schema['allOf'][0].items():
-					if not prop in [ P_PROP_NAMES, *DEF_PROPS, *meta ]:
-						comp[prop] = value
+			for prop, value in schema['allOf'][0].items():
+				if not prop in [ P_PROP_NAMES, *DEF_PROPS, *meta ]:
+					comp[prop] = value
 			...
 			
 			DelProperties(schema, *[ *meta.keys(), *comp.keys() ])
 			...
 
 			schema['allOf'] = [ comp, { '$ref': f'./{meta_path}' } ]
-			schema["$id"] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{rel}'
+			schema["$id"] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{rel}'.strip()
 			...
 
 			if DRY_RUN:

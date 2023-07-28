@@ -11,147 +11,147 @@ then:
     - allOf:
         - properties: { revision: { const: 36 } }
           required: ['revision']
-        - $ref: './lib/rev.036.yaml'
+        - $ref: './var/lib/rev.036.yaml'
     - allOf:
         - properties: { revision: { const: 35 } }
           required: ['revision']
-        - $ref: './lib/rev.035.yaml'
+        - $ref: './var/lib/rev.035.yaml'
     - allOf:
         - properties: { revision: { const: 34 } }
           required: ['revision']
-        - $ref: './lib/rev.034.yaml'
+        - $ref: './var/lib/rev.034.yaml'
     - allOf:
         - properties: { revision: { const: 33 } }
           required: ['revision']
-        - $ref: './lib/rev.033.yaml'
+        - $ref: './var/lib/rev.033.yaml'
     - allOf:
         - properties: { revision: { const: 32 } }
           required: ['revision']
-        - $ref: './lib/rev.032.yaml'
+        - $ref: './var/lib/rev.032.yaml'
     - allOf:
         - properties: { revision: { const: 31 } }
           required: ['revision']
-        - $ref: './lib/rev.031.yaml'
+        - $ref: './var/lib/rev.031.yaml'
     - allOf:
         - properties: { revision: { const: 30 } }
           required: ['revision']
-        - $ref: './lib/rev.030.yaml'
+        - $ref: './var/lib/rev.030.yaml'
     - allOf:
         - properties: { revision: { const: 29 } }
           required: ['revision']
-        - $ref: './lib/rev.029.yaml'
+        - $ref: './var/lib/rev.029.yaml'
     - allOf:
         - properties: { revision: { const: 28 } }
           required: ['revision']
-        - $ref: './lib/rev.028.yaml'
+        - $ref: './var/lib/rev.028.yaml'
     - allOf:
         - properties: { revision: { const: 27 } }
           required: ['revision']
-        - $ref: './lib/rev.027.yaml'
+        - $ref: './var/lib/rev.027.yaml'
     - allOf:
         - properties: { revision: { const: 26 } }
           required: ['revision']
-        - $ref: './lib/rev.026.yaml'
+        - $ref: './var/lib/rev.026.yaml'
     - allOf:
         - properties: { revision: { const: 25 } }
           required: ['revision']
-        - $ref: './lib/rev.025.yaml'
+        - $ref: './var/lib/rev.025.yaml'
     - allOf:
         - properties: { revision: { const: 24 } }
           required: ['revision']
-        - $ref: './lib/rev.024.yaml'
+        - $ref: './var/lib/rev.024.yaml'
     - allOf:
         - properties: { revision: { const: 23 } }
           required: ['revision']
-        - $ref: './lib/rev.023.yaml'
+        - $ref: './var/lib/rev.023.yaml'
     - allOf:
         - properties: { revision: { const: 22 } }
           required: ['revision']
-        - $ref: './lib/rev.022.yaml'
+        - $ref: './var/lib/rev.022.yaml'
     - allOf:
         - properties: { revision: { const: 21 } }
           required: ['revision']
-        - $ref: './lib/rev.021.yaml'
+        - $ref: './var/lib/rev.021.yaml'
     - allOf:
         - properties: { revision: { const: 20 } }
           required: ['revision']
-        - $ref: './lib/rev.020.yaml'
+        - $ref: './var/lib/rev.020.yaml'
     - allOf:
         - properties: { revision: { const: 19 } }
           required: ['revision']
-        - $ref: './lib/rev.019.yaml'
+        - $ref: './var/lib/rev.019.yaml'
     - allOf:
         - properties: { revision: { const: 18 } }
           required: ['revision']
-        - $ref: './lib/rev.018.yaml'
+        - $ref: './var/lib/rev.018.yaml'
     - allOf:
         - properties: { revision: { const: 17 } }
           required: ['revision']
-        - $ref: './lib/rev.017.yaml'
+        - $ref: './var/lib/rev.017.yaml'
     - allOf:
         - properties: { revision: { const: 16 } }
           required: ['revision']
-        - $ref: './lib/rev.016.yaml'
+        - $ref: './var/lib/rev.016.yaml'
     - allOf:
         - properties: { revision: { const: 15 } }
           required: ['revision']
-        - $ref: './lib/rev.015.yaml'
+        - $ref: './var/lib/rev.015.yaml'
     - allOf:
         - properties: { revision: { const: 14 } }
           required: ['revision']
-        - $ref: './lib/rev.014.yaml'
+        - $ref: './var/lib/rev.014.yaml'
     - allOf:
         - properties: { revision: { const: 13 } }
           required: ['revision']
-        - $ref: './lib/rev.013.yaml'
+        - $ref: './var/lib/rev.013.yaml'
     - allOf:
         - properties: { revision: { const: 12 } }
           required: ['revision']
-        - $ref: './lib/rev.012.yaml'
+        - $ref: './var/lib/rev.012.yaml'
     - allOf:
         - properties: { revision: { const: 11 } }
           required: ['revision']
-        - $ref: './lib/rev.011.yaml'
+        - $ref: './var/lib/rev.011.yaml'
     - allOf:
         - properties: { revision: { const: 10 } }
           required: ['revision']
-        - $ref: './lib/rev.010.yaml'
+        - $ref: './var/lib/rev.010.yaml'
     - allOf:
         - properties: { revision: { const: 9 } }
           required: ['revision']
-        - $ref: './lib/rev.009.yaml'
+        - $ref: './var/lib/rev.009.yaml'
     - allOf:
         - properties: { revision: { const: 8 } }
           required: ['revision']
-        - $ref: './lib/rev.008.yaml'
+        - $ref: './var/lib/rev.008.yaml'
     - allOf:
         - properties: { revision: { const: 7 } }
           required: ['revision']
-        - $ref: './lib/rev.007.yaml'
+        - $ref: './var/lib/rev.007.yaml'
     - allOf:
         - properties: { revision: { const: 6 } }
           required: ['revision']
-        - $ref: './lib/rev.006.yaml'
+        - $ref: './var/lib/rev.006.yaml'
     - allOf:
         - properties: { revision: { const: 5 } }
           required: ['revision']
-        - $ref: './lib/rev.005.yaml'
+        - $ref: './var/lib/rev.005.yaml'
     - allOf:
         - properties: { revision: { const: 4 } }
           required: ['revision']
-        - $ref: './lib/rev.004.yaml'
+        - $ref: './var/lib/rev.004.yaml'
     - allOf:
         - properties: { revision: { const: 3 } }
           required: ['revision']
-        - $ref: './lib/rev.003.yaml'
+        - $ref: './var/lib/rev.003.yaml'
     - allOf:
         - properties: { revision: { const: 2 } }
           required: ['revision']
-        - $ref: './lib/rev.002.yaml'
+        - $ref: './var/lib/rev.002.yaml'
     - allOf:
         - properties: { revision: { const: 1 } }
           required: ['revision']
-        - $ref: './lib/rev.001.yaml'
+        - $ref: './var/lib/rev.001.yaml'
 else:
   allOf:
     - not:

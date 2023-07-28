@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
-$schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/environment/var/rev.003.yaml
-title: EnvVarValue
-description: 'Either a static value, or a command enclosed between `"\\`...\\`"`.'
-markdownDescription: 'Either a static value, or a command enclosed between `` "`...`" ``.'
-type: string

@@ -25,7 +25,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.036.json"
+            "$ref": "./var/src/rev.036.json"
           }
         ]
       },
@@ -42,7 +42,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.035.json"
+            "$ref": "./var/src/rev.035.json"
           }
         ]
       },
@@ -59,7 +59,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.034.json"
+            "$ref": "./var/src/rev.034.json"
           }
         ]
       },
@@ -76,7 +76,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.033.json"
+            "$ref": "./var/src/rev.033.json"
           }
         ]
       },
@@ -93,7 +93,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.032.json"
+            "$ref": "./var/src/rev.032.json"
           }
         ]
       },
@@ -110,7 +110,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.031.json"
+            "$ref": "./var/src/rev.031.json"
           }
         ]
       },
@@ -127,7 +127,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.030.json"
+            "$ref": "./var/src/rev.030.json"
           }
         ]
       },
@@ -144,7 +144,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.029.json"
+            "$ref": "./var/src/rev.029.json"
           }
         ]
       },
@@ -161,7 +161,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.028.json"
+            "$ref": "./var/src/rev.028.json"
           }
         ]
       },
@@ -178,7 +178,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.027.json"
+            "$ref": "./var/src/rev.027.json"
           }
         ]
       },
@@ -195,7 +195,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.026.json"
+            "$ref": "./var/src/rev.026.json"
           }
         ]
       },
@@ -212,7 +212,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.025.json"
+            "$ref": "./var/src/rev.025.json"
           }
         ]
       },
@@ -229,7 +229,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.024.json"
+            "$ref": "./var/src/rev.024.json"
           }
         ]
       },
@@ -246,7 +246,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.023.json"
+            "$ref": "./var/src/rev.023.json"
           }
         ]
       },
@@ -263,7 +263,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.022.json"
+            "$ref": "./var/src/rev.022.json"
           }
         ]
       },
@@ -280,7 +280,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.021.json"
+            "$ref": "./var/src/rev.021.json"
           }
         ]
       },
@@ -297,7 +297,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.020.json"
+            "$ref": "./var/src/rev.020.json"
           }
         ]
       },
@@ -314,7 +314,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.019.json"
+            "$ref": "./var/src/rev.019.json"
           }
         ]
       },
@@ -331,7 +331,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.018.json"
+            "$ref": "./var/src/rev.018.json"
           }
         ]
       },
@@ -348,7 +348,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.017.json"
+            "$ref": "./var/src/rev.017.json"
           }
         ]
       },
@@ -365,7 +365,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.016.json"
+            "$ref": "./var/src/rev.016.json"
           }
         ]
       },
@@ -382,7 +382,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.015.json"
+            "$ref": "./var/src/rev.015.json"
           }
         ]
       },
@@ -399,7 +399,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.014.json"
+            "$ref": "./var/src/rev.014.json"
           }
         ]
       },
@@ -416,7 +416,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.013.json"
+            "$ref": "./var/src/rev.013.json"
           }
         ]
       },
@@ -433,7 +433,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.012.json"
+            "$ref": "./var/src/rev.012.json"
           }
         ]
       },
@@ -450,7 +450,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.011.json"
+            "$ref": "./var/src/rev.011.json"
           }
         ]
       },
@@ -467,7 +467,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.010.json"
+            "$ref": "./var/src/rev.010.json"
           }
         ]
       },
@@ -484,7 +484,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.009.json"
+            "$ref": "./var/src/rev.009.json"
           }
         ]
       },
@@ -501,7 +501,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.008.json"
+            "$ref": "./var/src/rev.008.json"
           }
         ]
       },
@@ -518,7 +518,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.007.json"
+            "$ref": "./var/src/rev.007.json"
           }
         ]
       },
@@ -535,7 +535,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.006.json"
+            "$ref": "./var/src/rev.006.json"
           }
         ]
       },
@@ -552,7 +552,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.005.json"
+            "$ref": "./var/src/rev.005.json"
           }
         ]
       },
@@ -569,7 +569,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.004.json"
+            "$ref": "./var/src/rev.004.json"
           }
         ]
       },
@@ -586,7 +586,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.003.json"
+            "$ref": "./var/src/rev.003.json"
           }
         ]
       },
@@ -603,7 +603,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.002.json"
+            "$ref": "./var/src/rev.002.json"
           }
         ]
       },
@@ -620,7 +620,7 @@
             ]
           },
           {
-            "$ref": "./src/rev.001.json"
+            "$ref": "./var/src/rev.001.json"
           }
         ]
       }

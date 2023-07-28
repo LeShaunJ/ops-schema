@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
-$schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/sshkey/key_file_comment/rev.024.yaml
-title: KeyFileComment
-description: An optional comment for the SSH key.
-type: string
-minLength: 0

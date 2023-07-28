@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
-$schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/actions/action/meta.001.yaml
-title: Action
-description: An advanced command configuration.
-type: object
-additionalProperties: false
-required:
-  - command

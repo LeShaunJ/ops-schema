@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 (
-	declare DIR=lib;
+	declare DIR=var/lib;
 	cd $DIR || exit 1;
 	# shellcheck disable=SC2207
 	declare -a REVS=(`

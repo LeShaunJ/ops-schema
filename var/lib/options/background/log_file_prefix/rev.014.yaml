@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/background/log_file_prefix/rev.014.yaml
+title: LogFilePrefix
+description: Optional text to prepend to a background action log's filename.
+$ref: '../../../common.yaml#/definitions/FileName'

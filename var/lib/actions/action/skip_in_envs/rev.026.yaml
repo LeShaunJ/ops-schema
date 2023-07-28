@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/action/skip_in_envs/rev.026.yaml
+description: Similar to `not_in_envs`, except it will not exit with an error if executed in any of the specified environments.
+$ref: "../../../common.yaml#/definitions/EnvList"

@@ -14,8 +14,8 @@ from referencing.jsonschema import DRAFT7
 SWD = Path(__file__)
 CWD = Path(f'{SWD.parent}/..')
 YML = YAML()
-LIB = 'lib'
-SRC = 'src'
+LIB = 'var/lib'
+SRC = 'var/src'
 GIT = 'https://github.com/LeShaunJ/ops-schema/blob/main'
 COMMON = 'common.yaml'
 OPS_JSN = 'ops.schema.json'
@@ -256,7 +256,7 @@ registry = []
 
 with chdir(CWD):
 	common = GetCommon()
-	paths = sorted(Path('./lib').glob('rev.*.yaml'))
+	paths = sorted(Path(LIB).glob('rev.*.yaml'))
 	...
 
 	for path in paths:

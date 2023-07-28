@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/dependencies/rev.032.yaml
+allOf:
+- propertyNames:
+    enum:
+    - apk
+    - apt
+    - brew
+    - cask
+    - custom
+    - dir
+    - docker
+    - gem
+    - pip
+    - snap
+    - sshkey
+    - terraform
+  properties:
+    apk:
+      $ref: ./apk/rev.001.yaml
+    apt:
+      $ref: ./apt/rev.001.yaml
+    brew:
+      $ref: ./brew/rev.001.yaml
+    cask:
+      $ref: ./cask/rev.001.yaml
+    custom:
+      $ref: ./custom/rev.027.yaml
+    dir:
+      $ref: ./dir/rev.002.yaml
+    docker:
+      $ref: ./docker/rev.001.yaml
+    gem:
+      $ref: ./gem/rev.001.yaml
+    pip:
+      $ref: ./pip/rev.029.yaml
+    snap:
+      $ref: ./snap/rev.032.yaml
+    sshkey:
+      $ref: ./sshkey/rev.010.yaml
+    terraform:
+      $ref: ./terraform/rev.007.yaml
+- $ref: ./meta.001.yaml

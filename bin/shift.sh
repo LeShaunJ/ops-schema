@@ -13,7 +13,7 @@ for index in $(seq 35 "$minumum"); do
   glob="*.${pad}.yaml";
   uprev=$(printf -- '%03d' "$((index+1))");
   # shellcheck disable=SC2207
-  declare -a files_all=(`find lib -type f -name "*.yaml"`)
+  declare -a files_all=(`find var/lib -type f -name "*.yaml"`)
   # shellcheck disable=SC2207
   declare -a file_refs=(`
     pcre2grep -H "\\w\\.${pad}\\.yaml" "${files_all[@]}" \
@@ -34,7 +34,7 @@ for index in $(seq 35 "$minumum"); do
   glob="*.${pad}.yaml";
   uprev=$(printf -- '%03d' "$((index+1))");
   # shellcheck disable=SC2207
-  declare -a files=(`find lib -type f -name "$glob"`);
+  declare -a files=(`find var/lib -type f -name "$glob"`);
   echo "${glob}:";
   for file in "${files[@]}"; do
     mv -vf "${file}" "${file/$pad/$uprev}";

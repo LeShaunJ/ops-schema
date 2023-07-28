@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/dependencies/brew/rev.001.yaml
+title: brewPackageList
+description: |-
+  - Specifies that a particular `brew` package is needed.
+  - Will only run if you're on a Mac.
+markdownDescription: |-
+  * Specifies that a particular `brew` package is needed.
+  * Will only run if you're on a Mac.
+type: array
+items:
+  $ref: "../../common.yaml#/definitions/PackageBrew"
+minItems: 1
+uniqueItems: true

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/config/preserve_existing_env_vars/rev.034.yaml
+title: PreserveExistingEnvVars
+description: If `true`, will cause `ops` to only set environment variables from config and secrets if the variable is not already set.
+markdownDescription: If `true`, will cause `ops` to only set environment variables from config _and_ secrets if the variable is not already set.
+type: boolean
+default: true

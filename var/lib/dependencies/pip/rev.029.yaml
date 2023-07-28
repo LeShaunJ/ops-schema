@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/dependencies/pip/rev.029.yaml
+title: pipPackageList
+description: This dependency ensures that the given Python package is installed.
+type: array
+items:
+  $ref: "../../common.yaml#/definitions/PackagePip"
+minItems: 1
+uniqueItems: true

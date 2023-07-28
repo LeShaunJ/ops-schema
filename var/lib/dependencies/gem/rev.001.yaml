@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/dependencies/gem/rev.001.yaml
+title: gemPackageList
+description:  |
+  - Installs the gem with the given name.
+  - By default, runs `gem install ...`, but can be configured to use `sudo gem install` or `gem install --user-install` (see below).
+markdownDescription: |
+  * Installs the gem with the given name.
+  * By default, runs `gem install ...`, but can be configured to use `sudo gem install` or `gem install --user-install` (_see below_).
+$ref: "../../common.yaml#/definitions/PackageList"
+examples:
+  - - ejson

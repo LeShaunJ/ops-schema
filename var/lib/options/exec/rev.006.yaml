@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/exec/rev.006.yaml
+allOf:
+- properties:
+    load_secrets:
+      $ref: ../../common.yaml#/definitions/LoadSecrets
+- $ref: ./meta.006.yaml

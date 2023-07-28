@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
-$schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/lib/options/sshkey/passphrase_var/rev.013.yaml
-title: PassphraseVar
-description: The name of an environment variable containing the passphrase to generate the SSH key with.
-type: string
-pattern: ^\w+$

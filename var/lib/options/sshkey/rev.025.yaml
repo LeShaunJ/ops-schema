@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/sshkey/rev.025.yaml
+allOf:
+- propertyNames:
+    enum:
+    - add_keys
+    - key_algo
+    - key_file_comment
+    - key_lifetime
+    - key_size
+    - passphrase
+    - passphrase_var
+  properties:
+    add_keys:
+      $ref: ./add_keys/rev.012.yaml
+    key_algo:
+      $ref: ./key_algo/rev.025.yaml
+    key_file_comment:
+      $ref: ./key_file_comment/rev.024.yaml
+    key_lifetime:
+      $ref: ./key_lifetime/rev.011.yaml
+    key_size:
+      $ref: ./key_size/rev.010.yaml
+    passphrase:
+      $ref: ./passphrase/rev.010.yaml
+    passphrase_var:
+      $ref: ./passphrase_var/rev.013.yaml
+- $ref: ./meta.010.yaml

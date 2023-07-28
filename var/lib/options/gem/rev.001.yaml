@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/gem/rev.001.yaml
+allOf:
+- propertyNames:
+    enum:
+    - use_sudo
+    - user_install
+  properties:
+    user_install:
+      $ref: ./user_install/rev.001.yaml
+    use_sudo:
+      $ref: ../../common.yaml#/definitions/UseSudo/properties/use_sudo
+- $ref: ./meta.001.yaml

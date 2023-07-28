@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/snap/meta.032.yaml
+title: SnapOptions
+description: Affect the behaviour of `snap` dependencies.
+markdownDescription: Affect the behaviour of `snap` dependencies.
+type: object
+minProperties: 1
+additionalProperties: false
+default:
+  install: true
+  use_sudo: false

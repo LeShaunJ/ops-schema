@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/rev.020.yaml
+allOf:
+- patternProperties:
+    ^[\w-]+$:
+      oneOf:
+      - description: A simple command, or—though not recommended—a script, to run. Only use this pattern unless the command's intent is easy to decipher.
+        markdownDescription: A simple command, or—*though, not recommended*—a script, to run. Only use this pattern unless the command's intent is easy to decipher.
+        $ref: ../common.yaml#/definitions/CommandString
+      - $ref: ../common.yaml#/definitions/CommandNoop
+      - $ref: ./action/rev.018.yaml
+- $ref: ./meta.020.yaml

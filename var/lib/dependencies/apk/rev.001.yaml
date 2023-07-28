@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/dependencies/apk/rev.001.yaml
+title: apkPackageList
+description: |-
+  - Specifies that a particular package from `apk` is needed.
+  - Will only run if the `apk` command is in the `$PATH` (usually only on Alpine linux).
+markdownDescription: |-
+  * Specifies that a particular package from `apk` is needed.
+  * Will only run if the `apk` command is in the `$PATH` (usually only on Alpine linux).
+$ref: "../../common.yaml#/definitions/PackageList"

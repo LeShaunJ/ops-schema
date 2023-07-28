@@ -14,7 +14,7 @@ from collections import OrderedDict
 SWD = Path(__file__)
 CWD = Path(f'{SWD.parent}/..')
 YML = YAML()
-DIR = 'lib'
+DIR = 'var/lib'
 
 CACHE_DIR = '.scache'
 CACHE_FILE = f'{CACHE_DIR}/gem_versions'

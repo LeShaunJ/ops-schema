@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/rev.005.yaml
+allOf:
+- propertyNames:
+    enum:
+    - actions
+    - dependencies
+    - options
+    - revision
+  properties:
+    revision:
+      $ref: ./common.yaml#/properties/revision
+    actions:
+      $ref: ./actions/rev.004.yaml
+    dependencies:
+      $ref: ./dependencies/rev.002.yaml
+    options:
+      $ref: ./options/rev.005.yaml
+- $ref: ./meta.001.yaml
