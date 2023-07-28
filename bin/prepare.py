@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+from typing import Generator
 from pathlib import Path
 from collections import OrderedDict
 from contextlib import chdir
@@ -17,6 +18,24 @@ DRY_RUN = O_DRUN in sys.argv[1:]
 if DRY_RUN:
 	sys.argv.remove(O_DRUN)
 ...
+
+CWD = Path.cwd()
+LIB = 'var/lib'
+DEF_PROPS = ['$id', '$schema', 'allOf']
+P_PROPS = 'properties'
+P_PROP_NAMES = 'propertyNames'
+P_PROPS_ADD = 'additionalProperties'
+...
+
+def GetDirs() -> Generator[Path, None, None]:
+	def HasDirs(directory: Path) -> bool:
+		return len([ *directory.glob('**') ]) > 1
+	
+	directories = sorted(Path(LIB).glob('**'), reverse=True)
+
+	for directory in directories:
+		if HasDirs(directory):
+			yield directory
 
 def DelProperties(schema: dict, *props: str) -> None:
 	for prop in props:
@@ -53,19 +72,9 @@ def GetMeta(path: Path | str) -> CommentedMap:
 	
 def GetSchema(path: Path | str) -> CommentedMap:
 	return YML.load(path)
-...
 
-YML = YAML()
-CWD = Path.cwd()
-DEF_PROPS = ['$id', '$schema', 'allOf']
-P_PROPS = 'properties'
-P_PROP_NAMES = 'propertyNames'
-P_PROPS_ADD = 'additionalProperties'
-...
-
-YML.width = 255
-for dir in reversed(sorted(sys.argv[1:])):
-	with chdir(dir):
+def Prepare(directory: Path) -> None:
+	with chdir(directory):
 		for path in sorted(Path('.').glob(GLOB_REV)):
 			rel = path.absolute().relative_to(CWD)
 			...
@@ -115,6 +124,14 @@ for dir in reversed(sorted(sys.argv[1:])):
 				with open(path, "w") as file:
 					YML.dump(schema, file)
 			...
+...
 
-			...
+YML = YAML()
+YML.width = 255
+...
+
+with chdir(CWD): [
+	Prepare(dir)
+		for dir in GetDirs()
+]
 ...
