@@ -82,8 +82,9 @@ for dir in reversed(sorted(sys.argv[1:])):
 			...
 
 			comp = CommentedMap()
+			additional: bool = meta.get(P_PROPS_ADD, True)
 
-			if P_PROPS in schema['allOf'][0] and not meta.get(P_PROPS_ADD, True):
+			if P_PROPS in schema['allOf'][0] and not additional:
 				comp[P_PROP_NAMES] = CommentedMap()
 				comp[P_PROP_NAMES]['enum'] = sorted([
 					prop for prop, value in

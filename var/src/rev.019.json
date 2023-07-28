@@ -31,7 +31,6 @@
       "markdownDescription": "A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.\n\n_For more information, see the [Actions](https://github.com/nickthecook/ops/blob/main/docs/actions.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
-      "additionalProperties": false,
       "default": {
         "myaction": {
           "command": "echo \"hello, world\""
