@@ -3,6 +3,7 @@ $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/action/command/rev.001.yaml
 title: Command
 description: A command or script to run when the action is executed.
-oneOf:
+anyOf:
   - $ref: "../../../common.yaml#/definitions/CommandString"
   - $ref: "../../../common.yaml#/definitions/CommandNoop"
+default: true

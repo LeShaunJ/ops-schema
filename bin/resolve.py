@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys, re, json as JSN
+from collections import OrderedDict
 from typing import overload, Any, Generator
 from functools import reduce
 from pathlib import Path
@@ -101,19 +102,31 @@ def SetRef(schema: dict, resolution: Resolved[dict]) -> dict:
 def AllOf(schema: dict, resolution: Resolved[dict]) -> dict:
 	try:
 		prop = 'allOf'
-		others = reversed(schema[prop])
+		others: list[dict] = schema[prop]
+		others.reverse()
+		remaining = []
 		...
 
 		DelProperties(schema, prop)
 		...
 
-		return reduce(
-			lambda schema1, schema2: { 
-				**schema1,
-				**Walk(schema2, resolution)
-			},
-			others, schema
-		)
+		allOf = {}
+		for other in others:
+			other = Walk(other, resolution)
+
+			if HasRef(other):
+				remaining.append(other)
+			else:
+				allOf = { **allOf, **other }
+		...
+
+		if remaining:
+			schema[prop] = [ allOf, *remaining ]
+		else:
+			schema = allOf
+		...
+
+		return schema
 	except (KeyError, TypeError):
 		return schema
 
@@ -142,6 +155,17 @@ def GetIters(schema: dict) -> Generator[tuple[str, dict | list], None, None]:
 		print(f'Schema: {Pretty(schema)}', file=sys.stderr)
 		raise
 
+def Define(schema: dict, resolution: Resolved[dict]) -> None:
+	global definitions
+	...
+	
+	prop = 'definitions'
+	
+	if prop in schema:
+		schema_defs = Walk(schema[prop], resolution)
+		definitions = { **definitions, **schema_defs }
+		DelProperties(schema, prop)
+
 @overload
 def Walk(resolution: Resolved[dict]) -> dict: ...
 @overload
@@ -149,9 +173,6 @@ def Walk(composition: list[dict], resolution: Resolved[dict]) -> dict: ...
 @overload
 def Walk(schema: dict, resolution: Resolved[dict]) -> dict: ...
 def Walk(*args) -> dict:
-	global definitions
-	...
-
 	try:
 		resolution: Resolved[dict] = args[1]
 		schema: dict | list[dict] = args[0]
@@ -167,10 +188,7 @@ def Walk(*args) -> dict:
 	...
 
 	if isinstance(schema, dict):
-		if 'definitions' in schema:
-			schema_defs = Walk(schema['definitions'], resolution)
-			definitions = { **definitions, **schema_defs }
-			DelProperties(schema, 'definitions')
+		Define(schema, resolution)
 		...
 
 		for prop, iter in GetIters(schema):
@@ -205,13 +223,30 @@ def Register(path: Path) -> None:
 	revision = GetRevision(path)
 	...
 
-	registry.append({ 'allOf': [
-		{
-			'properties': { 'revision': { 'const': revision } },
-			'required': ['revision']
-		},
-		{  '$ref': f'./{path}' }
-	] })
+	# registry.append({ "allOf": [
+		# {
+		# 	"properties": {
+		# 		"revision": {
+		# 			"title": "Revision",
+		# 			"const": revision
+		# 		}
+		# 	},
+		# 	"required": ["revision"]
+   	# },
+		# # {
+		# 	# "if": { "required": ["min_version"] },
+		# 	# "then": {
+		# 		# "properties": {
+		# 			# "min_version": {
+		# 				# "enum": []
+		# 			# }
+		# 		# }
+		# 	# }
+		# # },
+		# { "$ref": f"./{path}" }
+	# ] })
+
+	registry.append({ "$ref": f"./{path}" })
 
 def Compose() -> None:
 	global registry
@@ -238,7 +273,7 @@ def Compose() -> None:
 					'required': ['revision']
 				}
 			},
-    	{ '$ref': '#/then/oneOf/0/allOf/1' }
+    	{ '$ref': '#/then/oneOf/0' }
 		]
 	}
 	...
@@ -251,7 +286,7 @@ def Compose() -> None:
 ...
 
 resolver = Registry(retrieve=RetrieveYAML).resolver()
-registry = []
+registry: list[dict] = []
 ...
 
 with chdir(CWD):
@@ -268,9 +303,15 @@ with chdir(CWD):
 
 		with open(jpath, 'w') as file:
 			definitions = common.copy()
-			schema = Walk(resolver.lookup(str(path)))
-			schema['definitions'] = definitions
-			schema['$id'] = f'{GIT}/{jpath}'
+			...
+
+			schema = OrderedDict([
+				('$schema', 'https://json-schema.org/draft-07/schema'),
+				('$id', f'{GIT}/{jpath}'),
+				*Walk(resolver.lookup(str(path))).items(),
+				('definitions', definitions),
+			])
+			schema['properties']['revision']['minimum'] = GetRevision(path)
 			...
 
 			Register(jpath)

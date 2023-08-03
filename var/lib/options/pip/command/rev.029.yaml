@@ -4,4 +4,5 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/pip/comman
 title: PipCommand
 description: The path to a `pip` binary, along any options you'd like to run when installing packages.
 type: string
-format: uri-reference
+minLength: 1
+default: pip3

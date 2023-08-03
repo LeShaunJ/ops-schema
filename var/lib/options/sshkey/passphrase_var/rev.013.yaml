@@ -4,4 +4,5 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/sshkey/pas
 title: PassphraseVar
 description: The name of an environment variable containing the passphrase to generate the SSH key with.
 type: string
-pattern: ^\w+$
+pattern: ^\w*$
+default: SSH_KEY_PASSPHRASE

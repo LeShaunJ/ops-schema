@@ -12,3 +12,5 @@ markdownDescription: |
   > **NOTE:** _The values of these variables are not interpreted by the shell before being set, so variable references like `$environment` will appear literally in the value of the variable._
 type: object
 minProperties: 1
+default:
+  PATH: "./bin:${PATH}"

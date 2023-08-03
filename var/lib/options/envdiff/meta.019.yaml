@@ -5,6 +5,7 @@ title: EnvDiffOptions
 description: Affect the behaviour of `ops envdiff`.
 type: object
 minProperties: 1
-additionalProperties: false
+additionalProperties: true
 default:
   ignored_keys:
+    - backend_config_params

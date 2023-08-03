@@ -4,6 +4,8 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/etc/changes.schema.yaml
 title: changes.yaml
 type: object
 description: Changelog for Ops Schema
+propertyNames:
+  type: integer
 patternProperties: 
   ^\d{3}$:
     title: ChangeObject
@@ -12,4 +14,3 @@ patternProperties:
     markdownDescription: Describe your change in the form of a faux-`ops.yaml` configuration.
     minProperties: 1
 minProperties: 1
-additionalProperties: false

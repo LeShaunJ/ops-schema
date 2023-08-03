@@ -14,17 +14,15 @@ properties:
       * It _is not_ the same as `min_version` (_`0.12.0` and onward_); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.
       * If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
     type: integer
-    minimum: 1
-    default: 36
 definitions:
   CommandString:
     allOf:
       - title: Command String
-      - $ref: "#/definitions/NonEmptyString"
-      - default: echo "hello, world"
+        default: echo "hello, world"
         examples:
           - terraform init
           - docker-compose up
+      - $ref: "#/definitions/NonEmptyString"
   CommandNoop:
     title: No-Op Command
     description: If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
@@ -58,6 +56,7 @@ definitions:
     type: string
     pattern: ^(?!.{256,})(?!(aux|clock\$|con|nul|prn|com[1-9]|lpt[1-9])(?:$|\.))[^ ][ \.\w-$()+=[\];#@~,&']+[^\. ]$
     minLength: 1
+    default: myfile.txt
   LoadSecrets:
     description: If `true`, items in `secrets.ejson` will be loaded before execution, allowing said items to be referenced in the configuration.
     type: boolean

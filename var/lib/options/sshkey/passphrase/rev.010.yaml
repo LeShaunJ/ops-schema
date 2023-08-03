@@ -4,3 +4,4 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/sshkey/pas
 title: KeyPassphrase
 description: A passphrase to generate the SSH key with.
 type: string
+default: b@dP@55w0rd_tryh@rd3r

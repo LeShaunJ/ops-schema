@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/LeShaunJ/ops-schema/main/ops.schema.yaml
 revision: 2
 dependencies:
   apk:

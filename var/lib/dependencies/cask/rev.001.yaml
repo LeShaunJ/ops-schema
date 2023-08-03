@@ -8,4 +8,8 @@ description: |-
 markdownDescription: |-
   * Specifies that a particular `brew cask` package is needed.
   * Will only run if you're on a Mac.
-$ref: "../../common.yaml#/definitions/PackageList"
+type: array
+items:
+  $ref: "../../common.yaml#/definitions/PackageBrew"
+minItems: 1
+uniqueItems: true

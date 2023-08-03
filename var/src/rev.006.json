@@ -5,23 +5,14 @@
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\ndependencies: ...\nactions: ...\noptions: ...\n```\n",
-  "additionalProperties": false,
-  "propertyNames": {
-    "enum": [
-      "actions",
-      "dependencies",
-      "options",
-      "revision"
-    ]
-  },
+  "additionalProperties": true,
   "properties": {
     "revision": {
       "title": "Revision",
       "description": "A number representing a schema version that the `ops.yml` will be validated against.\n\u2014 It is not the same as `min_version` (`0.12.0` and onward); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.\n\u2014 If unset, the `ops.yml` file will be validated against the most recent version of `ops`.\n",
       "markdownDescription": "A number representing a schema version that the `ops.yml` will be validated against:\n* It _is not_ the same as `min_version` (_`0.12.0` and onward_); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.\n* If unset, the `ops.yml` file will be validated against the most recent version of `ops`.\n",
       "type": "integer",
-      "minimum": 1,
-      "default": 36
+      "minimum": 6
     },
     "actions": {
       "title": "ActionMap",
@@ -29,28 +20,26 @@
       "markdownDescription": "A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.\n\n_For more information, see the [Actions](https://github.com/nickthecook/ops/blob/main/docs/actions.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
+      "additionalProperties": true,
+      "propertyNames": {
+        "title": "<action>",
+        "pattern": "^\\b[\\w-]+\\b$"
+      },
       "default": {
-        "myaction": {
-          "command": "echo \"hello, world\""
+        "<action>": {
+          "command": "<command>"
         }
       },
       "patternProperties": {
         "^[\\w-]+$": {
-          "title": "Action",
-          "description": "An advanced command configuration.",
+          "title": "ActionObject",
+          "description": "A command configuration.",
           "type": "object",
-          "additionalProperties": false,
+          "additionalProperties": true,
           "required": [
             "command"
           ],
-          "propertyNames": {
-            "enum": [
-              "alias",
-              "command",
-              "description",
-              "load_secrets"
-            ]
-          },
+          "default": "<command>",
           "properties": {
             "alias": {
               "title": "Alias",
@@ -62,14 +51,15 @@
             "command": {
               "title": "Command",
               "description": "A command or script to run when the action is executed.",
-              "oneOf": [
+              "anyOf": [
                 {
                   "$ref": "#/definitions/CommandString"
                 },
                 {
                   "$ref": "#/definitions/CommandNoop"
                 }
-              ]
+              ],
+              "default": true
             },
             "description": {
               "title": "Description",
@@ -93,20 +83,7 @@
       "markdownDescription": "Dependencies listed in the `dependencies` section of `ops.yml` are satisfied when the `ops up` command is run. Some dependencies will be un-satisfied when you run `ops down`; e.g. services will be stopped, but packages won't be uninstalled.\n\nThis feature allows developers that are new to a project to get up and running without knowing anything about the app itself. Your `ops.yml` should allow a developer to `ops up && ops start` to run an application.\n\n_For more information, see the [Dependencies](https://github.com/nickthecook/ops/blob/main/docs/dependencies.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
-      "additionalProperties": false,
-      "propertyNames": {
-        "enum": [
-          "apk",
-          "apt",
-          "brew",
-          "cask",
-          "custom",
-          "dir",
-          "docker",
-          "gem",
-          "terraform"
-        ]
-      },
+      "additionalProperties": true,
       "properties": {
         "apk": {
           "title": "apkPackageList",
@@ -135,7 +112,12 @@
           "title": "caskPackageList",
           "description": "- Specifies that a particular `brew cask` package is needed.\n- Will only run if you're on a Mac.",
           "markdownDescription": "* Specifies that a particular `brew cask` package is needed.\n* Will only run if you're on a Mac.",
-          "$ref": "#/definitions/PackageList"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PackageBrew"
+          },
+          "minItems": 1,
+          "uniqueItems": true
         },
         "custom": {
           "title": "CustomCommandList",
@@ -146,9 +128,15 @@
             "description": "",
             "oneOf": [
               {
-                "$ref": "#/definitions/CommandString",
-                "description": "An idempotent command or script to run as a dependency when `ops up` is executed.",
-                "markdownDescription": "An idempotent command or script to run as a dependency when `ops up` is executed."
+                "allOf": [
+                  {
+                    "description": "An idempotent command or script to run as a dependency when `ops up` is executed.",
+                    "markdownDescription": "An idempotent command or script to run as a dependency when `ops up` is executed."
+                  },
+                  {
+                    "$ref": "#/definitions/CommandString"
+                  }
+                ]
               },
               {
                 "$ref": "#/definitions/CommandNoop"
@@ -205,16 +193,7 @@
       "markdownDescription": "Options allow the user to change some aspects of `ops` behaviour.\n\n_For more information, see the [Options](https://github.com/nickthecook/ops/blob/main/docs/options.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
-      "additionalProperties": false,
-      "propertyNames": {
-        "enum": [
-          "config",
-          "environment",
-          "exec",
-          "gem",
-          "secrets"
-        ]
-      },
+      "additionalProperties": true,
       "properties": {
         "config": {
           "title": "SecretOptions",
@@ -226,7 +205,8 @@
               "title": "SecretsPath",
               "description": "Override the config file location (defaults to `./config/<environment>/config.json`).",
               "markdownDescription": "Override the config file location (_defaults to `./config/<environment>/config.json`_).",
-              "$ref": "#/definitions/Path"
+              "$ref": "#/definitions/Path",
+              "default": "config/${environment}/config.json"
             }
           }
         },
@@ -236,6 +216,9 @@
           "markdownDescription": "Statically or dynamically set global environment variables, with each key serving as a variable's name.\n\n> **NOTE:** _The values of these variables are not interpreted by the shell before being set, so variable references like `$environment` will appear literally in the value of the variable._\n",
           "type": "object",
           "minProperties": 1,
+          "default": {
+            "PATH": "./bin:${PATH}"
+          },
           "patternProperties": {
             "^\\w+$": {
               "title": "EnvVarValue",
@@ -262,16 +245,10 @@
           "markdownDescription": "Affect the behaviour of `gem` dependencies.",
           "type": "object",
           "minProperties": 1,
-          "additionalProperties": false,
+          "additionalProperties": true,
           "default": {
             "user_install": true,
             "use_sudo": false
-          },
-          "propertyNames": {
-            "enum": [
-              "use_sudo",
-              "user_install"
-            ]
           },
           "properties": {
             "user_install": {
@@ -295,7 +272,8 @@
               "title": "SecretsPath",
               "description": "Override the secrets file location (defaults to `./config/<environment>/secrets.json`).",
               "markdownDescription": "Override the secrets file location (_defaults to `./config/<environment>/secrets.json`_).",
-              "$ref": "#/definitions/Path"
+              "$ref": "#/definitions/Path",
+              "default": "config/${environment}/secrets.ejson"
             }
           }
         }
@@ -304,13 +282,19 @@
   },
   "definitions": {
     "CommandString": {
-      "default": "echo \"hello, world\"",
-      "examples": [
-        "terraform init",
-        "docker-compose up"
-      ],
-      "$ref": "#/definitions/NonEmptyString",
-      "title": "Command String"
+      "allOf": [
+        {
+          "title": "Command String",
+          "default": "echo \"hello, world\"",
+          "examples": [
+            "terraform init",
+            "docker-compose up"
+          ]
+        },
+        {
+          "$ref": "#/definitions/NonEmptyString"
+        }
+      ]
     },
     "CommandNoop": {
       "title": "No-Op Command",
@@ -364,7 +348,8 @@
       "title": "File Name",
       "type": "string",
       "pattern": "^(?!.{256,})(?!(aux|clock\\$|con|nul|prn|com[1-9]|lpt[1-9])(?:$|\\.))[^ ][ \\.\\w-$()+=[\\];#@~,&']+[^\\. ]$",
-      "minLength": 1
+      "minLength": 1,
+      "default": "myfile.txt"
     },
     "LoadSecrets": {
       "description": "If `true`, items in `secrets.ejson` will be loaded before execution, allowing said items to be referenced in the configuration.",

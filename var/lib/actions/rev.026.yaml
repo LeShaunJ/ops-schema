@@ -4,10 +4,7 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/rev.026.ya
 allOf:
 - patternProperties:
     ^[\w-]+$:
-      oneOf:
-      - description: A simple command, or—though not recommended—a script, to run. Only use this pattern unless the command's intent is easy to decipher.
-        markdownDescription: A simple command, or—*though, not recommended*—a script, to run. Only use this pattern unless the command's intent is easy to decipher.
-        $ref: ../common.yaml#/definitions/CommandString
-      - $ref: ../common.yaml#/definitions/CommandNoop
+      anyOf:
+      - $ref: ./inline/rev.020.yaml
       - $ref: ./action/rev.026.yaml
 - $ref: ./meta.020.yaml

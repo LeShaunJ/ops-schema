@@ -6,6 +6,6 @@ description: Affect the behaviour of the auto-complete feature.
 markdownDescription: Affect the behaviour of the auto-complete feature.
 type: object
 minProperties: 1
-additionalProperties: false
+additionalProperties: true
 default:
   include_aliases: true

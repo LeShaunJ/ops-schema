@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./etc/changes.schema.yaml
 001: &0.1.1
-  dependencies: &Dependencies
+  dependencies:
     apk: []
     apt: []
     brew: []
@@ -9,216 +9,164 @@
     docker: []
     gem: []
     terraform: []
-  actions: &ActionMap
-    action: &Action
+  actions:
+    action_object:
       command: ""
       alias: ""
-  options: &Options
-    gem: &GemOptions
+  options:
+    gem:
       use_sudo: true
       user_install: true
 002: &0.1.6
   dependencies:
-    <<: *Dependencies
     dir: []
 003: &0.2.0
   actions:
-    <<: *ActionMap
-    action:
-      <<: *Action
+    action_object:
       load_secrets: true
   options:
-    <<: *Options
-    environment: &EnvMap {}
-    secrets: &SecretOptions
+    environment:
+    secrets:
       path: path/to/file
 004: &0.2.2
   actions:
-    <<: *ActionMap
-    action:
-      <<: *Action
+    action_object:
       description: ""
 005: &0.2.4
   options:
-    <<: *Options
-    config: &ConfigOptions
+    config:
       path: ""
 006: &0.2.5
   options:
-    <<: *Options
-    exec: &ExecOptions
+    exec:
       load_secrets: true
 007: &0.2.6
   dependencies:
-    <<: *Dependencies
     terraform: null
 008: &0.3.0
   options:
-    <<: *Options
-    apt: &AptOptions
+    apt:
       use_sudo: true
 009: &0.5.0
   options:
-    <<: *Options
     environment_aliases: []
 010: &0.8.0
   dependencies:
-    <<: *Dependencies
     sshkey: []
   options:
-    <<: *Options
-    sshkey: &SshKeyOptions
+    sshkey:
       key_size: 0
       key_algo: enum
       passphrase: ""
 011: &0.8.2
   options:
-    <<: *Options
     sshkey:
-      <<: *SshKeyOptions
       key_algo: null
       key_lifetime: 0
 012: &0.8.7
   options:
-    <<: *Options
     sshkey:
-      <<: *SshKeyOptions
       add_keys: false
 013: &0.8.9
   options:
-    <<: *Options
     sshkey:
-      <<: *SshKeyOptions
       passphrase_var: ""
 014: &0.9.0
   options:
-    <<: *Options
-    background: &BackgrounOptions
+    background:
       log_file_prefix: ""
       shell: ""
 015: &0.9.4
   options:
-    <<: *Options
     background:
-      <<: *BackgrounOptions
       log_file_prefix: null
       shell: null
       log_filename: ""
 016: &0.11.0.pre
-  hooks: &HookMap
+  hooks:
     before: []
 017: &0.12.0
   min_version: 0.0.0
 018: &0.12.2
   actions:
-    <<: *ActionMap
-    action:
-      <<: *Action
+    action_object:
       skip_before_hooks: true
 019: &0.15.1
   options:
-    <<: *Options
-    envdiff: &EnvDiffOptions
+    envdiff:
       ignored_keys: []
 020: &1.17.0.rc1
   actions:
-    <<: *ActionMap
-    action: ""
+    action_string: ""
 021: &0.18.0
   actions:
-    <<: *ActionMap
-    action:
-      <<: *Action
+    action_object:
       in_envs: []
       not_in_envs: []
 022: &0.19.0
-  forwards: &ForwardMap
-    forward: &Forward ""
+  forwards:
+    forward:
 023: &1.2.1
   actions:
-    <<: *ActionMap
-    action:
-      <<: *Action
+    action_object:
       shell_expansion: false
 024: &1.4.0.rc1
   options:
-    <<: *Options
     sshkey:
-      <<: *SshKeyOptions
       key_file_comment: ""
 025: &1.7.0
   options:
-    <<: *Options
     sshkey:
-      <<: *SshKeyOptions
       key_algo: enum
 026: &1.8.0
   actions:
-    <<: *ActionMap
-    action:
-      <<: *Action
+    action_object:
       skip_in_envs: []
 027: &1.9.0
   dependencies:
-    <<: *Dependencies
-    custom: &Custom
+    custom:
       - ""
       - custom:
           up: ""
           down: ""
 028: &1.11.0
   options:
-    <<: *Options
-    up: &UpOptions
+    up:
       fail_on_error: true
 029: &1.13.0
   dependencies:
-    <<: *Dependencies
     pip: []
   options:
-    <<: *Options
-    pip: &PipOptions
+    pip:
       command: ""
 030: &1.15.0.pre.rc2
   options:
-    <<: *Options
-    completion: &CompletionOptions
+    completion:
       include_aliases: true
 031: &1.16.0.pre.rc1
   options:
-    <<: *Options
     completion: null
 032: &1.18.0
   dependencies:
-    <<: *Dependencies
     snap: []
   options:
-    <<: *Options
-    snap: &SnapOptions
+    snap:
       use_sudo: true
       install: true
 033: &1.19.2.rc1
   options:
-    <<: *Options
     up:
-      <<: *UpOptions
       exit_on_error: true
 034: &1.20.0.rc1
   options:
-    <<: *Options
     config:
-      <<: *ConfigOptions
       preserve_existing_env_vars: true
 035: &2.0.0.rc3
   options:
-    <<: *Options
     sshkey:
-      <<: *SshKeyOptions
       passphrase: null
 036: &2.2.0
   actions:
-    <<: *ActionMap
-    action:
-      <<: *Action
+    action_object:
       param_expansion: true
 ...

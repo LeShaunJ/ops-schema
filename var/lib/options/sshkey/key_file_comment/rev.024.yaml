@@ -5,3 +5,4 @@ title: KeyFileComment
 description: An optional comment for the SSH key.
 type: string
 minLength: 0
+default: My SSH key comment

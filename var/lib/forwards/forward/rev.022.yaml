@@ -5,3 +5,4 @@ title: ForwardPath
 description: The path of the forwarded `ops.yml` file.
 type: string
 format: uri-reference
+default: './'

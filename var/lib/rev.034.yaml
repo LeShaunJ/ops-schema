@@ -2,16 +2,7 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/rev.034.yaml
 allOf:
-- propertyNames:
-    enum:
-    - actions
-    - dependencies
-    - forwards
-    - hooks
-    - min_version
-    - options
-    - revision
-  properties:
+- properties:
     revision:
       $ref: ./common.yaml#/properties/revision
     actions:
@@ -23,7 +14,7 @@ allOf:
     hooks:
       $ref: ./hooks/rev.016.yaml
     min_version:
-      $ref: ./min_version/rev.034.yaml
+      $ref: ./min_version/rev.017.yaml
     options:
       $ref: ./options/rev.034.yaml
 - $ref: ./meta.022.yaml

@@ -10,3 +10,4 @@ items:
   $ref: "../../../common.yaml#/definitions/NameString"
   minItems: 1
   uniqueItems: true
+  default: backend_config_params

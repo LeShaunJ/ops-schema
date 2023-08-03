@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/background/meta.015.yaml
+description: Affect the behaviour of the `background` builtin.
+markdownDescription: Affect the behaviour of the `background` builtin.
+type: object
+minProperties: 1
+additionalProperties: true
+default:
+  log_filename: app.log
+  shell: /bin/sh

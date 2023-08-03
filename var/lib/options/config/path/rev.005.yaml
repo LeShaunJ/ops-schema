@@ -5,3 +5,4 @@ title: SecretsPath
 description: Override the config file location (defaults to `./config/<environment>/config.json`).
 markdownDescription: Override the config file location (_defaults to `./config/<environment>/config.json`_).
 $ref: '../../../common.yaml#/definitions/Path'
+default: config/${environment}/config.json

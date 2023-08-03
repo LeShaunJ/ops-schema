@@ -22,8 +22,8 @@ markdownDescription: |
   dependencies:
   	custom:
   		- init file:
-  				up: touch file
-  				down: rm file
+  			up: touch file
+  			down: rm file
   ```
 
   You can also define only the `down` command, which will execute on `ops down`; nothing will be executed by the dependency on `ops up`.
@@ -49,40 +49,59 @@ markdownDescription: |
   > ```
 type: array
 items:
-  description: ""
+  title: CustomCommand
+  description: A list of coustom command configurations.
   oneOf:
-    - $ref: "#/definitions/CustomCommand"
-    - title: 'UpDownHash'
-      description: ""
+    - $ref: "../../common.yaml#/definitions/CommandNoop"
+    - $ref: "../../common.yaml#/definitions/CommandString"
+    - title: UpDownHash
+      description: A key/value pair describing a custom `ops up` and/or `ops down` configuration.
       type: object
+      propertyNames:
+        title: <up_down_name>
       patternProperties:
         ^\b.+\b$:
           title: UpDownConfig
-          description: ""
+          description: A custom `ops up` and/or `ops down` configuration.
+          markdownDescription: A custom `ops up` and/or `ops down` configuration.
           type: object
           properties:
             up:
               title: upCommand
-              description: ""
-              $ref: "#/definitions/CustomCommand"
+              description: An idempotent command or script to run as a dependency when `ops up` is executed.
+              markdownDescription: An idempotent command or script to run as a dependency when `ops up` is executed.
+              default: touch file
+              allOf:
+                - $ref: "#/definitions/CustomCommand"
             down:
               title: downCommand
-              description: ""
-              $ref: "#/definitions/CustomCommand"
+              description: An idempotent command or script to run as a dependency when `ops down` is executed.
+              markdownDescription: An idempotent command or script to run as a dependency when `ops down` is executed.
+              default: rm file
+              allOf:
+                - $ref: "#/definitions/CustomCommand"
+          additionalProperties: false
           minProperties: 1
+          default: { up: <upCommand>, down: <downCommand> }
+          examples:
+            - { up: touch file, down: rm file }
       minProperties: 1
       maxProperties: 1
-minItems: 1
+      default: { up&down: { up: <upCommand>, down: <downCommand> } }
+      examples:
+        - { init file: { up: touch file, down: rm file } }
+  examples:
+    - bundle install --quiet
+    - { init file: { up: touch file, down: rm file } }
 examples:
   - - bundle install --quiet
-    - init file:
-        up: touch file
-        down: rm file
+    - { init file: { up: touch file, down: rm file } }
+minItems: 1
+uniqueItems: true
 definitions: 
   CustomCommand:
+    title: CustomCommand
+    type: string
     oneOf:
-      - allOf:
-          - description: An idempotent command or script to run as a dependency when `ops up` is executed.
-            markdownDescription: An idempotent command or script to run as a dependency when `ops up` is executed.
-          - $ref: "../../common.yaml#/definitions/CommandString"
+      - $ref: "../../common.yaml#/definitions/CommandString"
       - $ref: "../../common.yaml#/definitions/CommandNoop"

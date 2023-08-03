@@ -1,3 +1,4 @@
+min_version: 1.15.0-pre.rc2
 dependencies:
   apk:
     - python3
@@ -6,19 +7,26 @@ dependencies:
   brew:
     - python@3.11
   pip:
+    - exrex
+    - jsonschema==4.18.4
     - ruamel.yaml
     - semver
-    - jsonschema==4.18.4
 actions:
+  build:
+    command: bash -c 'ops restrict "${@}" && ops prepare "${@}" && ops resolve' -- "${@}"
+    description: Render out all changes and updates.
   prepare:
-    command: bin/prepare.py
+    command: prepare.py
     description: 'usage: ops prepare [--dry-run] | Prepare revisions for resolution.'
   shift:
-    command: bin/shift.sh
+    command: shift.sh
     description: 'usage: ops shift <MIN_REVISION> | Shift revisions up from a specified minimum.'
   resolve:
-    command: bin/resolve.py
+    command: resolve.py
     description: Finalize chnages into rendered JSON schema revisions.
   restrict:
-    command: bin/min_versions.py
+    command: restrict.py
     description: 'usage: ops restrict [--dry-run] [-U] | Restrict `min_version` values to appropriate revsions.'
+options:
+  environment:
+    PATH: "./bin:${PATH}"

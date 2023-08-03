@@ -3,4 +3,6 @@ $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/background/shell/rev.014.yaml
 title: Shell
 description: A path to the shell that should be used to perform background actions.
-$ref: '../../../common.yaml#/definitions/Path'
+allOf:
+  - $ref: '../../../common.yaml#/definitions/Path'
+default: /bin/sh
