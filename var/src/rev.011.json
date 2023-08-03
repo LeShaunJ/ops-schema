@@ -5,14 +5,21 @@
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\ndependencies: ...\nactions: ...\noptions: ...\n```\n",
-  "additionalProperties": true,
+  "propertyNames": {
+    "enum": [
+      "actions",
+      "dependencies",
+      "options",
+      "revision"
+    ]
+  },
   "properties": {
     "revision": {
       "title": "Revision",
       "description": "A number representing a schema version that the `ops.yml` will be validated against.\n\u2014 It is not the same as `min_version` (`0.12.0` and onward); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.\n\u2014 If unset, the `ops.yml` file will be validated against the most recent version of `ops`.\n",
       "markdownDescription": "A number representing a schema version that the `ops.yml` will be validated against:\n* It _is not_ the same as `min_version` (_`0.12.0` and onward_); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.\n* If unset, the `ops.yml` file will be validated against the most recent version of `ops`.\n",
       "type": "integer",
-      "minimum": 11
+      "const": 11
     },
     "actions": {
       "title": "ActionMap",
@@ -20,7 +27,6 @@
       "markdownDescription": "A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.\n\n_For more information, see the [Actions](https://github.com/nickthecook/ops/blob/main/docs/actions.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
-      "additionalProperties": true,
       "propertyNames": {
         "title": "<action>",
         "pattern": "^\\b[\\w-]+\\b$"
@@ -35,11 +41,18 @@
           "title": "ActionObject",
           "description": "A command configuration.",
           "type": "object",
-          "additionalProperties": true,
           "required": [
             "command"
           ],
           "default": "<command>",
+          "propertyNames": {
+            "enum": [
+              "alias",
+              "command",
+              "description",
+              "load_secrets"
+            ]
+          },
           "properties": {
             "alias": {
               "title": "Alias",
@@ -83,7 +96,20 @@
       "markdownDescription": "Dependencies listed in the `dependencies` section of `ops.yml` are satisfied when the `ops up` command is run. Some dependencies will be un-satisfied when you run `ops down`; e.g. services will be stopped, but packages won't be uninstalled.\n\nThis feature allows developers that are new to a project to get up and running without knowing anything about the app itself. Your `ops.yml` should allow a developer to `ops up && ops start` to run an application.\n\n_For more information, see the [Dependencies](https://github.com/nickthecook/ops/blob/main/docs/dependencies.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
-      "additionalProperties": true,
+      "propertyNames": {
+        "enum": [
+          "apk",
+          "apt",
+          "brew",
+          "cask",
+          "custom",
+          "dir",
+          "docker",
+          "gem",
+          "sshkey",
+          "terraform"
+        ]
+      },
       "properties": {
         "apk": {
           "title": "apkPackageList",
@@ -198,7 +224,18 @@
       "markdownDescription": "Options allow the user to change some aspects of `ops` behaviour.\n\n_For more information, see the [Options](https://github.com/nickthecook/ops/blob/main/docs/options.md) documentation on [GitHub](https://github.com/nickthecook/ops)._\n",
       "type": "object",
       "minProperties": 1,
-      "additionalProperties": true,
+      "propertyNames": {
+        "enum": [
+          "apt",
+          "config",
+          "environment",
+          "environment_aliases",
+          "exec",
+          "gem",
+          "secrets",
+          "sshkey"
+        ]
+      },
       "properties": {
         "apt": {
           "title": "AptOptions",
@@ -206,7 +243,6 @@
           "markdownDescription": "Affect the behaviour of `apt` dependencies.",
           "type": "object",
           "minProperties": 1,
-          "additionalProperties": true,
           "default": {
             "use_sudo": false
           },
@@ -289,10 +325,15 @@
           "markdownDescription": "Affect the behaviour of `gem` dependencies.",
           "type": "object",
           "minProperties": 1,
-          "additionalProperties": true,
           "default": {
             "user_install": true,
             "use_sudo": false
+          },
+          "propertyNames": {
+            "enum": [
+              "use_sudo",
+              "user_install"
+            ]
           },
           "properties": {
             "user_install": {
@@ -326,10 +367,17 @@
           "description": "Affect how SSH keys are generated.",
           "type": "object",
           "minProperties": 1,
-          "additionalProperties": true,
           "default": {
             "passphrase": "p@ssw0rd",
             "key_size": 4096
+          },
+          "propertyNames": {
+            "enum": [
+              "key_algo",
+              "key_lifetime",
+              "key_size",
+              "passphrase"
+            ]
           },
           "properties": {
             "key_algo": {

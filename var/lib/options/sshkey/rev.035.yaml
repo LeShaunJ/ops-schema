@@ -2,7 +2,16 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/sshkey/rev.035.yaml
 allOf:
-- properties:
+- propertyNames:
+    enum:
+    - add_keys
+    - key_algo
+    - key_file_comment
+    - key_lifetime
+    - key_size
+    - passphrase
+    - passphrase_var
+  properties:
     add_keys:
       $ref: ./add_keys/rev.012.yaml
     key_algo:

@@ -6,7 +6,7 @@ description: Affect the behaviour of the `up` builtin.
 markdownDescription: Affect the behaviour of the `up` builtin.
 type: object
 minProperties: 1
-additionalProperties: true
+additionalProperties: false
 default:
   exit_on_error: true
   fail_on_error: true

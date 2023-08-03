@@ -5,7 +5,7 @@ title: SshKeyOptions
 description: Affect how SSH keys are generated.
 type: object
 minProperties: 1
-additionalProperties: true
+additionalProperties: false
 default:
   passphrase: p@ssw0rd
   key_size: 4096

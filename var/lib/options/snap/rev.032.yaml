@@ -2,7 +2,11 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/snap/rev.032.yaml
 allOf:
-- properties:
+- propertyNames:
+    enum:
+    - install
+    - use_sudo
+  properties:
     install:
       $ref: ./install/rev.032.yaml
     use_sudo:

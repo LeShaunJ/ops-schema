@@ -2,7 +2,13 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/rev.003.yaml
 allOf:
-- properties:
+- propertyNames:
+    enum:
+    - actions
+    - dependencies
+    - options
+    - revision
+  properties:
     revision:
       $ref: ./common.yaml#/properties/revision
     actions:

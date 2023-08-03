@@ -4,7 +4,7 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/action/met
 title: ActionObject
 description: A command configuration.
 type: object
-additionalProperties: true
+additionalProperties: false
 required:
   - command
 default: <command>

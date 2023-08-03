@@ -2,7 +2,18 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/rev.014.yaml
 allOf:
-- properties:
+- propertyNames:
+    enum:
+    - apt
+    - background
+    - config
+    - environment
+    - environment_aliases
+    - exec
+    - gem
+    - secrets
+    - sshkey
+  properties:
     apt:
       $ref: ./apt/rev.008.yaml
     background:

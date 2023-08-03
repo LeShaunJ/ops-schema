@@ -20,8 +20,12 @@ SRC = 'var/src'
 GIT = 'https://github.com/LeShaunJ/ops-schema/blob/main'
 COMMON = 'common.yaml'
 OPS_JSN = 'ops.schema.json'
+...
 
 CAPTURE = False
+...
+
+P_PROPS_ADD = 'additionalProperties'
 ...
 
 def Pretty(schema) -> str:
@@ -32,6 +36,15 @@ def CreateSchema(content: dict) -> Resource:
     contents=content,
     specification=DRAFT7,
 	)
+
+def GetMaxRevision() -> int:
+	try:
+		with open('.revision', 'r') as file:
+			return int(file.read())
+	except:
+		print(
+			'[ERROR] Unable to determine max revision from `./.revision`',
+			file=sys.stderr)
 
 def GetURN(urn: str) -> tuple[Path, list[str]]:
 	parts: list[str] = re.split(r'#\/?', urn) + ['']
@@ -97,6 +110,9 @@ def SetRef(schema: dict, resolution: Resolved[dict]) -> dict:
 	DelProperties(schema, '$ref')
 	...
 
+	if "meta." in path:
+		DelProperties(ref, P_PROPS_ADD)
+
 	return { **schema, **ref }
 
 def AllOf(schema: dict, resolution: Resolved[dict]) -> dict:
@@ -122,12 +138,16 @@ def AllOf(schema: dict, resolution: Resolved[dict]) -> dict:
 
 		if remaining:
 			schema[prop] = [ allOf, *remaining ]
+			# schema[prop] = list(filter(
+			# 	lambda v: bool(v),
+			# 	[ allOf, *remaining ]
+			# ))
 		else:
 			schema = allOf
 		...
-
-		return schema
 	except (KeyError, TypeError):
+		pass
+	finally:
 		return schema
 
 def GetItems(schema: dict | list) -> list[tuple[str, dict]] | list[tuple[int, dict]]:
@@ -290,11 +310,17 @@ registry: list[dict] = []
 ...
 
 with chdir(CWD):
+	current = GetMaxRevision()
 	common = GetCommon()
 	paths = sorted(Path(LIB).glob('rev.*.yaml'))
 	...
 
 	for path in paths:
+		revision = GetRevision(path)
+		if revision > current:
+			break
+		...
+
 		jname = Path(path).with_suffix('.json')
 		jpath = Path(f'{SRC}/{jname.name}')
 		...
@@ -311,7 +337,7 @@ with chdir(CWD):
 				*Walk(resolver.lookup(str(path))).items(),
 				('definitions', definitions),
 			])
-			schema['properties']['revision']['minimum'] = GetRevision(path)
+			schema['properties']['revision']['const'] = GetRevision(path)
 			...
 
 			Register(jpath)

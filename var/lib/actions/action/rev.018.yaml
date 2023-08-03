@@ -2,7 +2,14 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/action/rev.018.yaml
 allOf:
-- properties:
+- propertyNames:
+    enum:
+    - alias
+    - command
+    - description
+    - load_secrets
+    - skip_before_hooks
+  properties:
     alias:
       $ref: ./alias/rev.001.yaml
     command:

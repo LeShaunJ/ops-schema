@@ -2,7 +2,11 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/background/rev.014.yaml
 allOf:
-- properties:
+- propertyNames:
+    enum:
+    - log_file_prefix
+    - shell
+  properties:
     log_file_prefix:
       $ref: ./log_file_prefix/rev.014.yaml
     shell:

@@ -2,7 +2,10 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/pip/rev.029.yaml
 allOf:
-- properties:
+- propertyNames:
+    enum:
+    - command
+  properties:
     command:
       $ref: ./command/rev.029.yaml
 - $ref: ./meta.029.yaml
