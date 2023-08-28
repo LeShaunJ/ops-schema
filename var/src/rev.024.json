@@ -201,6 +201,7 @@
             "description": "",
             "oneOf": [
               {
+                "type": "string",
                 "allOf": [
                   {
                     "description": "An idempotent command or script to run as a dependency when `ops up` is executed.",
@@ -212,6 +213,7 @@
                 ]
               },
               {
+                "type": "boolean",
                 "$ref": "#/definitions/CommandNoop"
               }
             ]
@@ -625,10 +627,20 @@
     },
     "CommandNoop": {
       "title": "No-Op Command",
-      "description": "If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.",
-      "markdownDescription": "If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.",
       "type": "boolean",
-      "default": true
+      "default": true,
+      "oneOf": [
+        {
+          "description": "When `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.",
+          "markdownDescription": "When `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.",
+          "const": true
+        },
+        {
+          "description": "When `false`, executes the command as a `no-op` that will always fail (exits `1`).",
+          "markdownDescription": "When `false`, executes the command as a `no-op` that will always **fail** (_exits `1`_).",
+          "const": false
+        }
+      ]
     },
     "Deprecated": {
       "title": "Deprecated",

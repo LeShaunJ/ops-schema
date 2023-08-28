@@ -71,6 +71,9 @@ items:
               description: An idempotent command or script to run as a dependency when `ops up` is executed.
               markdownDescription: An idempotent command or script to run as a dependency when `ops up` is executed.
               default: touch file
+              type:
+                - string
+                - boolean
               allOf:
                 - $ref: "#/definitions/CustomCommand"
             down:
@@ -78,6 +81,9 @@ items:
               description: An idempotent command or script to run as a dependency when `ops down` is executed.
               markdownDescription: An idempotent command or script to run as a dependency when `ops down` is executed.
               default: rm file
+              type:
+                - string
+                - boolean
               allOf:
                 - $ref: "#/definitions/CustomCommand"
           additionalProperties: false
@@ -101,7 +107,11 @@ uniqueItems: true
 definitions: 
   CustomCommand:
     title: CustomCommand
-    type: string
+    type:
+      - string
+      - boolean
     oneOf:
-      - $ref: "../../common.yaml#/definitions/CommandString"
-      - $ref: "../../common.yaml#/definitions/CommandNoop"
+      - type: string
+        $ref: "../../common.yaml#/definitions/CommandString"
+      - type: boolean
+        $ref: "../../common.yaml#/definitions/CommandNoop"

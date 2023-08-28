@@ -13,7 +13,7 @@ dependencies:
     - echo "hello, world"
     - up_and_down:
         up: cat up.txt
-        down: tac down.txt
+        down: true
   dir:
     - config/{dev,staging,production}
   docker:

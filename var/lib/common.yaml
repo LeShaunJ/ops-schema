@@ -25,10 +25,15 @@ definitions:
       - $ref: "#/definitions/NonEmptyString"
   CommandNoop:
     title: No-Op Command
-    description: If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
-    markdownDescription: If `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
     type: boolean
     default: true
+    oneOf:
+      - description: When `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
+        markdownDescription: When `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.
+        const: true
+      - description: When `false`, executes the command as a `no-op` that will always fail (exits `1`).
+        markdownDescription: When `false`, executes the command as a `no-op` that will always **fail** (_exits `1`_).
+        const: false
   Deprecated:
     title: Deprecated
     default:
