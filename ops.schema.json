@@ -13,6 +13,9 @@
   "then": {
     "oneOf": [
       {
+        "$ref": "./var/src/rev.036.json"
+      },
+      {
         "$ref": "./var/src/rev.035.json"
       },
       {
