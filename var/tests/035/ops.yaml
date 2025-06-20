@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../../ops.schema.json
 revision: 35
 min_version: 2.0.0.rc3
 dependencies:
@@ -13,7 +14,7 @@ dependencies:
     - echo "hello, world"
     - up_and_down:
         up: cat up.txt
-        down: true
+        down: "true"
   dir:
     - config/{dev,staging,production}
   docker:
@@ -33,8 +34,8 @@ hooks:
   before:
     - echo "hello, before hook"
 actions:
-  mynoop: true
-  myfail: false
+  mynoop: "true"
+  myfail: "false"
   myinline: echo "hello, world"
   myaction:
     alias: mya
