@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/var/src/rev.035.json",
-  "title": "ops.yaml (rev. 022)",
+  "title": "ops.yaml (rev. 035)",
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\nmin_version: ...\nforwards: ...\ndependencies: ...\nhooks: ...\nactions: ...\noptions: ...\n```\n",
@@ -70,6 +70,7 @@
               "propertyNames": {
                 "enum": [
                   "alias",
+                  "aliases",
                   "command",
                   "description",
                   "in_envs",
@@ -87,6 +88,16 @@
                   "markdownDescription": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
                   "type": "string",
                   "pattern": "^[\\w-]+$"
+                },
+                "aliases": {
+                  "title": "Aliases",
+                  "description": "In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.",
+                  "markdownDescription": "In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.",
+                  "items": {
+                    "title": "Alias",
+                    "type": "string",
+                    "pattern": "^[\\w-]+$"
+                  }
                 },
                 "command": {
                   "title": "Command",
@@ -531,6 +542,12 @@
           "description": "Affect how configs are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path",
+              "preserve_existing_env_vars"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
@@ -615,6 +632,11 @@
           "description": "Affect the behaviour of `ops exec`.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "load_secrets"
+            ]
+          },
           "properties": {
             "load_secrets": {
               "$ref": "#/definitions/LoadSecrets"
@@ -677,6 +699,11 @@
           "description": "Affect how secrets are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
@@ -791,9 +818,9 @@
             },
             "passphrase": {
               "title": "KeyPassphrase",
-              "description": "[DEPRECATED] This feature was removed as of version `2.0.0`. Please use `options.sshkey.passphrase_var` instead.",
-              "markdownDescription": "### `DEPRECATED`\n_This feature was removed as of version `2.0.0`. Please use `options.sshkey.passphrase_var` instead._\n",
-              "$ref": "#/definitions/Deprecated"
+              "description": "A passphrase to generate the SSH key with.",
+              "type": "string",
+              "default": "b@dP@55w0rd_tryh@rd3r"
             },
             "passphrase_var": {
               "title": "PassphraseVar",

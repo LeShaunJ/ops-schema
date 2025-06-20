@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/var/src/rev.006.json",
-  "title": "ops.yaml (rev. 001)",
+  "title": "ops.yaml (rev. 006)",
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\ndependencies: ...\nactions: ...\noptions: ...\n```\n",
@@ -235,6 +235,11 @@
           "description": "Affect how configs are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
@@ -268,6 +273,11 @@
           "description": "Affect the behaviour of `ops exec`.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "load_secrets"
+            ]
+          },
           "properties": {
             "load_secrets": {
               "$ref": "#/definitions/LoadSecrets"
@@ -307,6 +317,11 @@
           "description": "Affect how secrets are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",

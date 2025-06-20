@@ -340,6 +340,11 @@
           "description": "Affect how configs are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
@@ -391,6 +396,11 @@
           "description": "Affect the behaviour of `ops exec`.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "load_secrets"
+            ]
+          },
           "properties": {
             "load_secrets": {
               "$ref": "#/definitions/LoadSecrets"
@@ -430,6 +440,11 @@
           "description": "Affect how secrets are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",

@@ -6,7 +6,6 @@ allOf:
     enum:
     - apt
     - background
-    - completion
     - config
     - envdiff
     - environment
@@ -22,8 +21,6 @@ allOf:
       $ref: ./apt/rev.008.yaml
     background:
       $ref: ./background/rev.015.yaml
-    completion:
-      $ref: ./completion/rev.030.yaml
     config:
       $ref: ./config/rev.005.yaml
     envdiff:
@@ -37,7 +34,7 @@ allOf:
     gem:
       $ref: ./gem/rev.001.yaml
     pip:
-      $ref: ./pip/rev.029.yaml
+      $ref: ./pip/rev.030.yaml
     secrets:
       $ref: ./secrets/rev.003.yaml
     sshkey:

@@ -4,4 +4,5 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/config/met
 title: SecretOptions
 description: Affect how configs are interpreted.
 type: object
+additionalProperties: false
 minProperties: 1

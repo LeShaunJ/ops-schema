@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/var/src/rev.036.json",
-  "title": "ops.yaml (rev. 022)",
+  "title": "ops.yaml (rev. 036)",
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\nmin_version: ...\nforwards: ...\ndependencies: ...\nhooks: ...\nactions: ...\noptions: ...\n```\n",
@@ -70,12 +70,12 @@
               "propertyNames": {
                 "enum": [
                   "alias",
+                  "aliases",
                   "command",
                   "description",
                   "in_envs",
                   "load_secrets",
                   "not_in_envs",
-                  "param_expansion",
                   "shell_expansion",
                   "skip_before_hooks",
                   "skip_in_envs"
@@ -88,6 +88,16 @@
                   "markdownDescription": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
                   "type": "string",
                   "pattern": "^[\\w-]+$"
+                },
+                "aliases": {
+                  "title": "Aliases",
+                  "description": "In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.",
+                  "markdownDescription": "In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.",
+                  "items": {
+                    "title": "Alias",
+                    "type": "string",
+                    "pattern": "^[\\w-]+$"
+                  }
                 },
                 "command": {
                   "title": "Command",
@@ -121,12 +131,6 @@
                 "not_in_envs": {
                   "description": "Prevent possibly destructive actions from being used in certain environments. If the action is excuted in an environment within this list, it will exit with an error.",
                   "$ref": "#/definitions/EnvList"
-                },
-                "param_expansion": {
-                  "description": "Sometimes, a command implementation may call for variable interpetation. This is semi-achieved with `shell_expansion` by default; however, unless the command is a pass-through to a script, there's no way to interpret parameters as postional variables. Enter `param_expansion`. Setting this to `true` instructs `ops` to bind any aguements passed during execution to positional variables within the `command` script.",
-                  "markdownDescription": "Sometimes, a command implementation may call for variable interpetation. This is semi-achieved with `shell_expansion` by default; however, unless the command is a pass-through to a script, there's no way to interpret parameters as postional variables. Enter `param_expansion`. Setting this to `true` instructs `ops` to bind any aguements passed during execution to positional variables within the `command` script.",
-                  "type": "boolean",
-                  "default": true
                 },
                 "shell_expansion": {
                   "description": "By default, `ops` executes actions with shell expansion, which means variable references are expanded, file globbing is done, and quotes behave as one would expect. However, this can get in the way sometimes. For actions like this, one can disable shell expansion, losing variable and glob interpolation and other shell features but gaining some predictability.",
@@ -538,6 +542,12 @@
           "description": "Affect how configs are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path",
+              "preserve_existing_env_vars"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
@@ -622,6 +632,11 @@
           "description": "Affect the behaviour of `ops exec`.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "load_secrets"
+            ]
+          },
           "properties": {
             "load_secrets": {
               "$ref": "#/definitions/LoadSecrets"
@@ -684,6 +699,11 @@
           "description": "Affect how secrets are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",

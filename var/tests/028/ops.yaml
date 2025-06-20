@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=../../../ops.schema.json
-revision: 35
+revision: 28
 min_version: 2.0.0.rc3
 dependencies:
   apk:
@@ -21,10 +21,6 @@ dependencies:
     - ubuntu/nginx
   gem:
     - ejson
-  pip:
-    - ruamel.yaml
-  snap:
-    - less
   sshkey:
     - admin@localhost
 forwards:
@@ -73,13 +69,8 @@ options:
   gem:
     user_install: true
     use_sudo: false
-  pip:
-    command: pip3
   secrets:
     path: config/${environment}/secrets.ejson
-  snap:
-    install: false
-    use_sudo: false
   sshkey:
     add_keys: false
     key_algo: rsa
@@ -87,5 +78,3 @@ options:
     key_lifetime: 3600
     key_size: 4096
     passphrase_var: SSH_KEY_PASSPHRASE
-  up:
-    exit_on_error: true

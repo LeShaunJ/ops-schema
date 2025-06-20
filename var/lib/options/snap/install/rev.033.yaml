@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/snap/install/rev.032.yaml
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/snap/install/rev.033.yaml
 description: |
   Unlike `apt`, `brew`, or `apk`, `snap` may be present on any Linux system, and its presence alone probably shouldn't be taken as a sign that `ops` should install every snap listed in `dependencies`. Therefore, `ops` will never install snaps unless the `snap.install` option is `true`.
 

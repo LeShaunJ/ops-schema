@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../../ops.schema.json
 revision: 2
 dependencies:
   apk:

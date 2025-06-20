@@ -4,8 +4,14 @@ dependencies:
     - python3
   apt:
     - python3.11
+    - python3-venv
   brew:
+    - pcre2grep
     - python@3.11
+  custom:
+    - Init VENV:
+        up: python3.11 -m venv .venv
+        down: "true"
   pip:
     - exrex
     - jsonschema==4.18.4
@@ -14,19 +20,39 @@ dependencies:
 actions:
   build:
     command: bash -c 'ops restrict "${@}" && ops prepare "${@}" && ops resolve' -- "${@}"
-    description: Render out all changes and updates.
+    description: |-
+      Render out all changes and updates.
+      usage: ops build [--dry-run]
   prepare:
     command: prepare.py
-    description: 'usage: ops prepare [--dry-run] | Prepare revisions for resolution.'
+    description: |-
+      Prepare revisions for resolution.
+      usage: ops prepare [--dry-run]
   shift:
     command: shift.sh
-    description: 'usage: ops shift <MIN_REVISION> | Shift revisions up from a specified minimum.'
+    description: |-
+      Shift revisions up from a specified minimum.
+      usage: ops shift [--dry-run|-n] <REVISION> <NODE_PATH>[ <NODE_PATH> ...]
+    shell_expansion: false
   resolve:
     command: resolve.py
-    description: Finalize chnages into rendered JSON schema revisions.
+    description: |-
+      Finalize chnages into rendered JSON schema revisions.
+      usage: ops resolve [--dry-run]
+    shell_expansion: false
   restrict:
     command: restrict.py
-    description: 'usage: ops restrict [--dry-run] [-U] | Restrict `min_version` values to appropriate revsions.'
+    description: |-
+      Restrict `min_version` values to appropriate revsions.
+      usage: ops restrict [--dry-run] [-U]
+    shell_expansion: false
 options:
   environment:
-    PATH: "./bin:${PATH}"
+    VIRTUAL_ENV: "${OPS_YML_DIR}/.venv"
+    PATH: "$(pwd)/bin:${VIRTUAL_ENV}/bin:${PATH}"
+    REMOTE: "$(git remote get-url origin)"
+  pip:
+    command: "${OPS_YML_DIR}/.venv/bin/pip3"
+  up:
+    exit_on_error: true
+    fail_on_error: true

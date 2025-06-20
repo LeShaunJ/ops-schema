@@ -79,7 +79,7 @@ def Prepare(directory: Path) -> None:
 			rel = path.absolute().relative_to(CWD)
 			...
 
-			print(f'Fixing {rel}... ', end='')
+			print(f'Preparing {rel}... ', end='')
 			...
 
 			meta_path = FindMeta(path)
@@ -113,14 +113,11 @@ def Prepare(directory: Path) -> None:
 			schema["$id"] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{rel}'.strip()
 			...
 
+			print(f'Prepared -> {meta_path}')
 			if DRY_RUN:
-				print(f'Fixed -> {meta_path}')
-				
 				YML.dump(schema, sys.stdout)
 				print('')
 			else:
-				print(f'Fixed -> {meta_path}')
-
 				with open(path, "w") as file:
 					YML.dump(schema, file)
 			...

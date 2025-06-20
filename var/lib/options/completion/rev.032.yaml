@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+$schema: https://json-schema.org/draft-07/schema
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/completion/rev.032.yaml
+allOf:
+- $ref: ../../common.yaml#/definitions/Deprecated
+- $ref: ./meta.031.yaml
