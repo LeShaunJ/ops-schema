@@ -3,3 +3,5 @@
 __pycache__
 reference.schema.yaml
 tmp/*
+.venv
+*.bak
