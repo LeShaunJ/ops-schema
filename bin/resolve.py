@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys, re, json as JSN
+import sys, os, re, json as JSN
 from collections import OrderedDict
 from typing import overload, Any, Generator
 from functools import reduce
@@ -17,7 +17,7 @@ CWD = Path(f'{SWD.parent}/..')
 YML = YAML()
 LIB = 'var/lib'
 SRC = 'var/src'
-GIT = 'https://github.com/LeShaunJ/ops-schema/blob/main'
+GIT = f"{str(os.environ['REMOTE']).removesuffix('.git')}/blob/main"
 COMMON = 'common.yaml'
 OPS_JSN = 'ops.schema.json'
 ...
@@ -277,8 +277,8 @@ def Compose() -> None:
 	...
 
 	schema = CreateSchema({}).contents
-	schema['$schema'] = 'https://json-schema.org/draft-07/schema'
-	schema['$id'] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{OPS_JSN}'
+	schema['$schema'] = 'http://json-schema.org/draft-07/schema'
+	schema['$id'] = f'{GIT}/{OPS_JSN}'
 	schema['title'] = 'ops.yaml'
 	schema['type'] = 'object'
 	schema['description'] = 'Confirguration for `ops`'
@@ -337,13 +337,16 @@ with chdir(CWD):
 				*Walk(resolver.lookup(str(path))).items(),
 				('definitions', definitions),
 			])
-			schema['properties']['revision']['const'] = GetRevision(path)
+			revision
+			schema['title'] = f'ops.yaml (rev. {revision:03d})'
+			schema['properties']['revision']['const'] = revision
 			...
 
 			Register(jpath)
 			...
 
 			JSN.dump(schema, file, indent='  ')
+			file.write('\n')
 
 		print('Done!')
 	...

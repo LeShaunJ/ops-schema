@@ -32,7 +32,7 @@ actions:
     command: shift.sh
     description: |-
       Shift revisions up from a specified minimum.
-      usage: ops shift <REVISION>
+      usage: ops shift [--dry-run|-n] <REVISION> <NODE_PATH>[ <NODE_PATH> ...]
     shell_expansion: false
   resolve:
     command: resolve.py
