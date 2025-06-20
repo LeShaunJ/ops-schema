@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=../../../ops.schema.json
-revision: 36
-min_version: 2.0.0
+revision: 29
+min_version: 2.0.0.rc3
 dependencies:
   apk:
     - less
@@ -21,10 +21,6 @@ dependencies:
     - ubuntu/nginx
   gem:
     - ejson
-  pip:
-    - ruamel.yaml
-  snap:
-    - less
   sshkey:
     - admin@localhost
 forwards:
@@ -39,6 +35,9 @@ actions:
   myinline: echo "hello, world"
   myaction:
     alias: mya
+    aliases:
+      - alt1
+      - alt2
     command: echo "hello, world"
     description: DESCRIBE ME!
     in_envs:
@@ -53,31 +52,6 @@ actions:
   myshellexp:
     command: mysql -u root -p
     shell_expansion: true
-  shebang_bash:
-    command: |-
-      #!/usr/bin/env bash
-      echo "First: ${1}";
-      echo "Second: ${2}";
-      printf 'Other: %s\n' "${@:3}";
-      [ -t 0 ] || cat -;
-    param_expansion: true
-  shebang_python:
-    command: |-
-      #!/usr/bin/env python3 -W ignore
-      import sys, select
-      print(f"hello, +{'>> '.join(sys.argv[1:])}+")
-      if select.select([sys.stdin, ], [], [], 0.0)[0]:
-        print(sys.stdin.read().strip())
-    param_expansion: true
-  shebang_ruby:
-    command: |-
-      #!/usr/bin/env ruby
-      require 'fcntl'
-      puts "hello, +#{ARGV.join('>> ')}+"
-      if STDIN.fcntl(Fcntl::F_GETFL, 0) == 0
-        puts STDIN.read
-      end
-    param_expansion: true
 options:
   apt:
     use_sudo: true
@@ -85,12 +59,10 @@ options:
     log_filename: my.log
   config:
     path: config/${environment}/config.json
-    preserve_existing_env_vars: true
   envdiff: 
     ignored_keys:
       - TF_VAR_hello
   environment:
-    environment: dev
     ARM_CLIENT_ID: 00000000-0000-0000-0000-000000000000
   environment_aliases:
     - RAILS_ENV
@@ -99,13 +71,8 @@ options:
   gem:
     user_install: true
     use_sudo: false
-  pip:
-    command: pip3
   secrets:
     path: config/${environment}/secrets.ejson
-  snap:
-    install: false
-    use_sudo: false
   sshkey:
     add_keys: false
     key_algo: rsa

@@ -15,9 +15,9 @@ allOf:
     revision:
       $ref: ./common.yaml#/properties/revision
     actions:
-      $ref: ./actions/rev.026.yaml
+      $ref: ./actions/rev.029.yaml
     dependencies:
-      $ref: ./dependencies/rev.032.yaml
+      $ref: ./dependencies/rev.033.yaml
     forwards:
       $ref: ./forwards/rev.022.yaml
     hooks:

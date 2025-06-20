@@ -1,11 +1,12 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/rev.029.yaml
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/rev.036.yaml
 allOf:
 - propertyNames:
     enum:
     - apt
     - background
+    - completion
     - config
     - envdiff
     - environment
@@ -14,6 +15,7 @@ allOf:
     - gem
     - pip
     - secrets
+    - snap
     - sshkey
     - up
   properties:
@@ -21,8 +23,10 @@ allOf:
       $ref: ./apt/rev.008.yaml
     background:
       $ref: ./background/rev.015.yaml
+    completion:
+      $ref: ./completion/rev.032.yaml
     config:
-      $ref: ./config/rev.005.yaml
+      $ref: ./config/rev.035.yaml
     envdiff:
       $ref: ./envdiff/rev.019.yaml
     environment:
@@ -34,11 +38,13 @@ allOf:
     gem:
       $ref: ./gem/rev.001.yaml
     pip:
-      $ref: ./pip/rev.029.yaml
+      $ref: ./pip/rev.030.yaml
     secrets:
       $ref: ./secrets/rev.003.yaml
+    snap:
+      $ref: ./snap/rev.033.yaml
     sshkey:
-      $ref: ./sshkey/rev.025.yaml
+      $ref: ./sshkey/rev.036.yaml
     up:
-      $ref: ./up/rev.028.yaml
+      $ref: ./up/rev.034.yaml
 - $ref: ./meta.001.yaml

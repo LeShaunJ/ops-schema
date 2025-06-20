@@ -37,7 +37,7 @@ allOf:
     gem:
       $ref: ./gem/rev.001.yaml
     pip:
-      $ref: ./pip/rev.029.yaml
+      $ref: ./pip/rev.030.yaml
     secrets:
       $ref: ./secrets/rev.003.yaml
     sshkey:

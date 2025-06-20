@@ -24,9 +24,9 @@ allOf:
     background:
       $ref: ./background/rev.015.yaml
     completion:
-      $ref: ./completion/rev.031.yaml
+      $ref: ./completion/rev.032.yaml
     config:
-      $ref: ./config/rev.034.yaml
+      $ref: ./config/rev.005.yaml
     envdiff:
       $ref: ./envdiff/rev.019.yaml
     environment:
@@ -38,13 +38,13 @@ allOf:
     gem:
       $ref: ./gem/rev.001.yaml
     pip:
-      $ref: ./pip/rev.029.yaml
+      $ref: ./pip/rev.030.yaml
     secrets:
       $ref: ./secrets/rev.003.yaml
     snap:
-      $ref: ./snap/rev.032.yaml
+      $ref: ./snap/rev.033.yaml
     sshkey:
       $ref: ./sshkey/rev.025.yaml
     up:
-      $ref: ./up/rev.033.yaml
+      $ref: ./up/rev.034.yaml
 - $ref: ./meta.001.yaml

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/var/src/rev.032.json",
-  "title": "ops.yaml (rev. 022)",
+  "title": "ops.yaml (rev. 032)",
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\nmin_version: ...\nforwards: ...\ndependencies: ...\nhooks: ...\nactions: ...\noptions: ...\n```\n",
@@ -70,6 +70,7 @@
               "propertyNames": {
                 "enum": [
                   "alias",
+                  "aliases",
                   "command",
                   "description",
                   "in_envs",
@@ -87,6 +88,16 @@
                   "markdownDescription": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
                   "type": "string",
                   "pattern": "^[\\w-]+$"
+                },
+                "aliases": {
+                  "title": "Aliases",
+                  "description": "In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.",
+                  "markdownDescription": "In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.",
+                  "items": {
+                    "title": "Alias",
+                    "type": "string",
+                    "pattern": "^[\\w-]+$"
+                  }
                 },
                 "command": {
                   "title": "Command",
@@ -159,7 +170,6 @@
           "docker",
           "gem",
           "pip",
-          "snap",
           "sshkey",
           "terraform"
         ]
@@ -349,12 +359,6 @@
           "minItems": 1,
           "uniqueItems": true
         },
-        "snap": {
-          "title": "snapPackageList",
-          "description": "- Specifies that a particular package from `snap` is needed.\n- Unlike `apt`, `brew`, or `apk`, `snap` may be present on any Linux system, and its presence alone probably shouldn't be taken as a sign that ops should install every `snap` listed in dependencies.\n- Therefore, ops will never install `snaps` unless `options.snap.install` is true.",
-          "markdownDescription": "- Specifies that a particular package from `snap` is needed.\n- Unlike `apt`, `brew`, or `apk`, `snap` may be present on any Linux system, and its presence alone probably shouldn't be taken as a sign that ops should install every `snap` listed in dependencies.\n- Therefore, ops will never install `snaps` unless `options.snap.install` is true.",
-          "$ref": "#/definitions/PackageList"
-        },
         "sshkey": {
           "title": "sshKeyList",
           "description": "This dependency will create an SSH key pair with key size 4096 and key algorithm `rsa` at `keys/$environment/user@host` and `keys/$environment/user@host.pub`. It will also add it to your SSH agent, if `SSH_AUTH_SOCK` is set, with a lifetime of 3600 seconds (one hour).\n\nThe key comment, which is visible in the output of `ssh-add -l`, will be set to the name of the directory that contains `ops.yml`. For example, if the directory is named `heliograf`, you would see the following output:\n",
@@ -447,7 +451,6 @@
           "gem",
           "pip",
           "secrets",
-          "snap",
           "sshkey",
           "up"
         ]
@@ -531,6 +534,11 @@
           "description": "Affect how configs are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
@@ -608,6 +616,11 @@
           "description": "Affect the behaviour of `ops exec`.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "load_secrets"
+            ]
+          },
           "properties": {
             "load_secrets": {
               "$ref": "#/definitions/LoadSecrets"
@@ -670,6 +683,11 @@
           "description": "Affect how secrets are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
@@ -677,34 +695,6 @@
               "markdownDescription": "Override the secrets file location (_defaults to `./config/<environment>/secrets.json`_).",
               "$ref": "#/definitions/Path",
               "default": "config/${environment}/secrets.ejson"
-            }
-          }
-        },
-        "snap": {
-          "title": "SnapOptions",
-          "description": "Affect the behaviour of `snap` dependencies.",
-          "markdownDescription": "Affect the behaviour of `snap` dependencies.",
-          "type": "object",
-          "minProperties": 1,
-          "default": {
-            "install": true,
-            "use_sudo": false
-          },
-          "propertyNames": {
-            "enum": [
-              "install",
-              "use_sudo"
-            ]
-          },
-          "properties": {
-            "install": {
-              "description": "Unlike `apt`, `brew`, or `apk`, `snap` may be present on any Linux system, and its presence alone probably shouldn't be taken as a sign that `ops` should install every snap listed in `dependencies`. Therefore, `ops` will never install snaps unless the `snap.install` option is `true`.\n\nFor example, on Solus Linux, `snap` is necessary to install the `mosquitto` MQTT broker, but on Debian I would `apt install mosquitto-tools` instead. So both of these dependencies would be listed in the `ops.yml`. However, I may still have `snap` present; I just wouldn't want `ops` to install snaps unless I told it to, or it would install both the apt package and the snap.\n\nManaging these options via hard-coded strings in `ops.yml` isn't the best solution, however; this file is checked in, but whether or not to install snaps should be based on environment. In the future, `ops` will support using env vars to set any option, based on a scheme like `apt.use_sudo` == `$APT__USE_SUDO`.\n",
-              "markdownDescription": "Unlike `apt`, `brew`, or `apk`, `snap` may be present on any Linux system, and its presence alone probably shouldn't be taken as a sign that `ops` should install every snap listed in `dependencies`. Therefore, `ops` will never install snaps unless the `snap.install` option is `true`.\n\nFor example, on Solus Linux, `snap` is necessary to install the `mosquitto` MQTT broker, but on Debian I would `apt install mosquitto-tools` instead. So both of these dependencies would be listed in the `ops.yml`. However, I may still have `snap` present; I just wouldn't want `ops` to install snaps unless I told it to, or it would install both the apt package and the snap.\n\nManaging these options via hard-coded strings in `ops.yml` isn't the best solution, however; this file is checked in, but whether or not to install snaps should be based on environment. In the future, `ops` will support using env vars to set any option, based on a scheme like `apt.use_sudo` == `$APT__USE_SUDO`.\n",
-              "type": "boolean",
-              "default": false
-            },
-            "use_sudo": {
-              "$ref": "#/definitions/UseSudo/properties/use_sudo"
             }
           }
         },

@@ -1,11 +1,14 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/config/rev.005.yaml
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/config/rev.035.yaml
 allOf:
 - propertyNames:
     enum:
     - path
+    - preserve_existing_env_vars
   properties:
     path:
       $ref: ./path/rev.005.yaml
+    preserve_existing_env_vars:
+      $ref: ./preserve_existing_env_vars/rev.035.yaml
 - $ref: ./meta.005.yaml

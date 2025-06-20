@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/rev.031.yaml
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/rev.037.yaml
 allOf:
 - propertyNames:
     enum:
@@ -15,9 +15,9 @@ allOf:
     revision:
       $ref: ./common.yaml#/properties/revision
     actions:
-      $ref: ./actions/rev.029.yaml
+      $ref: ./actions/rev.037.yaml
     dependencies:
-      $ref: ./dependencies/rev.030.yaml
+      $ref: ./dependencies/rev.033.yaml
     forwards:
       $ref: ./forwards/rev.022.yaml
     hooks:
@@ -25,5 +25,5 @@ allOf:
     min_version:
       $ref: ./min_version/rev.017.yaml
     options:
-      $ref: ./options/rev.031.yaml
+      $ref: ./options/rev.036.yaml
 - $ref: ./meta.022.yaml

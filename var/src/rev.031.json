@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/var/src/rev.031.json",
-  "title": "ops.yaml (rev. 022)",
+  "title": "ops.yaml (rev. 031)",
   "type": "object",
   "description": "Confirguration for `ops`.",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\nmin_version: ...\nforwards: ...\ndependencies: ...\nhooks: ...\nactions: ...\noptions: ...\n```\n",
@@ -70,6 +70,7 @@
               "propertyNames": {
                 "enum": [
                   "alias",
+                  "aliases",
                   "command",
                   "description",
                   "in_envs",
@@ -87,6 +88,16 @@
                   "markdownDescription": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
                   "type": "string",
                   "pattern": "^[\\w-]+$"
+                },
+                "aliases": {
+                  "title": "Aliases",
+                  "description": "In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.",
+                  "markdownDescription": "In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.",
+                  "items": {
+                    "title": "Alias",
+                    "type": "string",
+                    "pattern": "^[\\w-]+$"
+                  }
                 },
                 "command": {
                   "title": "Command",
@@ -502,27 +513,39 @@
           }
         },
         "completion": {
-          "allOf": [
-            {
-              "title": "CompletionOptions",
-              "description": "Affect the behaviour of the auto-complete feature.",
-              "markdownDescription": "Affect the behaviour of the auto-complete feature.",
-              "type": "object",
-              "minProperties": 1,
-              "default": {
-                "include_aliases": true
-              }
-            },
-            {
-              "$ref": "#/definitions/Deprecated"
+          "title": "CompletionOptions",
+          "description": "Affect the behaviour of the auto-complete feature.",
+          "markdownDescription": "Affect the behaviour of the auto-complete feature.",
+          "type": "object",
+          "minProperties": 1,
+          "default": {
+            "include_aliases": true
+          },
+          "propertyNames": {
+            "enum": [
+              "include_aliases"
+            ]
+          },
+          "properties": {
+            "include_aliases": {
+              "title": "IncludeAliases",
+              "description": "If `true`, the auto-complete feature will interpret aliases as well.",
+              "markdownDescription": "If `true`, the auto-complete feature will interpret aliases as well.",
+              "type": "boolean",
+              "default": true
             }
-          ]
+          }
         },
         "config": {
           "title": "SecretOptions",
           "description": "Affect how configs are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
@@ -600,6 +623,11 @@
           "description": "Affect the behaviour of `ops exec`.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "load_secrets"
+            ]
+          },
           "properties": {
             "load_secrets": {
               "$ref": "#/definitions/LoadSecrets"
@@ -662,6 +690,11 @@
           "description": "Affect how secrets are interpreted.",
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": [
+              "path"
+            ]
+          },
           "properties": {
             "path": {
               "title": "SecretsPath",
