@@ -4,6 +4,7 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/action/ali
 title: Aliases
 description: In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.
 markdownDescription: In addition to the `alias` property, you can specify multiple aliases for an action. Specifying both properties is not recommended.
+type: array
 items:
   title: Alias
   type: string
