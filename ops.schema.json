@@ -13,15 +13,6 @@
   "then": {
     "oneOf": [
       {
-        "$ref": "./var/src/rev.001.json"
-      },
-      {
-        "$ref": "./var/src/rev.002.json"
-      },
-      {
-        "$ref": "./var/src/rev.003.json"
-      },
-      {
         "$ref": "./var/src/rev.037.json"
       },
       {
@@ -122,6 +113,15 @@
       },
       {
         "$ref": "./var/src/rev.004.json"
+      },
+      {
+        "$ref": "./var/src/rev.003.json"
+      },
+      {
+        "$ref": "./var/src/rev.002.json"
+      },
+      {
+        "$ref": "./var/src/rev.001.json"
       }
     ]
   },
