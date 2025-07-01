@@ -14,15 +14,11 @@ markdownDescription: |
   * It's also a good idea to prevent it from printing output unless it encounters an error, to keep the ops output clean.
 type: array
 items:
-  description: ""
-  oneOf:
-    - type: string
-      allOf:
-        - description: An idempotent command or script to run as a dependency when `ops up` is executed.
-          markdownDescription: An idempotent command or script to run as a dependency when `ops up` is executed.
-        - $ref: "../../common.yaml#/definitions/CommandString"
-    - type: boolean
-      $ref: "../../common.yaml#/definitions/CommandNoop"
+  description: An idempotent command or script to run as a dependency when `ops up` is executed.
+  markdownDescription: An idempotent command or script to run as a dependency when `ops up` is executed.
+  type: string
+  allOf:
+    - $ref: "../../common.yaml#/definitions/CommandString"
 minItems: 1
 examples:
   - - bundle install --quiet

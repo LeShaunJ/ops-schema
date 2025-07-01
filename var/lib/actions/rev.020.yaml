@@ -4,7 +4,7 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/rev.020.ya
 allOf:
 - patternProperties:
     ^[\w-]+$:
-      anyOf:
+      oneOf:
       - $ref: ./inline/rev.020.yaml
       - $ref: ./action/rev.018.yaml
 - $ref: ./meta.020.yaml

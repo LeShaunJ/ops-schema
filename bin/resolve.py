@@ -137,7 +137,8 @@ def AllOf(schema: dict, resolution: Resolved[dict]) -> dict:
 		...
 
 		if remaining:
-			schema[prop] = [ allOf, *remaining ]
+			# schema[prop] = [ allOf, *remaining ]
+			schema[prop] = [ s for s in [ allOf, *remaining ] if s ]
 			# schema[prop] = list(filter(
 			# 	lambda v: bool(v),
 			# 	[ allOf, *remaining ]

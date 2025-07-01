@@ -34,10 +34,10 @@ hooks:
   before:
     - echo "hello, before hook"
 actions:
-  mynoop: "true"
-  myfail: "false"
-  myinline: echo "hello, world"
-  myaction:
+  inl_command: echo "hello, world"
+  inl_noop_pass: "true"
+  inl_noop_fail: "false"
+  obj_command:
     alias: mya
     command: echo "hello, world"
     description: DESCRIBE ME!
@@ -50,10 +50,19 @@ actions:
       - dev
     load_secrets: true
     skip_before_hooks: true
-  myshellexp:
+  obj_noop_pass:
+    command: "true"
+  obj_noop_fail:
+    command: "false"
+  obj_aliases:
+    aliases:
+      - alias1
+      - alias2
+    command: echo "hello, world"
+  obj_shell_exp:
     command: mysql -u root -p
     shell_expansion: true
-  shebang_bash:
+  obj_shebang_sh:
     command: |-
       #!/usr/bin/env bash
       echo "First: ${1}";
@@ -61,7 +70,7 @@ actions:
       printf 'Other: %s\n' "${@:3}";
       [ -t 0 ] || cat -;
     param_expansion: true
-  shebang_python:
+  obj_shebang_py:
     command: |-
       #!/usr/bin/env python3 -W ignore
       import sys, select
@@ -69,7 +78,7 @@ actions:
       if select.select([sys.stdin, ], [], [], 0.0)[0]:
         print(sys.stdin.read().strip())
     param_expansion: true
-  shebang_ruby:
+  obj_shebang_rb:
     command: |-
       #!/usr/bin/env ruby
       require 'fcntl'

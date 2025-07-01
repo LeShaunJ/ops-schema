@@ -39,23 +39,16 @@
       },
       "patternProperties": {
         "^[\\w-]+$": {
-          "anyOf": [
+          "oneOf": [
             {
               "title": "InlineCommand",
-              "anyOf": [
+              "allOf": [
                 {
-                  "allOf": [
-                    {
-                      "description": "A simple command, or\u2014though not recommended\u2014a script, to run. Only use this pattern if the command's intent is easy to decipher.",
-                      "markdownDescription": "A simple command, or\u2014*though, not recommended*\u2014a script, to run. Only use this pattern if the command's intent is easy to decipher."
-                    },
-                    {
-                      "$ref": "#/definitions/CommandString"
-                    }
-                  ]
+                  "description": "A simple command, or\u2014though not recommended\u2014a script, to run. Only use this pattern if the command's intent is easy to decipher.",
+                  "markdownDescription": "A simple command, or\u2014*though, not recommended*\u2014a script, to run. Only use this pattern if the command's intent is easy to decipher."
                 },
                 {
-                  "$ref": "#/definitions/CommandNoop"
+                  "$ref": "#/definitions/CommandString"
                 }
               ]
             },
@@ -103,15 +96,13 @@
                 "command": {
                   "title": "Command",
                   "description": "A command or script to run when the action is executed.",
-                  "anyOf": [
+                  "type": "string",
+                  "default": "true",
+                  "allOf": [
                     {
                       "$ref": "#/definitions/CommandString"
-                    },
-                    {
-                      "$ref": "#/definitions/CommandNoop"
                     }
-                  ],
-                  "default": true
+                  ]
                 },
                 "description": {
                   "title": "Description",
@@ -220,9 +211,6 @@
             "description": "A list of coustom command configurations.",
             "oneOf": [
               {
-                "$ref": "#/definitions/CommandNoop"
-              },
-              {
                 "$ref": "#/definitions/CommandString"
               },
               {
@@ -249,7 +237,6 @@
                           "boolean"
                         ],
                         "allOf": [
-                          {},
                           {
                             "$ref": "#/definitions/CustomCommand"
                           }
@@ -265,7 +252,6 @@
                           "boolean"
                         ],
                         "allOf": [
-                          {},
                           {
                             "$ref": "#/definitions/CustomCommand"
                           }
@@ -825,34 +811,43 @@
   },
   "definitions": {
     "CommandString": {
-      "allOf": [
-        {
-          "title": "Command String",
-          "default": "echo \"hello, world\"",
-          "examples": [
-            "terraform init",
-            "docker-compose up"
-          ]
-        },
-        {
-          "$ref": "#/definitions/NonEmptyString"
-        }
-      ]
-    },
-    "CommandNoop": {
-      "title": "No-Op Command",
-      "type": "boolean",
-      "default": true,
       "oneOf": [
         {
-          "description": "When `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.",
-          "markdownDescription": "When `true`, executes the command as a `no-op` that exits `0`. If `false`, the `no-op` will always fail.",
-          "const": true
+          "title": "NoopPass",
+          "description": "Executes a `no-op`, exiting successfully with `0`.",
+          "markdownDescription": "Executes a `no-op`, exiting successfully with `0`.",
+          "type": "string",
+          "const": "true",
+          "default": "true"
         },
         {
-          "description": "When `false`, executes the command as a `no-op` that will always fail (exits `1`).",
-          "markdownDescription": "When `false`, executes the command as a `no-op` that will always **fail** (_exits `1`_).",
-          "const": false
+          "title": "NoopFail",
+          "description": "Executes a `no-op`, exiting with error code `1`.",
+          "markdownDescription": "Executes a `no-op`, exiting with error code `1`.",
+          "type": "string",
+          "const": "false",
+          "default": "false"
+        },
+        {
+          "allOf": [
+            {
+              "not": {
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              },
+              "title": "CommandString",
+              "default": "echo \"hello, world\"",
+              "examples": [
+                "terraform init",
+                "docker-compose up"
+              ]
+            },
+            {
+              "$ref": "#/definitions/NonEmptyString"
+            }
+          ]
         }
       ]
     },
@@ -887,7 +882,7 @@
       }
     },
     "EnvList": {
-      "title": "Environment List",
+      "title": "EnvironmentList",
       "type": "array",
       "items": {
         "title": "Environment",
@@ -898,7 +893,7 @@
       "uniqueItems": true
     },
     "FileName": {
-      "title": "File Name",
+      "title": "FileName",
       "type": "string",
       "pattern": "^(?!.{256,})(?!(aux|clock\\$|con|nul|prn|com[1-9]|lpt[1-9])(?:$|\\.))[^ ][ \\.\\w-$()+=[\\];#@~,&']+[^\\. ]$",
       "minLength": 1,
@@ -910,17 +905,17 @@
       "default": false
     },
     "NameString": {
-      "title": "Name String",
+      "title": "NameString",
       "type": "string",
       "pattern": "^[\\w-]+$"
     },
     "NonEmptyString": {
-      "title": "Non-Empty String",
+      "title": "NonEmptyString",
       "type": "string",
       "minLength": 1
     },
     "PackageList": {
-      "title": "Package List",
+      "title": "PackageList",
       "type": "array",
       "items": {
         "$ref": "#/definitions/PackageVersioned"
@@ -929,7 +924,7 @@
       "uniqueItems": true
     },
     "PackageBrew": {
-      "title": "Brew Package",
+      "title": "BrewPackage",
       "description": "The name of a `brew` package. If you need to specify a version, include it after the name, delimited by an `@` symbol.",
       "markdownDescription": "The name of a `brew` package. If you need to specify a version, include it after the name, delimited by an `@` symbol.",
       "type": "string",
@@ -940,7 +935,7 @@
       ]
     },
     "PackagePip": {
-      "title": "Pip Package",
+      "title": "PipPackage",
       "description": "The name of a `pip` package. If you need to specify a version, include it after the name, delimited by `==`.",
       "markdownDescription": "The name of a `pip` package. If you need to specify a version, include it after the name, delimited by `==`.",
       "type": "string",
@@ -967,7 +962,7 @@
       "format": "uri-reference"
     },
     "PathList": {
-      "title": "Path List",
+      "title": "PathList",
       "type": "array",
       "items": {
         "allOf": [
@@ -983,7 +978,7 @@
       "uniqueItems": true
     },
     "SemVer": {
-      "title": "Semantic Version",
+      "title": "SemanticVersion",
       "type": "string",
       "pattern": "^(0|[1-9]\\d*)(?:\\.(0|[1-9]\\d*)(?:\\.(0|[1-9]\\d*)(?:[.-]([\\dA-z-]+(?:\\.[\\dA-z-]+)*)|)(\\+[\\dA-z-]+|)|)|)$"
     },
@@ -999,18 +994,11 @@
     },
     "CustomCommand": {
       "title": "CustomCommand",
-      "type": [
-        "string",
-        "boolean"
-      ],
-      "oneOf": [
+      "type": "string",
+      "allOf": [
         {
           "type": "string",
           "$ref": "#/definitions/CommandString"
-        },
-        {
-          "type": "boolean",
-          "$ref": "#/definitions/CommandNoop"
         }
       ]
     }

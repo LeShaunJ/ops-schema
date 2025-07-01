@@ -52,7 +52,6 @@ items:
   title: CustomCommand
   description: A list of coustom command configurations.
   oneOf:
-    - $ref: "../../common.yaml#/definitions/CommandNoop"
     - $ref: "../../common.yaml#/definitions/CommandString"
     - title: UpDownHash
       description: A key/value pair describing a custom `ops up` and/or `ops down` configuration.
@@ -107,11 +106,7 @@ uniqueItems: true
 definitions: 
   CustomCommand:
     title: CustomCommand
-    type:
-      - string
-      - boolean
-    oneOf:
+    type: string
+    allOf:
       - type: string
         $ref: "../../common.yaml#/definitions/CommandString"
-      - type: boolean
-        $ref: "../../common.yaml#/definitions/CommandNoop"

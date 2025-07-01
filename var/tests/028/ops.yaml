@@ -56,7 +56,6 @@ options:
     log_filename: my.log
   config:
     path: config/${environment}/config.json
-    preserve_existing_env_vars: true
   envdiff: 
     ignored_keys:
       - TF_VAR_hello
