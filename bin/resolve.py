@@ -338,8 +338,10 @@ with chdir(CWD):
 				*Walk(resolver.lookup(str(path))).items(),
 				('definitions', definitions),
 			])
-			revision
-			schema['title'] = f'ops.yaml (rev. {revision:03d})'
+			...
+
+			schema['title'] = 'ops.yaml'
+			schema['description'] = f'Confirguration for `ops` (rev. {revision:03d})'
 			schema['properties']['revision']['const'] = revision
 			...
 

@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/var/src/rev.019.json",
-  "title": "ops.yaml (rev. 019)",
+  "title": "ops.yaml",
   "type": "object",
-  "description": "Confirguration for `ops`.",
+  "description": "Confirguration for `ops` (rev. 019)",
   "markdownDescription": "Confirguration for [`ops`](https://github.com/nickthecook/ops).\n\n```yaml\nrevision: ...\nmin_version: ...\ndependencies: ...\nhooks: ...\nactions: ...\noptions: ...\n```\n",
   "propertyNames": {
     "enum": [
