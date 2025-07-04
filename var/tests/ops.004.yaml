@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=../../ops.schema.json
+---
+revision: 4
+dependencies:
+  apk:
+    - less
+  apt:
+    - less
+  brew:
+    - less
+  cask:
+    - less
+  custom:
+    - echo "hello, world"
+  dir:
+    - config/{dev,staging,production}
+  docker:
+    - ubuntu/nginx
+  gem:
+    - ejson
+  terraform:
+    - env/production
+    - env/staging
+    - env/dev
+actions:
+  command:
+    command: echo "hello, world"
+    description: DESCRIBE ME!
+    load_secrets: true
+  command_noop_pass:
+    command: "true"
+  command_noop_fail:
+    command: "false"
+options:
+  environment:
+    ARM_CLIENT_ID: 00000000-0000-0000-0000-000000000000
+  gem:
+    user_install: true
+    use_sudo: false
+  secrets:
+    path: config/${environment}/secrets.ejson

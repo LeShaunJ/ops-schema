@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=../../ops.schema.json
+---
+revision: 32
+min_version: 1.16.0
+dependencies:
+  apk:
+    - less
+  apt:
+    - less
+  brew:
+    - less
+  cask:
+    - less
+  custom:
+    - echo "hello, world"
+    - up_and_down:
+        up: cat up.txt
+        down: "true"
+  dir:
+    - config/{dev,staging,production}
+  docker:
+    - ubuntu/nginx
+  gem:
+    - ejson
+  pip:
+    - ruamel.yaml
+  sshkey:
+    - admin@localhost
+forwards:
+  prov: provisioning
+  images: images
+hooks:
+  before:
+    - echo "hello, before hook"
+actions:
+  inline: echo "hello, world"
+  inline_noop_pass: "true"
+  inline_noop_fail: "false"
+  action:
+    alias: mya
+    command: echo "hello, world"
+    description: DESCRIBE ME!
+    in_envs:
+      - production
+    not_in_envs:
+      - staging
+    skip_in_envs:
+      - ci
+      - dev
+    load_secrets: true
+    skip_before_hooks: true
+  action_noop_pass:
+    command: "true"
+  action_noop_fail:
+    command: "false"
+  action_aliases:
+    aliases:
+      - alias1
+      - alias2
+    command: echo "hello, world"
+  action_shell_exp:
+    command: mysql -u root -p
+    shell_expansion: true
+options:
+  apt:
+    use_sudo: true
+  background:
+    log_filename: my.log
+  config:
+    path: config/${environment}/config.json
+  envdiff: 
+    ignored_keys:
+      - TF_VAR_hello
+  environment:
+    ARM_CLIENT_ID: 00000000-0000-0000-0000-000000000000
+  environment_aliases:
+    - RAILS_ENV
+  exec:
+    load_secrets: true
+  gem:
+    user_install: true
+    use_sudo: false
+  pip:
+    command: pip3
+  secrets:
+    path: config/${environment}/secrets.ejson
+  sshkey:
+    add_keys: false
+    key_algo: rsa
+    key_file_comment: hello, sshkey
+    key_lifetime: 3600
+    key_size: 4096
+    passphrase_var: SSH_KEY_PASSPHRASE
+  up:
+    fail_on_error: true
