@@ -267,11 +267,23 @@ def Register(path: Path) -> None:
 		# { "$ref": f"./{path}" }
 	# ] })
 
-	registry.append({ "$ref": f"./{path}" })
+	registry.append({
+		"if": {
+			"properties": {
+				"revision": {
+					"const": revision
+				}
+			}
+		},
+		"then": {
+			"$ref": f"./{path}"
+		}
+	})
 
 def Compose() -> None:
 	global registry
 	registry.reverse()
+	comp_type = 'allOf'
 	...
 
 	print(f'Composing {OPS_JSN}... ', end='')
@@ -285,7 +297,7 @@ def Compose() -> None:
 	schema['description'] = 'Confirguration for `ops`'
 	schema['minProperties'] = 1
 	schema['if'] = { 'required': ['revision'] }
-	schema['then'] = { 'oneOf': registry }
+	schema['then'] = { comp_type: registry }
 	schema['else'] = {
 		'allOf': [
 			{
@@ -294,7 +306,7 @@ def Compose() -> None:
 					'required': ['revision']
 				}
 			},
-    	{ '$ref': '#/then/oneOf/0' }
+    	{ '$ref': f'#/then/{comp_type}/0/then' }
 		]
 	}
 	...
