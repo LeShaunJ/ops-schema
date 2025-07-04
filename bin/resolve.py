@@ -17,6 +17,7 @@ CWD = Path(f'{SWD.parent}/..')
 YML = YAML()
 LIB = 'var/lib'
 SRC = 'var/src'
+TST = 'var/tests'
 GIT = f"{str(os.environ['REMOTE']).removesuffix('.git')}/blob/main"
 COMMON = 'common.yaml'
 OPS_JSN = 'ops.schema.json'
@@ -363,7 +364,16 @@ with chdir(CWD):
 			JSN.dump(schema, file, indent='  ')
 			file.write('\n')
 
+		test = Path(f'{TST}/ops.{revision:03d}.yaml')
+		if not test.exists():
+			with test.open('w') as file:
+				file.write('# yaml-language-server: $schema=../../ops.schema.json\n')
+				file.write('---\n')
+				file.write(f'revision: {revision}\n')
+		...
+
 		print('Done!')
+		...
 	...
 
 	Compose()
