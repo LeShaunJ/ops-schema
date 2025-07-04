@@ -7,6 +7,8 @@ from contextlib import chdir
 from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap
 from ruamel.yaml.error import YAMLStreamError
+from functools import lru_cache
+from re import compile
 ...
 
 GLOB_META = 'meta.*.yaml'
@@ -27,6 +29,9 @@ P_PROP_NAMES = 'propertyNames'
 P_PROPS_ADD = 'unevaluatedProperties'
 ...
 
+REF_RGX = compile(r'#.*$')
+...
+
 def GetDirs() -> Generator[Path, None, None]:
 	def HasDirs(directory: Path) -> bool:
 		return len([ *directory.glob('**') ]) > 1
@@ -44,46 +49,54 @@ def DelProperties(schema: dict, *props: str) -> None:
 		except KeyError:
 			continue
 
+@lru_cache
 def GetRevision(path: Path | str) -> int:
 	parts = str(path).split('.')
 	revision = parts[1]
 	return int(revision)
 
+@lru_cache
 def CompareRevisions(a: Path | str, b: Path | str) -> bool:
 	return GetRevision(b) >= GetRevision(a)
 
-def FindMeta(path: Path | str) -> Path | None:
+@lru_cache
+def FindMeta(path: Path | str) -> Path:
 	meta = None
 	metas = sorted(Path('.').glob(GLOB_META))
 	for meta_path in metas:
-		if not CompareRevisions(meta_path, path):
+		if not CompareRevisions(meta_path.absolute(), path):
 			break
 		meta = meta_path
+	...
+	if meta is None:
+		raise FileNotFoundError(f'Could not find meta schema for {path}')
+	...
 	return meta
 
+@lru_cache
 def GetMeta(path: Path | str) -> CommentedMap:
 	try:
 		meta = YML.load(path)
-		# del meta["$schema"]
-		# del meta["$id"]
 		return meta
-	except (TypeError, YAMLStreamError):
+	except YAMLStreamError:
 		return CommentedMap()
-	
+
+@lru_cache
 def GetSchema(path: Path | str) -> CommentedMap:
 	return YML.load(path)
 
 def Prepare(directory: Path) -> None:
 	with chdir(directory):
 		for path in sorted(Path('.').glob(GLOB_REV)):
-			rel = path.absolute().relative_to(CWD)
+			path = path.absolute()
+			rel  = path.relative_to(CWD)
 			...
 
 			print(f'Preparing {rel}... ', end='')
 			...
 
 			meta_path = FindMeta(path)
-			meta = GetMeta(meta_path)
+			meta = GetMeta(meta_path.absolute())
 			schema = GetSchema(path)
 			...
 
