@@ -9,4 +9,4 @@ markdownDescription: |
   _For more information, see the [Options](https://github.com/nickthecook/ops/blob/main/docs/options.md) documentation on [GitHub](https://github.com/nickthecook/ops)._
 type: object
 minProperties: 1
-additionalProperties: false
+unevaluatedProperties: false

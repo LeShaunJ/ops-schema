@@ -4,5 +4,5 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/exec/meta.
 title: ExecOptions
 description: Affect the behaviour of `ops exec`.
 type: object
-additionalProperties: false
+unevaluatedProperties: false
 minProperties: 1

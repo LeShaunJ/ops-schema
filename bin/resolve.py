@@ -25,7 +25,7 @@ OPS_JSN = 'ops.schema.json'
 CAPTURE = False
 ...
 
-P_PROPS_ADD = 'additionalProperties'
+P_PROPS_ADD = 'unevaluatedProperties'
 ...
 
 def Pretty(schema) -> str:

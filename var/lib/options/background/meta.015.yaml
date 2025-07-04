@@ -5,7 +5,7 @@ description: Affect the behaviour of the `background` builtin.
 markdownDescription: Affect the behaviour of the `background` builtin.
 type: object
 minProperties: 1
-additionalProperties: false
+unevaluatedProperties: false
 default:
   log_filename: app.log
   shell: /bin/sh

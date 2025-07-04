@@ -5,6 +5,6 @@ title: PipOptions
 description: Affect the behaviour of `pip` dependencies.
 markdownDescription: Affect the behaviour of `pip` dependencies.
 type: object
-additionalProperties: false
+unevaluatedProperties: false
 default:
   command: pip3

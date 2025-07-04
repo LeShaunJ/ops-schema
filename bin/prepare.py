@@ -24,7 +24,7 @@ LIB = 'var/lib'
 DEF_PROPS = ['$id', '$schema', 'allOf']
 P_PROPS = 'properties'
 P_PROP_NAMES = 'propertyNames'
-P_PROPS_ADD = 'additionalProperties'
+P_PROPS_ADD = 'unevaluatedProperties'
 ...
 
 def GetDirs() -> Generator[Path, None, None]:
