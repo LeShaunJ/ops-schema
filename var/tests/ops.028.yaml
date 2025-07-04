@@ -1,6 +1,7 @@
-# yaml-language-server: $schema=../../../ops.schema.json
-revision: 29
-min_version: 2.0.0.rc3
+# yaml-language-server: $schema=../../ops.schema.json
+---
+revision: 28
+min_version: 1.11.0
 dependencies:
   apk:
     - less
@@ -30,14 +31,11 @@ hooks:
   before:
     - echo "hello, before hook"
 actions:
-  mynoop: "true"
-  myfail: "false"
-  myinline: echo "hello, world"
-  myaction:
+  inline: echo "hello, world"
+  inline_noop_pass: "true"
+  inline_noop_fail: "false"
+  action:
     alias: mya
-    aliases:
-      - alt1
-      - alt2
     command: echo "hello, world"
     description: DESCRIBE ME!
     in_envs:
@@ -49,7 +47,11 @@ actions:
       - dev
     load_secrets: true
     skip_before_hooks: true
-  myshellexp:
+  action_noop_pass:
+    command: "true"
+  action_noop_fail:
+    command: "false"
+  action_shell_exp:
     command: mysql -u root -p
     shell_expansion: true
 options:
@@ -80,3 +82,5 @@ options:
     key_lifetime: 3600
     key_size: 4096
     passphrase_var: SSH_KEY_PASSPHRASE
+  up:
+    fail_on_error: true

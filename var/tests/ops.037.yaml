@@ -1,6 +1,7 @@
-# yaml-language-server: $schema=../../../ops.schema.json
-revision: 35
-min_version: 2.0.0.rc3
+# yaml-language-server: $schema=../../ops.schema.json
+---
+revision: 37
+min_version: 2.2.0
 dependencies:
   apk:
     - less
@@ -34,10 +35,10 @@ hooks:
   before:
     - echo "hello, before hook"
 actions:
-  mynoop: "true"
-  myfail: "false"
-  myinline: echo "hello, world"
-  myaction:
+  inline: echo "hello, world"
+  inline_noop_pass: "true"
+  inline_noop_fail: "false"
+  action:
     alias: mya
     command: echo "hello, world"
     description: DESCRIBE ME!
@@ -50,9 +51,43 @@ actions:
       - dev
     load_secrets: true
     skip_before_hooks: true
-  myshellexp:
+  action_noop_pass:
+    command: "true"
+  action_noop_fail:
+    command: "false"
+  action_aliases:
+    aliases:
+      - alias1
+      - alias2
+    command: echo "hello, world"
+  action_shell_exp:
     command: mysql -u root -p
     shell_expansion: true
+  action_shebang_sh:
+    command: |-
+      #!/usr/bin/env bash
+      echo "First: ${1}";
+      echo "Second: ${2}";
+      printf 'Other: %s\n' "${@:3}";
+      [ -t 0 ] || cat -;
+    param_expansion: true
+  action_shebang_py:
+    command: |-
+      #!/usr/bin/env python3 -W ignore
+      import sys, select
+      print(f"hello, +{'>> '.join(sys.argv[1:])}+")
+      if select.select([sys.stdin, ], [], [], 0.0)[0]:
+        print(sys.stdin.read().strip())
+    param_expansion: true
+  action_shebang_rb:
+    command: |-
+      #!/usr/bin/env ruby
+      require 'fcntl'
+      puts "hello, +#{ARGV.join('>> ')}+"
+      if STDIN.fcntl(Fcntl::F_GETFL, 0) == 0
+        puts STDIN.read
+      end
+    param_expansion: true
 options:
   apt:
     use_sudo: true
@@ -65,6 +100,7 @@ options:
     ignored_keys:
       - TF_VAR_hello
   environment:
+    environment: dev
     ARM_CLIENT_ID: 00000000-0000-0000-0000-000000000000
   environment_aliases:
     - RAILS_ENV
@@ -89,3 +125,4 @@ options:
     passphrase_var: SSH_KEY_PASSPHRASE
   up:
     exit_on_error: true
+    fail_on_error: true

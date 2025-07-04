@@ -1,6 +1,7 @@
-# yaml-language-server: $schema=../../../ops.schema.json
-revision: 37
-min_version: 2.0.0
+# yaml-language-server: $schema=../../ops.schema.json
+---
+revision: 29
+min_version: 1.12.0
 dependencies:
   apk:
     - less
@@ -21,10 +22,6 @@ dependencies:
     - ubuntu/nginx
   gem:
     - ejson
-  pip:
-    - ruamel.yaml
-  snap:
-    - less
   sshkey:
     - admin@localhost
 forwards:
@@ -34,10 +31,10 @@ hooks:
   before:
     - echo "hello, before hook"
 actions:
-  inl_command: echo "hello, world"
-  inl_noop_pass: "true"
-  inl_noop_fail: "false"
-  obj_command:
+  inline: echo "hello, world"
+  inline_noop_pass: "true"
+  inline_noop_fail: "false"
+  action:
     alias: mya
     command: echo "hello, world"
     description: DESCRIBE ME!
@@ -50,43 +47,18 @@ actions:
       - dev
     load_secrets: true
     skip_before_hooks: true
-  obj_noop_pass:
+  action_noop_pass:
     command: "true"
-  obj_noop_fail:
+  action_noop_fail:
     command: "false"
-  obj_aliases:
+  action_aliases:
     aliases:
       - alias1
       - alias2
     command: echo "hello, world"
-  obj_shell_exp:
+  action_shell_exp:
     command: mysql -u root -p
     shell_expansion: true
-  obj_shebang_sh:
-    command: |-
-      #!/usr/bin/env bash
-      echo "First: ${1}";
-      echo "Second: ${2}";
-      printf 'Other: %s\n' "${@:3}";
-      [ -t 0 ] || cat -;
-    param_expansion: true
-  obj_shebang_py:
-    command: |-
-      #!/usr/bin/env python3 -W ignore
-      import sys, select
-      print(f"hello, +{'>> '.join(sys.argv[1:])}+")
-      if select.select([sys.stdin, ], [], [], 0.0)[0]:
-        print(sys.stdin.read().strip())
-    param_expansion: true
-  obj_shebang_rb:
-    command: |-
-      #!/usr/bin/env ruby
-      require 'fcntl'
-      puts "hello, +#{ARGV.join('>> ')}+"
-      if STDIN.fcntl(Fcntl::F_GETFL, 0) == 0
-        puts STDIN.read
-      end
-    param_expansion: true
 options:
   apt:
     use_sudo: true
@@ -94,12 +66,10 @@ options:
     log_filename: my.log
   config:
     path: config/${environment}/config.json
-    preserve_existing_env_vars: true
   envdiff: 
     ignored_keys:
       - TF_VAR_hello
   environment:
-    environment: dev
     ARM_CLIENT_ID: 00000000-0000-0000-0000-000000000000
   environment_aliases:
     - RAILS_ENV
@@ -108,13 +78,8 @@ options:
   gem:
     user_install: true
     use_sudo: false
-  pip:
-    command: pip3
   secrets:
     path: config/${environment}/secrets.ejson
-  snap:
-    install: false
-    use_sudo: false
   sshkey:
     add_keys: false
     key_algo: rsa
@@ -122,3 +87,5 @@ options:
     key_lifetime: 3600
     key_size: 4096
     passphrase_var: SSH_KEY_PASSPHRASE
+  up:
+    fail_on_error: true

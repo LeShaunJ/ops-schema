@@ -1,5 +1,6 @@
-# yaml-language-server: $schema=../../../ops.schema.json
-revision: 1
+# yaml-language-server: $schema=../../ops.schema.json
+---
+revision: 2
 dependencies:
   apk:
     - less
@@ -11,15 +12,23 @@ dependencies:
     - less
   custom:
     - echo "hello, world"
+  dir:
+    - config/{dev,staging,production}
   docker:
     - ubuntu/nginx
   gem:
     - ejson
   terraform:
-    - dev
+    - env/production
+    - env/staging
+    - env/dev
 actions:
-  myaction:
+  command:
     command: echo "hello, world"
+  command_noop_pass:
+    command: "true"
+  command_noop_fail:
+    command: "false"
 options:
   gem:
     user_install: true
