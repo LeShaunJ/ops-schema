@@ -100,7 +100,6 @@ options:
     ignored_keys:
       - TF_VAR_hello
   environment:
-    environment: dev
     ARM_CLIENT_ID: 00000000-0000-0000-0000-000000000000
   environment_aliases:
     - RAILS_ENV
