@@ -13,7 +13,6 @@ allOf:
     - docker
     - gem
     - sshkey
-    - terraform
   properties:
     apk:
       $ref: ./apk/rev.001.yaml

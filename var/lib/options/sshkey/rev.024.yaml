@@ -5,7 +5,6 @@ allOf:
 - propertyNames:
     enum:
     - add_keys
-    - key_algo
     - key_file_comment
     - key_lifetime
     - key_size

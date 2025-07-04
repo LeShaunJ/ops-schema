@@ -328,33 +328,8 @@
     },
     "Deprecated": {
       "title": "Deprecated",
-      "default": null,
       "examples": [],
-      "not": {
-        "anyOf": [
-          {
-            "type": "array"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "integer"
-          },
-          {
-            "type": "null"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "object"
-          },
-          {
-            "type": "string"
-          }
-        ]
-      }
+      "readOnly": true
     },
     "EnvList": {
       "title": "EnvironmentList",

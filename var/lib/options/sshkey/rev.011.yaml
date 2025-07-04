@@ -4,7 +4,6 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/sshkey/rev
 allOf:
 - propertyNames:
     enum:
-    - key_algo
     - key_lifetime
     - key_size
     - passphrase

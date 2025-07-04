@@ -42,17 +42,8 @@ definitions:
                 - 'false'
   Deprecated:
     title: Deprecated
-    default:
     examples: []
-    not:
-      anyOf:
-        - type: array
-        - type: boolean
-        - type: integer
-        - type: 'null'
-        - type: number
-        - type: object
-        - type: string
+    readOnly: true
   EnvList:
     title: EnvironmentList
     type: array

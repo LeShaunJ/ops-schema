@@ -15,7 +15,6 @@ allOf:
     - pip
     - snap
     - sshkey
-    - terraform
   properties:
     apk:
       $ref: ./apk/rev.001.yaml

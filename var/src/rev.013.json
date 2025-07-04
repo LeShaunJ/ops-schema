@@ -104,8 +104,7 @@
           "dir",
           "docker",
           "gem",
-          "sshkey",
-          "terraform"
+          "sshkey"
         ]
       },
       "properties": {
@@ -378,7 +377,6 @@
           "propertyNames": {
             "enum": [
               "add_keys",
-              "key_algo",
               "key_lifetime",
               "key_size",
               "passphrase",
@@ -483,33 +481,8 @@
     },
     "Deprecated": {
       "title": "Deprecated",
-      "default": null,
       "examples": [],
-      "not": {
-        "anyOf": [
-          {
-            "type": "array"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "integer"
-          },
-          {
-            "type": "null"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "object"
-          },
-          {
-            "type": "string"
-          }
-        ]
-      }
+      "readOnly": true
     },
     "EnvList": {
       "title": "EnvironmentList",

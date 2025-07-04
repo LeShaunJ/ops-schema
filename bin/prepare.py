@@ -85,6 +85,10 @@ def GetMeta(path: Path | str) -> CommentedMap:
 def GetSchema(path: Path | str) -> CommentedMap:
 	return YML.load(path)
 
+def GetRef(schema: dict) -> Path:
+	path = REF_RGX.sub(r'', schema.get('$ref', ''))
+	return Path(path).absolute()
+
 def Prepare(directory: Path) -> None:
 	with chdir(directory):
 		for path in sorted(Path('.').glob(GLOB_REV)):
@@ -111,7 +115,7 @@ def Prepare(directory: Path) -> None:
 				comp[P_PROP_NAMES]['enum'] = sorted([
 					prop for prop, value in
 						schema['allOf'][0][P_PROPS].items()
-							if '/Deprecated' not in value['$ref']
+							if '/Deprecated' not in GetSchema(GetRef(value)).get('$ref', '')
 				])
 
 			for prop, value in schema['allOf'][0].items():

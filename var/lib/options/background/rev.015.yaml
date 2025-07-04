@@ -4,9 +4,7 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/background
 allOf:
 - propertyNames:
     enum:
-    - log_file_prefix
     - log_filename
-    - shell
   properties:
     log_filename:
       $ref: ./log_filename/rev.015.yaml

@@ -161,8 +161,7 @@
           "dir",
           "docker",
           "gem",
-          "sshkey",
-          "terraform"
+          "sshkey"
         ]
       },
       "properties": {
@@ -461,9 +460,7 @@
           },
           "propertyNames": {
             "enum": [
-              "log_file_prefix",
-              "log_filename",
-              "shell"
+              "log_filename"
             ]
           },
           "properties": {
@@ -793,33 +790,8 @@
     },
     "Deprecated": {
       "title": "Deprecated",
-      "default": null,
       "examples": [],
-      "not": {
-        "anyOf": [
-          {
-            "type": "array"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "integer"
-          },
-          {
-            "type": "null"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "object"
-          },
-          {
-            "type": "string"
-          }
-        ]
-      }
+      "readOnly": true
     },
     "EnvList": {
       "title": "EnvironmentList",

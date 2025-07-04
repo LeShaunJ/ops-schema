@@ -12,7 +12,6 @@ allOf:
     - dir
     - docker
     - gem
-    - terraform
   properties:
     apk:
       $ref: ./apk/rev.001.yaml
