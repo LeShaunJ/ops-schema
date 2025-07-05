@@ -58,7 +58,7 @@ actions:
     command: echo "hello, world"
   action_shell_exp:
     command: mysql -u root -p
-    shell_expansion: true
+    shell_expansion: false
 options:
   apt:
     use_sudo: true
