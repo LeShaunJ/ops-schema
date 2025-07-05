@@ -459,18 +459,18 @@
         {
           "allOf": [
             {
-              "not": {
-                "enum": [
-                  "true",
-                  "false"
-                ]
-              },
               "title": "CommandString",
               "default": "echo \"hello, world\"",
               "examples": [
                 "terraform init",
                 "docker-compose up"
-              ]
+              ],
+              "not": {
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              }
             },
             {
               "$ref": "#/definitions/NonEmptyString"

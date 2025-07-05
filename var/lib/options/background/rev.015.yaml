@@ -2,6 +2,7 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/background/rev.015.yaml
 allOf:
+- $ref: ./meta.015.yaml
 - propertyNames:
     enum:
     - log_filename
@@ -12,4 +13,3 @@ allOf:
       $ref: ./log_file_prefix/rev.015.yaml
     shell:
       $ref: ./shell/rev.015.yaml
-- $ref: ./meta.015.yaml

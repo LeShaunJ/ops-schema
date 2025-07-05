@@ -2,6 +2,7 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/rev.003.yaml
 allOf:
+- $ref: ./meta.001.yaml
 - propertyNames:
     enum:
     - actions
@@ -17,4 +18,3 @@ allOf:
       $ref: ./dependencies/rev.002.yaml
     options:
       $ref: ./options/rev.003.yaml
-- $ref: ./meta.001.yaml

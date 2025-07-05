@@ -34,13 +34,15 @@ REF_RGX = compile(r'#.*$')
 
 def GetDirs() -> Generator[Path, None, None]:
 	def HasDirs(directory: Path) -> bool:
-		return len([ *directory.glob('**') ]) > 1
+		return len([ *directory.glob(GLOB_META) ]) > 0
 	
 	directories = sorted(Path(LIB).glob('**'), reverse=True)
 
-	for directory in directories:
-		if HasDirs(directory):
-			yield directory
+	yield from (
+		directory
+		for directory in directories
+		if HasDirs(directory)
+	)
 
 def DelProperties(schema: dict, *props: str) -> None:
 	for prop in props:
@@ -109,24 +111,36 @@ def Prepare(directory: Path) -> None:
 
 			comp = CommentedMap()
 			additional: bool = meta.get(P_PROPS_ADD, True)
+			...
 
-			if P_PROPS in schema['allOf'][0] and not additional:
-				comp[P_PROP_NAMES] = CommentedMap()
-				comp[P_PROP_NAMES]['enum'] = sorted([
-					prop for prop, value in
-						schema['allOf'][0][P_PROPS].items()
-							if '/Deprecated' not in GetSchema(GetRef(value)).get('$ref', '')
-				])
+			allOf: list[dict] = schema['allOf']
+			props: dict = None
+			for scheme in allOf:
+				if not 'meta.' in scheme.get('$ref', ''):
+					props: dict = scheme
+					break
+			...
 
-			for prop, value in schema['allOf'][0].items():
-				if not prop in [ P_PROP_NAMES, *DEF_PROPS, *meta ]:
-					comp[prop] = value
+			if props:
+				if P_PROPS in props and not additional:
+					comp[P_PROP_NAMES] = CommentedMap()
+					comp[P_PROP_NAMES]['enum'] = sorted([
+						prop for prop, value in
+							props[P_PROPS].items()
+								if '/Deprecated' not in GetSchema(GetRef(value)).get('$ref', '')
+					])
+				...
+
+				for prop, value in props.items():
+					if not prop in [ P_PROP_NAMES, *DEF_PROPS, *meta ]:
+						comp[prop] = value
+				...
 			...
 			
 			DelProperties(schema, *[ *meta.keys(), *comp.keys() ])
 			...
 
-			schema['allOf'] = [ comp, { '$ref': f'./{meta_path}' } ]
+			schema['allOf'] = [ { '$ref': f'./{meta_path}' }, comp ]
 			schema["$id"] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{rel}'.strip()
 			...
 

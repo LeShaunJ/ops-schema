@@ -2,6 +2,7 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/dependencies/rev.002.yaml
 allOf:
+- $ref: ./meta.001.yaml
 - propertyNames:
     enum:
     - apk
@@ -32,4 +33,3 @@ allOf:
       $ref: ./gem/rev.001.yaml
     terraform:
       $ref: ./terraform/rev.001.yaml
-- $ref: ./meta.001.yaml

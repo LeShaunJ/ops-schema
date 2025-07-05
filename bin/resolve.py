@@ -120,8 +120,7 @@ def AllOf(schema: dict, resolution: Resolved[dict]) -> dict:
 	try:
 		prop = 'allOf'
 		others: list[dict] = schema[prop]
-		others.reverse()
-		remaining = []
+		remaining: list[dict] = []
 		...
 
 		DelProperties(schema, prop)
@@ -138,12 +137,7 @@ def AllOf(schema: dict, resolution: Resolved[dict]) -> dict:
 		...
 
 		if remaining:
-			# schema[prop] = [ allOf, *remaining ]
-			schema[prop] = [ s for s in [ allOf, *remaining ] if s ]
-			# schema[prop] = list(filter(
-			# 	lambda v: bool(v),
-			# 	[ allOf, *remaining ]
-			# ))
+			schema[prop] = [ s for s in ( allOf, *remaining ) if s ]
 		else:
 			schema = allOf
 		...

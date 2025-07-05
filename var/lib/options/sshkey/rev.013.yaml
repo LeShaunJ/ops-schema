@@ -2,6 +2,7 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/sshkey/rev.013.yaml
 allOf:
+- $ref: ./meta.010.yaml
 - propertyNames:
     enum:
     - add_keys
@@ -22,4 +23,3 @@ allOf:
       $ref: ./passphrase/rev.010.yaml
     passphrase_var:
       $ref: ./passphrase_var/rev.013.yaml
-- $ref: ./meta.010.yaml

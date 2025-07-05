@@ -2,10 +2,10 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/pip/rev.030.yaml
 allOf:
+- $ref: ./meta.030.yaml
 - propertyNames:
     enum:
     - command
   properties:
     command:
       $ref: ./command/rev.030.yaml
-- $ref: ./meta.030.yaml

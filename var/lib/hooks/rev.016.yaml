@@ -2,10 +2,10 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/hooks/rev.016.yaml
 allOf:
+- $ref: ./meta.016.yaml
 - propertyNames:
     enum:
     - before
   properties:
     before:
       $ref: ./before/rev.016.yaml
-- $ref: ./meta.016.yaml

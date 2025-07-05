@@ -2,9 +2,9 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/rev.020.yaml
 allOf:
+- $ref: ./meta.020.yaml
 - patternProperties:
     ^[\w-]+$:
       oneOf:
       - $ref: ./inline/rev.020.yaml
       - $ref: ./action/rev.018.yaml
-- $ref: ./meta.020.yaml
