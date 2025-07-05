@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../../ops.schema.yaml
+# yaml-language-server: $schema=../../ops.schema.json
 ---
 revision: 37
 min_version: 2.2.0
