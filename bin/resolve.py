@@ -281,7 +281,7 @@ def Compose() -> None:
 	comp_type = 'allOf'
 	...
 
-	print(f'Composing {OPS_JSN}... ', end='')
+	print(f'Composing \033[36m{OPS_JSN}\033[0m... ', end='')
 	...
 
 	schema = CreateSchema({}).contents
@@ -310,7 +310,7 @@ def Compose() -> None:
 		JSN.dump(schema, file, indent='  ')
 	...
 
-	print('Done!')
+	print('\033[32mDone\033[0m!')
 ...
 
 resolver = Registry(retrieve=RetrieveYAML).resolver()
@@ -333,7 +333,7 @@ with chdir(CWD):
 		jpath = Path(f'{SRC}/{jname.name}')
 		...
 
-		print(f'Resolving {jpath}... ', end='')
+		print(f'Resolving \033[36m{jpath}\033[0m... ', end='')
 
 		with open(jpath, 'w') as file:
 			definitions = common.copy()
@@ -366,7 +366,7 @@ with chdir(CWD):
 				file.write(f'revision: {revision}\n')
 		...
 
-		print('Done!')
+		print('\033[32mDone\033[0m!')
 		...
 	...
 
