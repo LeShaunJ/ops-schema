@@ -81,7 +81,7 @@
               "default": "DESCRIBE ME!"
             },
             "load_secrets": {
-              "title": "LoadSecrets",
+              "title": "Load Secrets",
               "$ref": "#/definitions/LoadSecrets"
             }
           }

@@ -98,18 +98,21 @@
                   "default": "DESCRIBE ME!"
                 },
                 "in_envs": {
+                  "title": "Only in Evnironment(s)",
                   "description": "Limit possibly destructive actions to only being used in certain environments. If the action is excuted in an environment missing from this list, it will exit with an error.",
                   "$ref": "#/definitions/EnvList"
                 },
                 "load_secrets": {
-                  "title": "LoadSecrets",
+                  "title": "Load Secrets",
                   "$ref": "#/definitions/LoadSecrets"
                 },
                 "not_in_envs": {
+                  "title": "Not in Evnironment(s)",
                   "description": "Prevent possibly destructive actions from being used in certain environments. If the action is excuted in an environment within this list, it will exit with an error.",
                   "$ref": "#/definitions/EnvList"
                 },
                 "skip_before_hooks": {
+                  "title": "Skip Before-Hooks",
                   "description": "You may have some actions that don't need to run before hooks. For example, an action that removes container images to allow a developer to force a clean build from the latest source, or free up disk space.\n\nIn this case, you can configure that action to skip the hooks.\n",
                   "type": "boolean",
                   "default": false

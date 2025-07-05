@@ -101,29 +101,34 @@
                   "default": "DESCRIBE ME!"
                 },
                 "in_envs": {
+                  "title": "Only in Evnironment(s)",
                   "description": "Limit possibly destructive actions to only being used in certain environments. If the action is excuted in an environment missing from this list, it will exit with an error.",
                   "$ref": "#/definitions/EnvList"
                 },
                 "load_secrets": {
-                  "title": "LoadSecrets",
+                  "title": "Load Secrets",
                   "$ref": "#/definitions/LoadSecrets"
                 },
                 "not_in_envs": {
+                  "title": "Not in Evnironment(s)",
                   "description": "Prevent possibly destructive actions from being used in certain environments. If the action is excuted in an environment within this list, it will exit with an error.",
                   "$ref": "#/definitions/EnvList"
                 },
                 "shell_expansion": {
+                  "title": "Disable Shell Expansion",
                   "description": "By default, `ops` executes actions with shell expansion, which means variable references are expanded, file globbing is done, and quotes behave as one would expect. However, this can get in the way sometimes. For actions like this, one can disable shell expansion, losing variable and glob interpolation and other shell features but gaining some predictability.",
                   "markdownDescription": "By default, `ops` executes actions with shell expansion, which means variable references are expanded, file globbing is done, and quotes behave as one would expect. However, this can get in the way sometimes. For actions like this, one can disable shell expansion, losing variable and glob interpolation and other shell features but gaining some predictability.",
                   "type": "boolean",
                   "default": false
                 },
                 "skip_before_hooks": {
+                  "title": "Skip Before-Hooks",
                   "description": "You may have some actions that don't need to run before hooks. For example, an action that removes container images to allow a developer to force a clean build from the latest source, or free up disk space.\n\nIn this case, you can configure that action to skip the hooks.\n",
                   "type": "boolean",
                   "default": false
                 },
                 "skip_in_envs": {
+                  "title": "Skip in Evnironment(s)",
                   "description": "Similar to `not_in_envs`, except it will not exit with an error if executed in any of the specified environments.",
                   "$ref": "#/definitions/EnvList"
                 }
