@@ -12,6 +12,6 @@ markdownDescription: |
   `before` hooks are always executed before secrets are loaded. If you would like a before hook to have access to secrets, create an action with `load_secrets: true` and call the action from a before hook.
 type: array
 items:
-  description: A valid command to run.
-  $ref: "../../common.yaml#/definitions/NonEmptyString"
+  description: A valid command to run before action execution.
+  $ref: "../../common.yaml#/definitions/CommandString"
 minItems: 1

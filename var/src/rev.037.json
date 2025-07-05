@@ -434,8 +434,8 @@
           "markdownDescription": "A series of hooks that run before actions. They do not run before builtins like `up` or `exec`.\n\n`before` hooks are always executed before secrets are loaded. If you would like a before hook to have access to secrets, create an action with `load_secrets: true` and call the action from a before hook.\n",
           "type": "array",
           "items": {
-            "description": "A valid command to run.",
-            "$ref": "#/definitions/NonEmptyString"
+            "description": "A valid command to run before action execution.",
+            "$ref": "#/definitions/CommandString"
           },
           "minItems": 1
         }
