@@ -59,8 +59,8 @@
           "properties": {
             "alias": {
               "title": "Alias",
-              "description": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
-              "markdownDescription": "An action can have one alias. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
+              "description": "A single alias for the action. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
+              "markdownDescription": "A single alias for the action. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.",
               "type": "string",
               "pattern": "^[\\w-]+$"
             },
