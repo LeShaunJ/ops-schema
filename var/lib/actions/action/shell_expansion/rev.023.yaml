@@ -5,4 +5,5 @@ title: Disable Shell Expansion
 description: By default, `ops` executes actions with shell expansion, which means variable references are expanded, file globbing is done, and quotes behave as one would expect. However, this can get in the way sometimes. For actions like this, one can disable shell expansion, losing variable and glob interpolation and other shell features but gaining some predictability.
 markdownDescription: By default, `ops` executes actions with shell expansion, which means variable references are expanded, file globbing is done, and quotes behave as one would expect. However, this can get in the way sometimes. For actions like this, one can disable shell expansion, losing variable and glob interpolation and other shell features but gaining some predictability.
 type: boolean
-default: false
+examples:
+  - false

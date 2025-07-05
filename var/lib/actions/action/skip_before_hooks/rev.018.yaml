@@ -7,4 +7,5 @@ description: |
 
   In this case, you can configure that action to skip the hooks.
 type: boolean
-default: false
+examples:
+  - true

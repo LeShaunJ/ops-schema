@@ -84,7 +84,10 @@
             },
             "load_secrets": {
               "title": "Load Secrets",
-              "$ref": "#/definitions/LoadSecrets"
+              "$ref": "#/definitions/LoadSecrets",
+              "examples": [
+                true
+              ]
             }
           }
         }

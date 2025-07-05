@@ -85,13 +85,18 @@
             },
             "load_secrets": {
               "title": "Load Secrets",
-              "$ref": "#/definitions/LoadSecrets"
+              "$ref": "#/definitions/LoadSecrets",
+              "examples": [
+                true
+              ]
             },
             "skip_before_hooks": {
               "title": "Skip Before-Hooks",
               "description": "You may have some actions that don't need to run before hooks. For example, an action that removes container images to allow a developer to force a clean build from the latest source, or free up disk space.\n\nIn this case, you can configure that action to skip the hooks.\n",
               "type": "boolean",
-              "default": false
+              "examples": [
+                true
+              ]
             }
           }
         }
