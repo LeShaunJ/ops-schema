@@ -470,8 +470,8 @@
             },
             "key_algo": {
               "title": "KeyAlgorithm",
-              "description": "[DEPRECATED] This feature was removed from versions `0.8.2` and onward until `1.14.0`.",
-              "markdownDescription": "### `DEPRECATED`\n_This feature was removed from versions `0.8.2` and onward until `1.14.0`._\n",
+              "description": "[DEPRECATED] This feature was removed from versions `0.8.2` and onward until `1.7.0`.",
+              "markdownDescription": "### `DEPRECATED`\n_This feature was removed from versions `0.8.2` and onward until `1.7.0`._\n",
               "$ref": "#/definitions/Deprecated"
             },
             "key_lifetime": {
