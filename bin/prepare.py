@@ -91,7 +91,7 @@ def GetRef(schema: dict) -> Path:
 	path = REF_RGX.sub(r'', schema.get('$ref', ''))
 	return Path(path).absolute()
 
-def Prepare(directory: Path) -> None:
+def PrepRevisions(directory: Path) -> None:
 	with chdir(directory):
 		for path in sorted(Path('.').glob(GLOB_REV)):
 			path = path.absolute()
@@ -159,7 +159,7 @@ YML.width = 255
 ...
 
 with chdir(CWD): [
-	Prepare(dir)
+	PrepRevisions(dir)
 		for dir in GetDirs()
 ]
 ...
