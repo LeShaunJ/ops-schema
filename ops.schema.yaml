@@ -2,158 +2,121 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/ops.schema.yaml
 title: ops.yaml
-type: object
 description: Confirguration for `ops`.
+type: object
 minProperties: 1
 if: { required: ['revision'] }
 then:
   allOf:
-    - if:
-        properties: { revision: { const: 37 } }
+    - if: { properties: { revision: { const: 37 } } }
       then:
         $ref: './var/lib/rev.037.yaml'
-    - if:
-        properties: { revision: { const: 36 } }
+    - if: { properties: { revision: { const: 36 } } }
       then:
         $ref: './var/lib/rev.036.yaml'
-    - if:
-        properties: { revision: { const: 35 } }
+    - if: { properties: { revision: { const: 35 } } }
       then:
         $ref: './var/lib/rev.035.yaml'
-    - if:
-        properties: { revision: { const: 34 } }
+    - if: { properties: { revision: { const: 34 } } }
       then:
         $ref: './var/lib/rev.034.yaml'
-    - if:
-        properties: { revision: { const: 33 } }
+    - if: { properties: { revision: { const: 33 } } }
       then:
         $ref: './var/lib/rev.033.yaml'
-    - if:
-        properties: { revision: { const: 32 } }
+    - if: { properties: { revision: { const: 32 } } }
       then:
         $ref: './var/lib/rev.032.yaml'
-    - if:
-        properties: { revision: { const: 31 } }
+    - if: { properties: { revision: { const: 31 } } }
       then:
         $ref: './var/lib/rev.031.yaml'
-    - if:
-        properties: { revision: { const: 30 } }
+    - if: { properties: { revision: { const: 30 } } }
       then:
         $ref: './var/lib/rev.030.yaml'
-    - if:
-        properties: { revision: { const: 29 } }
+    - if: { properties: { revision: { const: 29 } } }
       then:
         $ref: './var/lib/rev.029.yaml'
-    - if:
-        properties: { revision: { const: 28 } }
+    - if: { properties: { revision: { const: 28 } } }
       then:
         $ref: './var/lib/rev.028.yaml'
-    - if:
-        properties: { revision: { const: 27 } }
+    - if: { properties: { revision: { const: 27 } } }
       then:
         $ref: './var/lib/rev.027.yaml'
-    - if:
-        properties: { revision: { const: 26 } }
+    - if: { properties: { revision: { const: 26 } } }
       then:
         $ref: './var/lib/rev.026.yaml'
-    - if:
-        properties: { revision: { const: 25 } }
+    - if: { properties: { revision: { const: 25 } } }
       then:
         $ref: './var/lib/rev.025.yaml'
-    - if:
-        properties: { revision: { const: 24 } }
+    - if: { properties: { revision: { const: 24 } } }
       then:
         $ref: './var/lib/rev.024.yaml'
-    - if:
-        properties: { revision: { const: 23 } }
+    - if: { properties: { revision: { const: 23 } } }
       then:
         $ref: './var/lib/rev.023.yaml'
-    - if:
-        properties: { revision: { const: 22 } }
+    - if: { properties: { revision: { const: 22 } } }
       then:
         $ref: './var/lib/rev.022.yaml'
-    - if:
-        properties: { revision: { const: 21 } }
+    - if: { properties: { revision: { const: 21 } } }
       then:
         $ref: './var/lib/rev.021.yaml'
-    - if:
-        properties: { revision: { const: 20 } }
+    - if: { properties: { revision: { const: 20 } } }
       then:
         $ref: './var/lib/rev.020.yaml'
-    - if:
-        properties: { revision: { const: 19 } }
+    - if: { properties: { revision: { const: 19 } } }
       then:
         $ref: './var/lib/rev.019.yaml'
-    - if:
-        properties: { revision: { const: 18 } }
+    - if: { properties: { revision: { const: 18 } } }
       then:
         $ref: './var/lib/rev.018.yaml'
-    - if:
-        properties: { revision: { const: 17 } }
+    - if: { properties: { revision: { const: 17 } } }
       then:
         $ref: './var/lib/rev.017.yaml'
-    - if:
-        properties: { revision: { const: 16 } }
+    - if: { properties: { revision: { const: 16 } } }
       then:
         $ref: './var/lib/rev.016.yaml'
-    - if:
-        properties: { revision: { const: 15 } }
+    - if: { properties: { revision: { const: 15 } } }
       then:
         $ref: './var/lib/rev.015.yaml'
-    - if:
-        properties: { revision: { const: 14 } }
+    - if: { properties: { revision: { const: 14 } } }
       then:
         $ref: './var/lib/rev.014.yaml'
-    - if:
-        properties: { revision: { const: 13 } }
+    - if: { properties: { revision: { const: 13 } } }
       then:
         $ref: './var/lib/rev.013.yaml'
-    - if:
-        properties: { revision: { const: 12 } }
+    - if: { properties: { revision: { const: 12 } } }
       then:
         $ref: './var/lib/rev.012.yaml'
-    - if:
-        properties: { revision: { const: 11 } }
+    - if: { properties: { revision: { const: 11 } } }
       then:
         $ref: './var/lib/rev.011.yaml'
-    - if:
-        properties: { revision: { const: 10 } }
+    - if: { properties: { revision: { const: 10 } } }
       then:
         $ref: './var/lib/rev.010.yaml'
-    - if:
-        properties: { revision: { const: 9 } }
+    - if: { properties: { revision: { const: 9 } } }
       then:
         $ref: './var/lib/rev.009.yaml'
-    - if:
-        properties: { revision: { const: 8 } }
+    - if: { properties: { revision: { const: 8 } } }
       then:
         $ref: './var/lib/rev.008.yaml'
-    - if:
-        properties: { revision: { const: 7 } }
+    - if: { properties: { revision: { const: 7 } } }
       then:
         $ref: './var/lib/rev.007.yaml'
-    - if:
-        properties: { revision: { const: 6 } }
+    - if: { properties: { revision: { const: 6 } } }
       then:
         $ref: './var/lib/rev.006.yaml'
-    - if:
-        properties: { revision: { const: 5 } }
+    - if: { properties: { revision: { const: 5 } } }
       then:
         $ref: './var/lib/rev.005.yaml'
-    - if:
-        properties: { revision: { const: 4 } }
+    - if: { properties: { revision: { const: 4 } } }
       then:
         $ref: './var/lib/rev.004.yaml'
-    - if:
-        properties: { revision: { const: 3 } }
+    - if: { properties: { revision: { const: 3 } } }
       then:
         $ref: './var/lib/rev.003.yaml'
-    - if:
-        properties: { revision: { const: 2 } }
+    - if: { properties: { revision: { const: 2 } } }
       then:
         $ref: './var/lib/rev.002.yaml'
-    - if:
-        properties: { revision: { const: 1 } }
+    - if: { properties: { revision: { const: 1 } } }
       then:
         $ref: './var/lib/rev.001.yaml'
 else:
