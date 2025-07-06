@@ -1,4 +1,2 @@
 #!/usr/bin/env python3
-import config as Config
-
-
+from . import config as Config

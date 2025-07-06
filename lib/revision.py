@@ -1,5 +1,7 @@
-#!/usr/bin/env python3
-import semver, config as Config, yml as YML
+#!/usr/bin/env python3L
+import semver
+from . import yml as YML
+from . import config as Config
 from pathlib import Path
 from typing import overload, Generator, TypeAlias, TypeVar, Self
 from ruamel.yaml.anchor import Anchor
@@ -91,7 +93,7 @@ def ID(*args: Path | str | Anchor) -> int:
 	raise TypeError('Must specify Path | str | Anchor')
 
 @lru_cache()
-def Compare(a: Path | str, b: Path | str) -> bool:
+def Compare(a: str, b: str) -> bool:
 	return ID(b) >= ID(a)
 
 @cache
@@ -175,7 +177,7 @@ def Versions(revision: int, gem_ver: str, sem_ver: semver.Version) -> list[str]:
 	root = YML.Get(root_path)
 	...
 
-	if not 'min_version' in YML.Dig(root, 'allOf',0,'properties'):
+	if not 'min_version' in YML.Dig(root, 'allOf', 1, 'properties'):
 		raise Unsupported(f'Skipping `min_version` for revision {name}.')
 	...
 
@@ -185,11 +187,11 @@ def Versions(revision: int, gem_ver: str, sem_ver: semver.Version) -> list[str]:
 		next_ver = VER_MAX
 
 	allowed_vers = [
-		gem_ver, *[ 
+		gem_ver, *(
 			o_ver
 				for o_ver, o_sem in Gems().items()
 					if (sem_ver < o_sem) and (o_sem < next_ver)
-		]
+		)
 	]
 	allowed_vers.reverse()
 	...
@@ -201,7 +203,7 @@ def Versions(revision: int, gem_ver: str, sem_ver: semver.Version) -> list[str]:
 if __name__ == "__main__":
 	with chdir(Config.Dir.CWD):
 		changes: list[CommentedMap] = [
-			v for _k, v in sorted(Changes().items())
+			v for _, v in sorted(Changes().items())
 		]
 		...
 

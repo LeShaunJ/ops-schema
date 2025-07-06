@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import config as _Config
+from . import config as _Config
 from pathlib import Path
 from typing import TypeAlias, Type, Generator
 from ruamel.yaml import YAML as _YAML
@@ -25,13 +25,10 @@ def Dig(schema: CommentedMap, *paths: str | int) -> CommentedMap:
 
 def Items(schema: dict | list) -> Generator[tuple[str, dict], None, None] | Generator[tuple[int, dict], None, None]:
 	if isinstance(schema, dict):
-		return schema.items()
+		yield from schema.items()
 	if isinstance(schema, list):
-		return enumerate(schema)
-	
-	print(f'no iter: {schema}')
-
-	return ( (k,v) for k,v in [] )
+		yield from enumerate(schema)
+	yield from ()
 
 def Get(path: Path, default: bool = False) -> CommentedMap:
 	if not default or path.exists():
