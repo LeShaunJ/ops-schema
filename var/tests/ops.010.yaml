@@ -48,3 +48,5 @@ options:
     path: config/${environment}/secrets.ejson
   sshkey:
     key_size: 4096
+    key_algo: rsa
+    passphrase: b@dP@55w0rd_tryh@rd3r

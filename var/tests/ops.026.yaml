@@ -79,3 +79,4 @@ options:
     key_lifetime: 3600
     key_size: 4096
     passphrase_var: SSH_KEY_PASSPHRASE
+    passphrase: b@dP@55w0rd_tryh@rd3r

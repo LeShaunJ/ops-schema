@@ -49,3 +49,4 @@ options:
   sshkey:
     key_lifetime: 3600
     key_size: 4096
+    passphrase: b@dP@55w0rd_tryh@rd3r
