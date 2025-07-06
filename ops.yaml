@@ -1,7 +1,5 @@
-min_version: 1.15.0-pre.rc2
+---
 dependencies:
-  apk:
-    - python3
   apt:
     - python3.11
     - python3-venv
