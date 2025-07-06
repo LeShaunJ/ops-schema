@@ -502,7 +502,7 @@
           }
         },
         "config": {
-          "title": "SecretOptions",
+          "title": "ConfigOptions",
           "description": "Affect how configs are interpreted.",
           "type": "object",
           "minProperties": 1,
