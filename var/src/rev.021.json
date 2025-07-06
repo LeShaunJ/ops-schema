@@ -80,7 +80,7 @@
                 },
                 "command": {
                   "title": "Command",
-                  "description": "A command or script to run when the action is executed.",
+                  "description": "A command or script to execute when the action is called.",
                   "type": "string",
                   "default": "true",
                   "allOf": [
