@@ -14,6 +14,9 @@ properties:
       * It _is not_ the same as `min_version` (_`0.12.0` and onward_); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.
       * If unset, the `ops.yml` file will be validated against the most recent version of `ops`.
     type: integer
+    minimum: 1
+    maximum: 37
+    default: 37
 definitions:
   CommandString:
     oneOf:

@@ -17,13 +17,6 @@
     ]
   },
   "properties": {
-    "revision": {
-      "title": "Revision",
-      "description": "A number representing a schema version that the `ops.yml` will be validated against.\n\u2014 It is not the same as `min_version` (`0.12.0` and onward); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.\n\u2014 If unset, the `ops.yml` file will be validated against the most recent version of `ops`.\n",
-      "markdownDescription": "A number representing a schema version that the `ops.yml` will be validated against:\n* It _is not_ the same as `min_version` (_`0.12.0` and onward_); though they are linked, as the versions one can specify in `min_version` are governed by the chosen revision.\n* If unset, the `ops.yml` file will be validated against the most recent version of `ops`.\n",
-      "type": "integer",
-      "const": 27
-    },
     "actions": {
       "title": "ActionMap",
       "description": "A collection of commands to run via `ops`. If the first argument to `ops` is not a `builtin`, `ops` will look for an action with that name.",

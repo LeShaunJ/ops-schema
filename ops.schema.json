@@ -4,6 +4,11 @@
   "title": "ops.yaml",
   "type": "object",
   "description": "Confirguration for `ops`",
+  "properties": {
+    "revision": {
+      "$ref": "./var/lib/common.yaml#/properties/revision"
+    }
+  },
   "minProperties": 1,
   "if": {
     "required": [

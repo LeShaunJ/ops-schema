@@ -4,6 +4,9 @@ $id: https://github.com/LeShaunJ/ops-schema/blob/main/ops.schema.yaml
 title: ops.yaml
 description: Confirguration for `ops`.
 type: object
+properties:
+  revision:
+    $ref: './var/lib/common.yaml#/properties/revision'
 minProperties: 1
 if: { required: ['revision'] }
 then:

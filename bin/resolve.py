@@ -2,7 +2,7 @@
 import sys, os, re, json as JSN
 from collections import OrderedDict
 from typing import overload, Any, Generator
-from functools import reduce
+from functools import reduce, lru_cache
 from pathlib import Path
 from contextlib import chdir
 from ruamel.yaml import YAML
@@ -227,6 +227,7 @@ def Walk(*args) -> dict:
 	
 	return schema
 
+@lru_cache
 def GetRevision(path: Path) -> int:
 	parts = str(path).split('.')
 	revision = parts[1]
@@ -238,29 +239,6 @@ def Register(path: Path) -> None:
 
 	revision = GetRevision(path)
 	...
-
-	# registry.append({ "allOf": [
-		# {
-		# 	"properties": {
-		# 		"revision": {
-		# 			"title": "Revision",
-		# 			"const": revision
-		# 		}
-		# 	},
-		# 	"required": ["revision"]
-   	# },
-		# # {
-		# 	# "if": { "required": ["min_version"] },
-		# 	# "then": {
-		# 		# "properties": {
-		# 			# "min_version": {
-		# 				# "enum": []
-		# 			# }
-		# 		# }
-		# 	# }
-		# # },
-		# { "$ref": f"./{path}" }
-	# ] })
 
 	registry.append({
 		"if": {
@@ -290,6 +268,11 @@ def Compose() -> None:
 	schema['title'] = 'ops.yaml'
 	schema['type'] = 'object'
 	schema['description'] = 'Confirguration for `ops`'
+	schema['properties'] = {
+		"revision": {
+			"$ref": f'./{LIB}/{COMMON}#/properties/revision'
+		}
+	}
 	schema['minProperties'] = 1
 	schema['if'] = { 'required': ['revision'] }
 	schema['then'] = { comp_type: registry }
@@ -349,7 +332,7 @@ with chdir(CWD):
 
 			schema['title'] = 'ops.yaml'
 			schema['description'] = f'Confirguration for `ops` (rev. {revision:03d})'
-			schema['properties']['revision']['const'] = revision
+			del schema['properties']['revision']
 			...
 
 			Register(jpath)

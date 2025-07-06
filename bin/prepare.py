@@ -23,6 +23,7 @@ if DRY_RUN:
 
 CWD = Path.cwd()
 LIB = 'var/lib'
+COMMON = 'common.yaml'
 DEF_PROPS = ['$id', '$schema', 'allOf']
 P_PROPS = 'properties'
 P_PROP_NAMES = 'propertyNames'
@@ -51,14 +52,20 @@ def DelProperties(schema: dict, *props: str) -> None:
 		except KeyError:
 			continue
 
+def GetMaxRevision() -> int:
+	return max((
+		GetRevision(path.name)
+		for path in Path(LIB).glob('rev.*.yaml')
+	))
+
 @lru_cache
-def GetRevision(path: Path | str) -> int:
-	parts = str(path).split('.')
+def GetRevision(name: str) -> int:
+	parts = str(name).split('.')
 	revision = parts[1]
 	return int(revision)
 
 @lru_cache
-def CompareRevisions(a: Path | str, b: Path | str) -> bool:
+def CompareRevisions(a: str, b: str) -> bool:
 	return GetRevision(b) >= GetRevision(a)
 
 @lru_cache
@@ -66,7 +73,7 @@ def FindMeta(path: Path | str) -> Path:
 	meta = None
 	metas = sorted(Path('.').glob(GLOB_META))
 	for meta_path in metas:
-		if not CompareRevisions(meta_path.absolute(), path):
+		if not CompareRevisions(meta_path.name, path.name):
 			break
 		meta = meta_path
 	...
@@ -154,12 +161,32 @@ def PrepRevisions(directory: Path) -> None:
 			...
 ...
 
+def PrepCommon():
+	max_rev = GetMaxRevision()
+	common_path = Path(f'{LIB}/{COMMON}')
+	common_schema = GetSchema(common_path)
+	common_schema['properties']['revision'] |= {
+		'minimum': 1,
+		'maximum': max_rev,
+		'default': max_rev,
+	}
+	...
+
+	if DRY_RUN:
+		YML.dump(common_schema['properties'], sys.stdout)
+		print('')
+	else:
+		with open(common_path, "w") as file:
+			YML.dump(common_schema, file)
+
 YML = YAML()
 YML.width = 255
 ...
 
-with chdir(CWD): [
-	PrepRevisions(dir)
-		for dir in GetDirs()
-]
+with chdir(CWD): 
+	[ PrepRevisions(dir) for dir in GetDirs() ]
+	...
+
+	PrepCommon()
+	...
 ...
