@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/hooks/rev.016.yaml
+$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/hooks/meta.016.yaml
 title: Hooks
 description: |
   Sometimes you want to run a command before other commands. Some examples:

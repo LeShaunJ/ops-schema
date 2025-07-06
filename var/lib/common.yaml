@@ -2,7 +2,7 @@
 $schema: https://json-schema.org/draft-07/schema
 $id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/common.yaml
 title: ops.yaml Common
-properties: 
+properties:
   revision:
     title: Revision
     description: |
@@ -17,29 +17,29 @@ properties:
 definitions:
   CommandString:
     oneOf:
-      - title: NoopPass
-        description: Executes a `no-op`, exiting successfully with `0`.
-        markdownDescription: Executes a `no-op`, exiting successfully with `0`.
-        type: string
-        const: "true"
-        default: "true"
-      - title: NoopFail
-        description: Executes a `no-op`, exiting with error code `1`.
-        markdownDescription: Executes a `no-op`, exiting with error code `1`.
-        type: string
-        const: "false"
-        default: "false"
-      - allOf:
-          - title: CommandString
-            default: echo "hello, world"
-            examples:
-              - terraform init
-              - docker-compose up
-          - $ref: "#/definitions/NonEmptyString"
-          - not:
-              enum:
-                - 'true'
-                - 'false'
+    - title: NoopPass
+      description: Executes a `no-op`, exiting successfully with `0`.
+      markdownDescription: Executes a `no-op`, exiting successfully with `0`.
+      type: string
+      const: 'true'
+      default: 'true'
+    - title: NoopFail
+      description: Executes a `no-op`, exiting with error code `1`.
+      markdownDescription: Executes a `no-op`, exiting with error code `1`.
+      type: string
+      const: 'false'
+      default: 'false'
+    - allOf:
+      - title: CommandString
+        default: echo "hello, world"
+        examples:
+        - terraform init
+        - docker-compose up
+      - $ref: '#/definitions/NonEmptyString'
+      - not:
+          enum:
+          - 'true'
+          - 'false'
   Deprecated:
     title: Deprecated
     examples: []
@@ -50,7 +50,7 @@ definitions:
     items:
       title: Environment
       description: A list of environment names.
-      $ref: "#/definitions/NameString"
+      $ref: '#/definitions/NameString'
     minItems: 1
     uniqueItems: true
   FileName:
@@ -85,8 +85,8 @@ definitions:
     type: string
     pattern: ^\b[\w:.+-]+\b(@\b[\d.]+\b[\w.+-]*\b)?$
     examples:
-      - ruby
-      - openssl@
+    - ruby
+    - openssl@
   PackagePip:
     title: PipPackage
     description: The name of a `pip` package. If you need to specify a version, include it after the name, delimited by `==`.
@@ -94,8 +94,8 @@ definitions:
     type: string
     pattern: ^\b[\w:.+-]+\b(==\b[\d.]+\b[\w.+-]*\b)?$
     examples:
-      - semver
-      - ruamel.yaml==0.17.26
+    - semver
+    - ruamel.yaml==0.17.26
   PackageVersioned:
     title: Package
     description: The name of a package. If you need to specify a version, include it after the name, delimited by a space.
@@ -103,8 +103,8 @@ definitions:
     type: string
     pattern: ^\b[\w@:.+-]+\b( \b[\d.]+\b[\w.+-]*\b)?$
     examples:
-      - ruby
-      - openssl 0.8.0
+    - ruby
+    - openssl 0.8.0
   Path:
     title: Path
     type: string
@@ -114,8 +114,8 @@ definitions:
     type: array
     items:
       allOf:
-        - description: A valid filepath.
-        - $ref: '#/definitions/Path'
+      - description: A valid filepath.
+      - $ref: '#/definitions/Path'
     minItems: 1
     uniqueItems: true
   SemVer:
