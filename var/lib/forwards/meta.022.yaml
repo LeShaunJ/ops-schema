@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/forwards/rev.022.yaml
+$id: https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/var/lib/forwards/rev.022.yaml
 title: ForwardMap
 description: |
   Sometimes a project is complex enough to split up into multiple directories. In this case, you may have `ops.yml` files in several places, but still want to provide easy access to these actions from the top-level directory.

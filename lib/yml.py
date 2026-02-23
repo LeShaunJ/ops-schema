@@ -2,11 +2,18 @@
 from . import config as _Config
 from pathlib import Path
 from typing import TypeAlias, Type, Generator
-from ruamel.yaml import YAML as _YAML
+from ruamel.yaml import YAML as _YAML, representer
 from ruamel.yaml.comments import CommentedMap, CommentedSeq
+from ruamel.yaml.compat import StringIO
 ...
 
 _YML = _YAML()
+_YML.explicit_start = True
+_YML.explicit_end   = True
+_YML.representer.add_representer(
+	type(None),
+	lambda self, _: self.represent_scalar('tag:yaml.org,2002:null', 'null')
+)
 _YML.width = 255
 ...
 
@@ -43,13 +50,15 @@ def Get(path: Path, default: bool = False) -> CommentedMap:
 			meta = ""
 
 		return _YML.load(meta)
-	
+
+def Render(schema: CommentedMap) -> str:
+	stream = StringIO()
+	_YML.dump(schema, stream)
+	return stream.getvalue()
+
 def Save(schema: CommentedMap, path: Path) -> None:
 	if _Config.Flag.DRY_RUN:
-		import sys
-
-		print('')
-		_YML.dump(schema, sys.stdout)
+		print(f'\n{Render(schema)}')
 	else:
 		with open(path, 'w') as file:
 			_YML.dump(schema, file)

@@ -18,7 +18,7 @@ YML = YAML()
 LIB = 'var/lib'
 SRC = 'var/src'
 TST = 'var/tests'
-GIT = f"{str(os.environ['REMOTE']).removesuffix('.git')}/blob/main"
+GIT = str(os.environ['REMOTE'])
 COMMON = 'common.yaml'
 OPS_JSN = 'ops.schema.json'
 ...
@@ -267,7 +267,7 @@ def Compose() -> None:
 	schema['$id'] = f'{GIT}/{OPS_JSN}'
 	schema['title'] = 'ops.yaml'
 	schema['type'] = 'object'
-	schema['description'] = 'Confirguration for `ops`'
+	schema['description'] = 'Configuration for `ops`'
 	schema['properties'] = {
 		"revision": {
 			"$ref": f'./{LIB}/{COMMON}#/properties/revision'
@@ -331,7 +331,7 @@ with chdir(CWD):
 			...
 
 			schema['title'] = 'ops.yaml'
-			schema['description'] = f'Confirguration for `ops` (rev. {revision:03d})'
+			schema['description'] = f'Configuration for `ops` (rev. {revision:03d})'
 			del schema['properties']['revision']
 			...
 

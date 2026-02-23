@@ -89,7 +89,7 @@ function create() {
     printf -- '%s\n' \
       "# yaml-language-server: \$schema=https://json-schema.org/draft-07/schema" \
       "\$schema: https://json-schema.org/draft-07/schema" \
-      "\$id: ${REMOTE%.git}/blob/main/${path}" \
+      "\$id: ${REMOTE}/${path}" \
       "" \
       > "${path}" || return 3
   fi

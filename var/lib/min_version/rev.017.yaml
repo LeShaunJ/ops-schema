@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/min_version/rev.017.yaml
+$id: https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/var/lib/min_version/rev.017.yaml
 allOf:
 - $ref: ./meta.017.yaml
 - $ref: ../common.yaml#/definitions/SemVer

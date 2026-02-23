@@ -148,7 +148,7 @@ def PrepRevisions(directory: Path) -> None:
 			...
 
 			schema['allOf'] = [ { '$ref': f'./{meta_path}' }, comp ]
-			schema["$id"] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{rel}'.strip()
+			schema["$id"] = f'https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/{rel}'.strip()
 			...
 
 			print(f'-> \033[35m{meta_path}\033[0m')

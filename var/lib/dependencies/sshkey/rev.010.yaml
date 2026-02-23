@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/dependencies/sshkey/rev.010.yaml
+$id: https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/var/lib/dependencies/sshkey/rev.010.yaml
 title: sshKeyList
 description: |
   This dependency will create an SSH key pair with key size 4096 and key algorithm `rsa` at `keys/$environment/user@host` and `keys/$environment/user@host.pub`. It will also add it to your SSH agent, if `SSH_AUTH_SOCK` is set, with a lifetime of 3600 seconds (one hour).

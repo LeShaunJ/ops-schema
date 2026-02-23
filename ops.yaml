@@ -48,7 +48,7 @@ options:
   environment:
     VIRTUAL_ENV: "${OPS_YML_DIR}/.venv"
     PATH: "$(pwd)/bin:${VIRTUAL_ENV}/bin:${PATH}"
-    REMOTE: "$(git remote get-url origin)"
+    REMOTE: "https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main"
   pip:
     command: "${OPS_YML_DIR}/.venv/bin/pip3"
   up:

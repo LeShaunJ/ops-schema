@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/environment_aliases/meta.009.yaml
+$id: https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/var/lib/options/environment_aliases/meta.009.yaml
 title: EnvironmentAliasList
 description: |
   Different software systems use different environment variables to determine the software execution environment. E.g. Ruby on Rails uses `RAILS_ENV`. Thus, `ops` allows the user to specify which variables should also be set to the name of the software environment.

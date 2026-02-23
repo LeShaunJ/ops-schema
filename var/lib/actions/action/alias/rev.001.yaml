@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/actions/action/alias/rev.001.yaml
+$id: https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/var/lib/actions/action/alias/rev.001.yaml
 title: Alias
 description: A single alias for the action. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.
 markdownDescription: A single alias for the action. If the first argument to `ops` is not a builtin or an action name, `ops` will look for an alias that matches the argument.

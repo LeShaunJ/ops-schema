@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema
 $schema: https://json-schema.org/draft-07/schema
-$id: https://github.com/LeShaunJ/ops-schema/blob/main/var/lib/options/sshkey/passphrase/rev.010.yaml
+$id: https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/var/lib/options/sshkey/passphrase/rev.010.yaml
 title: KeyPassphrase
 description: '[DEPRECATED] This feature was removed as of version `2.0.0`. Please use `options.sshkey.passphrase_var` instead.'
 markdownDescription: |

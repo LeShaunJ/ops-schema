@@ -209,12 +209,21 @@ if __name__ == "__main__":
 
 		for revision, gem_ver, sem_ver in List():
 			try:
-				versions = Versions(revision, gem_ver, sem_ver)
-				print(f'Updating `min_version` for revision {revision:0>3}... ')
+				change = CommentedMap()
+				...
 
-				change: CommentedMap = Change.MergeAll(*changes[0:revision-1])
-				print(change)
+				print(f'Retrieving `min_version` for revision {revision:0>3}... ')
+				versions = Versions(revision, gem_ver, sem_ver)
+				change['min_version'] = versions
+				...
+
+				print(f'Updating `min_version` for revision {revision:0>3}... ')
+				change = Change.MergeAll(*changes[0:revision-1])
+				...
+
+				print(YML.Render(change))
 				print(versions)
+				...
 			except Unsupported as e:
 				print(e)
 		...

@@ -160,7 +160,7 @@ with chdir(CWD):
 
 			schema = GetSchema(path, Path(f'{VER_DIR}/{metaname}'))
 
-			schema['$id'] = f'https://github.com/LeShaunJ/ops-schema/blob/main/{path}'
+			schema['$id'] = f'https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/{path}'
 			schema['default'] = allowed_vers[0]
 			schema['allOf'] = [
 				{ 'enum': allowed_vers },

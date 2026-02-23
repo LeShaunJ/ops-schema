@@ -35,7 +35,7 @@ class Dir:
 		CHANGES = Path('changes.yaml')
 
 class Git:
-	MAIN = 'https://github.com/LeShaunJ/ops-schema/blob/main'
+	MAIN = 'https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main'
 	GEM  = 'ops_team'
 
 class Keyword:
