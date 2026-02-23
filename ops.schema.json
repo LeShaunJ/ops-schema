@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://github.com/LeShaunJ/ops-schema/blob/main/ops.schema.json",
+  "$id": "https://raw.githubusercontent.com/LeShaunJ/ops-schema/refs/heads/main/ops.schema.json",
   "title": "ops.yaml",
   "type": "object",
-  "description": "Confirguration for `ops`",
+  "description": "Configuration for `ops`",
   "properties": {
     "revision": {
       "$ref": "./var/lib/common.yaml#/properties/revision"
